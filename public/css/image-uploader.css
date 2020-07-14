@@ -1,0 +1,213 @@
+/*! Image Uploader - v1.2.3 - 26/11/2019
+ * Copyright (c) 2019 Christian Bayer; Licensed MIT */
+
+/* Icons Font Face*/
+@font-face {
+    font-family: 'Image Uploader Icons';
+    src: url('../fonts/iu.eot');
+    src: url('../fonts/iu.eot') format('embedded-opentype'),
+    url('../fonts/iu.ttf') format('truetype'),
+    url('../fonts/iu.woff') format('woff'),
+    url('../fonts/iu.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Icons class */
+[class^="iui-"], [class*="iui-"] {
+    font-family: 'Image Uploader Icons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+  .delete-image:focus{
+    outline: none;
+  }
+
+.cloud-image-upload{
+  background-image: url('../img/upld.png');
+  background-repeat: no-repeat;
+  width: 64px;
+  height: 64px;
+  margin-bottom: .5rem;
+}
+
+/* Icon Close */
+.iui-close:before {
+    content: "\e900";
+}
+
+/* Icon Cloud Upload */
+.iui-cloud-upload:before {
+    content: "\e901";
+}
+
+/* Base style */
+.image-uploader {
+    min-height: 9rem;
+    border: 1px solid #adb5bd;
+    position: relative;
+    border-radius: 0.25rem;
+    background: #fff;
+}
+
+.image-error-span{
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #e3342f;
+}
+
+.error-img{
+  border-color: #e3342f;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23e3342f' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e3342f' stroke='none'/%3e%3c/svg%3e");
+  padding-right: calc(1.6em + 0.75rem);
+  background-repeat: no-repeat;
+  background-position: top calc(0.4em + 0.1875rem) right calc(0.4em + 0.1875rem);
+  background-size: calc(0.8em + 0.375rem) calc(0.8em + 0.375rem);
+}
+
+/* Style on hover */
+.image-uploader.drag-over {
+    background-color: #f3f3f3;
+}
+
+/* Hide the file input */
+.image-uploader input[type="file"] {
+    width: 0;
+    height: 0;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+/* Text container */
+.image-uploader .upload-text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.image-uploader .upload-text i {
+    display: block;
+    font-size: 3rem;
+}
+
+.image-uploader .upload-text span {
+    display: block;
+}
+
+/* Hide the text if there is at least one uploaded image */
+.image-uploader.has-files .upload-text {
+    display: none;
+}
+
+/* Uploaded images container */
+.image-uploader .uploaded {
+    padding: .5rem;
+    line-height: 0;
+}
+
+.image-uploader .uploaded .uploaded-image {
+    display: inline-block;
+    width: calc(16.6666667% - 1rem);
+    padding-bottom: calc(16.6666667% - 1rem);
+    height: 0;
+    position: relative;
+    margin: .5rem;
+    background: #f3f3f3;
+    cursor: default;
+}
+
+.image-uploader .uploaded .uploaded-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+/* Delete image button */
+.image-uploader .uploaded .uploaded-image .delete-image {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: .2rem;
+    right: .2rem;
+    border-radius: 50%;
+    padding: .3rem;
+    line-height: 1;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-appearance: none;
+    border: none;
+}
+
+.image-uploader .uploaded .uploaded-image:hover .delete-image {
+    display: block;
+}
+
+.image-uploader .uploaded .uploaded-image .delete-image i {
+    display: block;
+    color: #fff;
+    width: 1.4rem;
+    height: 1.4rem;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+}
+
+.image-uploader .uploaded .uploaded-image .delete-image:hover{
+  background-color: rgba(0, 0, 0, .65);
+}
+
+@media screen and (max-width: 1366px) {
+    .image-uploader .uploaded .uploaded-image {
+        width: calc(20% - 1rem);
+        padding-bottom: calc(20% - 1rem);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .image-uploader .uploaded {
+        padding: .4rem;
+    }
+
+    .image-uploader .uploaded .uploaded-image {
+        width: calc(25% - .8rem);
+        padding-bottom: calc(25% - .4rem);
+        margin: .4rem;
+    }
+}
+
+@media screen and (max-width: 786px) {
+    .image-uploader .uploaded {
+        padding: .3rem;
+    }
+
+    .image-uploader .uploaded .uploaded-image {
+        width: calc(33.3333333333% - .6rem);
+        padding-bottom: calc(33.3333333333% - .3rem);
+        margin: .3rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .image-uploader .uploaded {
+        padding: .2rem;
+    }
+
+    .image-uploader .uploaded .uploaded-image {
+        width: calc(50% - .4rem);
+        padding-bottom: calc(50% - .4rem);
+        margin: .2rem;
+    }
+}
