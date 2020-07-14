@@ -63,10 +63,8 @@
 
 		.btn-group{
 			text-align: right;
-		}
-
-		.btn-group{
 			display: none;
+			width: 78px;
 		}
 
 		.btn-group a{

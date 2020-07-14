@@ -218,7 +218,7 @@
       var unreaded = 0;
       var readed = 0;
       if ($(this).is(':checked')){
-        
+
         $('input[type="checkbox"].checkbox-group.current').each(function() {
           if(this.className == 'checkbox-group current unreaded-message'){
             unreaded++;
