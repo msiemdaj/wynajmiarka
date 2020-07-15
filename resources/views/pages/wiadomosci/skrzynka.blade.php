@@ -11,6 +11,8 @@
     </div>
   @endif
 
+  text ktorego nei chce
+
   <div class="container">
   	<ul class="tabs">
   		<li class="tab-link current" data-tab="received">Odebrane</li>
