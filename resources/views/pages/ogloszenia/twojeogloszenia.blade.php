@@ -37,7 +37,10 @@
                           <a href="/ogloszenia/{{$ogloszenie->id}}">{{ $ogloszenie->title }}</a>
                     </td>
                     <td class="td-size">{{ $ogloszenie->size }} m2</td>
-                    <td class="td-price">{{ $ogloszenie->price }} zł</td>
+                    <td class="td-price">{{ $ogloszenie->price }} zł
+                      @if($ogloszenie->to_negotiate == true)
+                        <span class="badge badge-secondary">do negocjacji</span>
+                      @endif
                     <td class="img-td">
                       <a class="td-edit" href="/ogloszenia/{{ $ogloszenie->id }}/edit"><img src="{{asset('img/edit-tools.png')}}" border="0"></a>
                       <a class="td-delete"><img src="{{asset('img/rubbish-can.png')}}" border="0" data-toggle="modal" data-target="#deleteConfirmation{{$ogloszenie->id}}"></a>

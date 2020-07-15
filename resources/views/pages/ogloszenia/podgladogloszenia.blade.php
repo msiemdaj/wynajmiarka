@@ -93,6 +93,9 @@
             <div class="ogloszenie-info-price">
               <h4>Cena</h4>
               <h5> {{ $ogloszenie->price.' zł' }} </h5>
+              @if($ogloszenie->to_negotiate == true)
+                <span class="badge badge-secondary">do negocjacji</span>
+              @endif
             </div>
           </div>
         </div>
