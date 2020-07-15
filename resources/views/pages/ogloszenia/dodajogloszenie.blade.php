@@ -78,7 +78,7 @@
           <div class="form-group">
             {{ Form::label('to_negotiate', 'Cena do negocjacji') }}
             {{-- {{ Form::text('price', null, ['class' => 'form-control']) }} --}}
-            <input type="checkbox" name="to_negotiate" value="{{ old('to_negotiate') }}">
+            <input type="checkbox" name="to_negotiate" value="to_negotiate" @if(old('to_negotiate')) checked @endif>
           </div>
 
     <script type="application/javascript">

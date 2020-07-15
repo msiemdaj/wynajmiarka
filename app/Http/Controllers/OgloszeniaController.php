@@ -175,8 +175,10 @@ class OgloszeniaController extends Controller
       // $ogloszenie->to_negotiate = $request->input('to_negotiate');
 
       if ($request->has('to_negotiate')) {
-      $ogloszenie->to_negotiate == true;
-     }
+      $ogloszenie->to_negotiate = true;
+    }else{
+      $ogloszenie->to_negotiate = false;
+    }
 
       $currentStoredImages = json_decode($ogloszenie->image);
 
