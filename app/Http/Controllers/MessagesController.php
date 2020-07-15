@@ -196,6 +196,7 @@ class MessagesController extends Controller
     $user_id = auth()->user()->id;
     $user = User::find($user_id);
     $checked = $request->input('checkedMessage');
+    $tab = $request->input('tabn');
     if($checked){
       if($request->deletesubmit_x){
         foreach ($checked as $id){
@@ -227,6 +228,6 @@ class MessagesController extends Controller
       }
     }
     // return redirect()->route('skrzynka');
-    return back()->withInput(['tab'=>'wyslane']);
+    return back()->withInput(['tab'=> $tab ]);
   }
 }

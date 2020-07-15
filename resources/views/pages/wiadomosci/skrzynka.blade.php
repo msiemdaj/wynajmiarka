@@ -40,6 +40,7 @@
       @else
 
       <form method="get" action="/wiadomosci/skrzynkaoptions">
+        <input type="hidden" name="tabn" value="odebrane">
         <div class="msg-options">
           <div class="zaznaczWszystko">
             <input type="checkbox" name="checkAll" class="checkAll" id="checkReceived">
@@ -102,6 +103,7 @@
         </div>
       @else
       <form method="get" action="/wiadomosci/skrzynkaoptions">
+        <input type="hidden" name="tabn" value="wyslane">
         <div class="msg-options">
           <div class="zaznaczWszystko">
             <input type="checkbox" name="checkAll" class="checkAll" id="checkSent">
