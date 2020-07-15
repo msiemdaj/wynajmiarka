@@ -1,44 +1,40 @@
-		ul.tabs{
+		.a-skrzynka{
 			margin: 0px;
 			padding: 0px;
 			list-style: none;
 		}
 
-		ul.tabs li{
+		.a-skrzynka{
 			background: none;
 			display: inline-block;
 			padding: 15px 20px;
 			cursor: pointer;
 			background: #dddddd;
-			margin: 1em 0;
+			margin: 1.5em 0;
 			font-size: 0.9rem;
 	    line-height: 1.6;
 			color: #000;
 		}
 
-		ul.tabs li.current{
+		.a-skrzynka.active{
 			background: #2a66b5;
 			color: #fff;
 			font-weight: bold;
 		}
 
-		ul.tabs li:hover{
+		.a-skrzynka:hover{
 			background: #2a66b5;
 			color: #f8fafc;
 		}
 
-		ul.tabs li:focus{
+		.a-skrzynka:focus{
 			outline: none;
 		}
 
-		ul.tabs li:active{
+		.a-skrzynka:active{
 			background: #3490dc;
 			color: #f8fafc;
 		}
-
-		/* .tab-content{
-			display: none;
-		} */
 
 		.tab-content.current{
 			display: inherit;
@@ -187,7 +183,7 @@
 			.dodaj-ogloszenie-form,
 			.simpl-head,
 			.msg-option-container,
-			ul.tabs{
+			ul.nav-skrzynka{
 				padding: 1em;
 			}
 
@@ -254,7 +250,7 @@
 			.dodaj-ogloszenie-form,
 			.simpl-head,
 			.msg-option-container,
-			ul.tabs,
+			ul.nav-skrzynka,
 			.tab-content h1{
 				padding: 0;
 			}

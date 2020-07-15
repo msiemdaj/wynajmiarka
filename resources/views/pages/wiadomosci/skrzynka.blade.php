@@ -12,21 +12,21 @@
   @endif
 
   {{-- fix checkboxes na zmianie --}}
+  {{-- checkbox nie dodaje current statusu --}}
 
-  <script>
-  //redirect to specific tab
-  $(document).ready(function () {
-  $('#tabMenu a[href="#{{ old('tab') }}"]').tab('show')
-  });
-</script>
+
+{{-- <ul class="tabs">
+   <li class="tab-link current" data-tab="received">Odebrane</li>
+   <li class="tab-link" data-tab="sent">Wysłane</li>
+ </ul> --}}
 
   <div class="container">
-    <ul class="nav nav-pills mb-3" id="tabMenu" role="tablist">
+    <ul class="nav nav-skrzynka" id="tabMenu" role="tablist">
   <li>
-    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#odebrane" role="tab" aria-controls="pills-home" aria-selected="true">Odebrane</a>
+    <a class="nav-link a-skrzynka active" data-toggle="pill" href="#odebrane" role="tab">Odebrane</a>
   </li>
   <li>
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#wyslane" role="tab" aria-controls="pills-profile" aria-selected="false">Wysłane</a>
+    <a class="nav-link a-skrzynka" data-toggle="pill" href="#wyslane" role="tab">Wysłane</a>
   </li>
 </ul>
 <div class="tab-content" id="pills-tabContent">
@@ -249,7 +249,15 @@
   	</div> --}}
   </div>
 
-  {{-- <script type="application/javascript">
+    <script>
+    //redirect to specific tab
+      $(document).ready(function () {
+      $('#tabMenu a[href="#{{ old('tab') }}"]').tab('show')
+    });
+  </script>
+
+
+  <script type="application/javascript">
     $(document).ready(function(){
     $('ul.tabs li').click(function(){
       var tab = $(this).attr('data-tab');
@@ -268,7 +276,7 @@
 
       })
     })
-    </script> --}}
+    </script>
 
   <script type="application/javascript">
     jQuery(document).ready(function($) {
