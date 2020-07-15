@@ -74,6 +74,12 @@
               @enderror
           </div>
 
+          <div class="form-group">
+            {{ Form::label('to_negotiate', 'Cena do negocjacji') }}
+            {{-- {{ Form::text('price', null, ['class' => 'form-control']) }} --}}
+            <input type="checkbox" name="to_negotiate" value="{{ old('to_negotiate') }}">
+          </div>
+
           <script type="text/jscript">
           $(function () {
           @if($ogloszenie->image)
