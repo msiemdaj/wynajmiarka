@@ -36,9 +36,9 @@
 			color: #f8fafc;
 		}
 
-		.tab-content{
+		/* .tab-content{
 			display: none;
-		}
+		} */
 
 		.tab-content.current{
 			display: inherit;

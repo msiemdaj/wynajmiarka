@@ -226,6 +226,7 @@ class MessagesController extends Controller
         }
       }
     }
-    return redirect()->route('skrzynka');
+    // return redirect()->route('skrzynka');
+    return back()->withInput(['tab'=>'wyslane']);
   }
 }

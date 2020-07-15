@@ -11,8 +11,135 @@
     </div>
   @endif
 
+  {{-- fix checkboxes na zmianie --}}
+
+  <script>
+  //redirect to specific tab
+  $(document).ready(function () {
+  $('#tabMenu a[href="#{{ old('tab') }}"]').tab('show')
+  });
+</script>
+
   <div class="container">
-  	<ul class="tabs">
+    <ul class="nav nav-pills mb-3" id="tabMenu" role="tablist">
+  <li>
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#odebrane" role="tab" aria-controls="pills-home" aria-selected="true">Odebrane</a>
+  </li>
+  <li>
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#wyslane" role="tab" aria-controls="pills-profile" aria-selected="false">Wysłane</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="odebrane" role="tabpanel" aria-labelledby="pills-home-tab">
+    <div id="tabreceived" class="tab-content current">
+      <h1>Odebrane wiadomości</h1>
+      @if (count($messages_received) == 0)
+        <div class="empty-mailbox">
+          <img class="" src="{{asset('img/brakmsg.png')}}">
+        </div>
+      @else
+
+      <form method="get" action="/wiadomosci/skrzynkaoptions">
+        <div class="msg-options">
+          <div class="zaznaczWszystko">
+            <input type="checkbox" name="checkAll" class="checkAll" id="checkReceived">
+            <label for='checkReceived'>Zaznacz wszystko</label>
+          </div>
+            <input type="image" src="{{asset('img/bin32.png')}}" name="deletesubmit" class="skrzynka-options-btn skrzynka-btn-del">
+            <input type="image" src="{{asset('img/openemail32.png')}}" name="setReaded" id="setReaded" class="skrzynka-options-btn">
+            <input type="image" src="{{asset('img/closedemail32.png')}}" name="setUnreaded" id="setUnreaded" class="skrzynka-options-btn">
+        </div>
+
+      <table class="table messages-table">
+        <tbody>
+      @foreach($messages_received as $wiadomosc)
+        @if($wiadomosc->deleted_by_receiver == false)
+        <tr class="row-link" data-href="/wiadomosci/{{ $wiadomosc->id }}"
+          @if($wiadomosc->viewed == false)
+            id="new-message"
+          @endif
+          >
+            <td class="t-checkbox"> <input type="checkbox" @if($wiadomosc->viewed == false) class="checkbox-group current unreaded-message" @else class="checkbox-group current readed-message" @endif value="{{$wiadomosc->id}}" name="checkedMessage[]"> </td>
+            <td class="t-name"> Od: {{ $wiadomosc->name }} </td>
+            <td class="t-title">
+              @if($wiadomosc->viewed == false)
+                <b>{{ $wiadomosc->title }}</b>
+              @else
+                {{ $wiadomosc->title }}
+              @endif
+            </td>
+            <td class="t-body">{{ $wiadomosc->message_body }}</td>
+            <td class="t-date">
+              <div class="name-group">
+                {{ date('d/m/Y', strtotime($wiadomosc->sent_at)) }}
+              </div>
+
+              <div class="btn-group">
+                @if($wiadomosc->viewed == true)
+                  <a href="{{url('/wiadomosci/'.$wiadomosc->id.'/changeviewedstatus')}}"><img src="{{asset('img/closedemail16.png')}}"></a>
+                @elseif($wiadomosc->viewed == false)
+                  <a href="{{url('/wiadomosci/'.$wiadomosc->id.'/changeviewedstatus')}}"><img src="{{asset('img/openemail16.png')}}"></a>
+                @endif
+                  <a href="{{url('/wiadomosci/'.$wiadomosc->id.'/delete')}}"><img src="{{asset('img/bin16.png')}}"></a>
+              </div>
+            </td>
+        </tr>
+        @endif
+      @endforeach
+      </form>
+      </tbody>
+    </table>
+    @endif
+  	</div>
+  </div>
+
+  <div class="tab-pane fade" id="wyslane" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <div id="tabsent" class="tab-content">
+      <h1>Wysłane wiadomości</h1>
+      @if (count($messages_sent) == 0)
+        <div class="empty-mailbox">
+          <img class="" src="{{asset('img/brakmsg.png')}}">
+        </div>
+      @else
+      <form method="get" action="/wiadomosci/skrzynkaoptions">
+        <div class="msg-options">
+          <div class="zaznaczWszystko">
+            <input type="checkbox" name="checkAll" class="checkAll" id="checkSent">
+            <label for='checkSent'>Zaznacz wszystko</label>
+          </div>
+          <input type="image" src="{{asset('img/bin32.png')}}" name="deletesubmit" class="skrzynka-options-btn skrzynka-btn-del">
+        </div>
+
+      <table class="table messages-table">
+        <tbody>
+        @foreach($messages_sent as $wiadomosc)
+          @if($wiadomosc->deleted_by_sender == false)
+          <tr class="row-link" data-href="/wiadomosci/{{ $wiadomosc->id }}">
+          <td class="t-checkbox"> <input type="checkbox" class="checkbox-group" value="{{$wiadomosc->id}}" name="checkedMessage[]"> </td>
+          <td class="t-name"> Do: {{ $wiadomosc->name }} </td>
+          <td class="t-title"> {{ $wiadomosc->title }} </td>
+          <td class="t-body"> {{ $wiadomosc->message_body }} </td>
+          <td class="t-date">
+            <div class="name-group">
+              {{ date('d/m/Y', strtotime($wiadomosc->sent_at)) }}
+            </div>
+            <div class="btn-group">
+              <a href="{{url('/wiadomosci/'.$wiadomosc->id.'/delete')}}"><img src="{{asset('img/bin16.png')}}"></a>
+            </div>
+          </td>
+        </tr>
+        @endif
+        @endforeach
+      </form>
+      </tbody>
+      </table>
+    @endif
+    </div>
+  </div>
+</div>
+
+
+  	 {{-- <ul class="tabs">
   		<li class="tab-link current" data-tab="received">Odebrane</li>
   		<li class="tab-link" data-tab="sent">Wysłane</li>
   	</ul>
@@ -117,10 +244,10 @@
       </tbody>
       </table>
     @endif
-  	</div>
+  	</div> --}}
   </div>
 
-  <script type="application/javascript">
+  {{-- <script type="application/javascript">
     $(document).ready(function(){
     $('ul.tabs li').click(function(){
       var tab = $(this).attr('data-tab');
@@ -139,7 +266,7 @@
 
       })
     })
-    </script>
+    </script> --}}
 
   <script type="application/javascript">
     jQuery(document).ready(function($) {
