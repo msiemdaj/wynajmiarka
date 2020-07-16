@@ -18,9 +18,6 @@
                 <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" href="/">Strona główna</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ (request()->is('ogloszenia*') && !request()->is('ogloszenia/dodaj')) ? 'active' : '' }}" href="/ogloszenia">Ogłoszenia</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link {{ (request()->is('ogloszenia/dodaj*')) ? 'active' : '' }}" href="/ogloszenia/dodaj">Dodaj ogłoszenie</a>
               </li>
                 <!-- Authentication Links -->
