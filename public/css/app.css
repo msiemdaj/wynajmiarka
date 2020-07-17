@@ -5277,7 +5277,6 @@ input[type=button].btn-block {
 .page-link:focus {
   z-index: 3;
   outline: 0;
-  /* box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25); */
   background-color: #ddd;
 }
 
