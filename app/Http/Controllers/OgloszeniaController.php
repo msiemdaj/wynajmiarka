@@ -279,13 +279,14 @@ class OgloszeniaController extends Controller
                       }
 
       if($data->isEmpty()){
-        $message = 'Przepraszamy, nie znaleźliśmy ogłoszeń w podanej przez ciebie okolicy.';
+        $message = 'Brak wyników dla frazy "'.$query.'"';
         return view('pages/ogloszenia/ajax_search')->with('message', $message);
         }else{
-          return view('pages/ogloszenia/ajax_search')->with('data', $data);
+          $message = 'Wyniki wyszukiwania frazy "'.$query.'"';
+          return view('pages/ogloszenia/ajax_search')->with(['data' => $data,
+                                                             'message' => $message]);
         }
       }
     }
   }
-
 }

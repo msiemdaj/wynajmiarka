@@ -1,5 +1,7 @@
 @if(isset($data))
 
+  {{ $message ?? '' }}
+
 <div class="sort-options">
     <div class="sorting">
       <select id="sort_by" class="form-control">
@@ -54,12 +56,6 @@
   {{-- {{ $data->links() }} --}}
 
   </div>
-  @endif
-  @if(isset($message))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    {{ $message }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+  @else
+    {{ $message ?? '' }}
   @endif
