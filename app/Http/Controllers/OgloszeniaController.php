@@ -286,13 +286,8 @@ class OgloszeniaController extends Controller
         return view('pages/ogloszenia/ajax_search')->with('message', $message);
         }else{
           $message = 'Wyniki wyszukiwania frazy "'.$query.'"';
-          return view('pages/ogloszenia/ajax_search')->with(compact('data'))->render();
-
-
-          // ma sie wyswietlac message i data render !!!!!!!!
-
-          // ->with(['data' => $data,
-          //                                                    'message' => $message]);
+          return view('pages/ogloszenia/ajax_search', ['data' => $data,
+                                                       'message' => $message])->render();
         }
       }
     }
