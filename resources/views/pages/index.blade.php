@@ -34,9 +34,9 @@
 
 <script type="application/javascript">
 $(document).ready(function(){
- function fetch_data(query, sort_by){
+ function fetch_data(query, sort_by, page){
   $.ajax({
-   url:"/search?query="+query+"&sort_by="+sort_by,
+   url:"/search?query="+query+"&sort_by="+sort_by+"&page="+page,
 
    success:function(data)
    {
@@ -66,6 +66,14 @@ $('#action').submit(function(event){
     var query = $('#search').val();
     var sort_by = $('#sort_by').val();
     fetch_data(query, sort_by);
+  });
+
+  $(document).on('click', '.pagination a', function(event){
+   event.preventDefault();
+   var page = $(this).attr('href').split('page=')[1];
+   var query = $('#search').val();
+   var sort_by = $('#sort_by').val();
+   fetch_data(query, sort_by, page);
   });
 });
 </script>

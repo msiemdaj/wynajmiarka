@@ -266,7 +266,10 @@ class OgloszeniaController extends Controller
         $data = DB::table('ogloszenia')
                       ->Where('city', 'like', '%'.$query.'%')
                       ->orWhere('district', 'like', '%'.$query.'%')
-                      ->orderBy($sort_by, $sort_order)->get();
+                      ->orderBy($sort_by, $sort_order)->paginate(2);
+
+                      // paginate
+                      // return compact(?)
 
                       $i = 0;
                       foreach($data as $dataa){
@@ -283,8 +286,13 @@ class OgloszeniaController extends Controller
         return view('pages/ogloszenia/ajax_search')->with('message', $message);
         }else{
           $message = 'Wyniki wyszukiwania frazy "'.$query.'"';
-          return view('pages/ogloszenia/ajax_search')->with(['data' => $data,
-                                                             'message' => $message]);
+          return view('pages/ogloszenia/ajax_search')->with(compact('data'))->render();
+
+
+          // ma sie wyswietlac message i data render !!!!!!!!
+
+          // ->with(['data' => $data,
+          //                                                    'message' => $message]);
         }
       }
     }
