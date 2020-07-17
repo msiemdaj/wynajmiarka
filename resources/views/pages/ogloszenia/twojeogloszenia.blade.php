@@ -17,6 +17,12 @@
     <h4>Przeglądaj, edytuj lub usuń dodane przez ciebie ogłoszenia.</h4>
   </div>
 
+<div class="dodaj-ogloszenie-btn">
+  <a href="/ogloszenia/dodaj" class="ogloszenie-button-2">
+    <span>Dodaj ogłoszenie</span>
+  </a>
+</div>
+
          @if(count($ogloszenia) > 0)
               <table class="table table-striped tw-ogl-tbl">
                 <tr>

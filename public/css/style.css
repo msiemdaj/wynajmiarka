@@ -181,10 +181,14 @@
 
 			.ogloszenie-heading,
 			.dodaj-ogloszenie-form,
-			.simpl-head,
 			.msg-option-container,
 			ul.nav-skrzynka{
 				padding: 1em;
+			}
+
+			.dodaj-ogloszenie-btn,
+			.simpl-head{
+				padding-left: 1em;
 			}
 
 			.tab-content h1{
@@ -261,7 +265,8 @@
 			.simpl-head,
 			.msg-option-container,
 			ul.nav-skrzynka,
-			.tab-content h1{
+			.tab-content h1,
+			.dodaj-ogloszenie-btn{
 				padding: 0;
 			}
 
@@ -834,7 +839,30 @@
 
 		.simpl-head{
 			margin: 2em 0 2em 0;
-			padding-bottom: 1em;
+		}
+
+		@media (min-width: 320px){
+			.dodaj-ogloszenie-btn{
+				display: block;
+				float: left;
+				margin-bottom: 2em;
+			}
+
+			.simpl-head{
+				display: block;
+			}
+		}
+
+		@media (min-width: 768px){
+			.dodaj-ogloszenie-btn{
+				display: inline-block;
+				float: right;
+				margin: 2em 0;
+			}
+
+			.simpl-head{
+				display: inline-block;
+			}
 		}
 
 		.ogloszenie-heading h2, .simpl-head h2{
