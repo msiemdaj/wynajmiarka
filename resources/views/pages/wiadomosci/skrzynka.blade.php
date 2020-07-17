@@ -51,7 +51,7 @@
             id="new-message"
           @endif
           >
-            <td class="t-checkbox"> <input type="checkbox" @if($wiadomosc->viewed == false) class="checkbox-group current unreaded-message" @else class="checkbox-group current readed-message" @endif value="{{$wiadomosc->id}}" name="checkedMessage[]"> </td>
+            <td class="t-checkbox"> <input type="checkbox" @if($wiadomosc->viewed == false) class="checkbox-group unreaded-message current" @else class="checkbox-group readed-message current" @endif value="{{$wiadomosc->id}}" name="checkedMessage[]"> </td>
             <td class="t-name"> Od: {{ $wiadomosc->name }} </td>
             <td class="t-title">
               @if($wiadomosc->viewed == false)
@@ -150,7 +150,7 @@
       $('#setReaded').hide();
       $('#setUneaded').hide();
 
-      $('ul.tabs li').removeClass('current');
+      $('.a-skrzynka').removeClass('current');
       $('.tab-content').removeClass('current');
       $('.checkbox-group').removeClass('current');
 
@@ -242,10 +242,10 @@
       if ($(this).is(':checked')){
 
         $('input[type="checkbox"].checkbox-group.current').each(function() {
-          if(this.className == 'checkbox-group current unreaded-message'){
+          if(this.className == 'checkbox-group unreaded-message current'){
             unreaded++;
           }
-          if(this.className == 'checkbox-group current readed-message'){
+          if(this.className == 'checkbox-group readed-message current'){
             readed++;
           }
         });
