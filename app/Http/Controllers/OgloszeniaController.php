@@ -69,6 +69,12 @@ class OgloszeniaController extends Controller
       $ogloszenie->price = $request->input('price');
       $ogloszenie->to_negotiate = $request->input('to_negotiate');
 
+      if ($request->has('to_negotiate')) {
+        $ogloszenie->to_negotiate = true;
+      }else{
+        $ogloszenie->to_negotiate = false;
+      }
+
       $id=DB::select("SHOW TABLE STATUS LIKE 'ogloszenia'");
       $next_id=$id[0]->Auto_increment;
 
@@ -172,7 +178,6 @@ class OgloszeniaController extends Controller
       $ogloszenie->description = $request->input('description');
       $ogloszenie->size = $request->input('size');
       $ogloszenie->price = $request->input('price');
-      // $ogloszenie->to_negotiate = $request->input('to_negotiate');
 
       if ($request->has('to_negotiate')) {
       $ogloszenie->to_negotiate = true;
