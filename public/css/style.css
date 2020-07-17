@@ -200,6 +200,16 @@
 				width: auto;
 				padding: 2em;
 			}
+
+			.search-result-message{
+				margin-top: 2em;
+			}
+
+			.search-result-message h1{
+				font-weight: bold;
+				font-size: 18px;
+				padding: 0.5em;
+			}
 		}
 
 
@@ -261,6 +271,16 @@
 
 			.empty-mailbox{
 				width: 482px;
+			}
+
+			.search-result-message{
+				margin-top: 2em;
+			}
+
+			.search-result-message h1{
+				font-weight: bold;
+				font-size: 22px;
+				padding: 0;
 			}
 		}
 
@@ -1457,6 +1477,3 @@
 					max-width: 0;
 				}
 			}
-
-		/*
-		 */

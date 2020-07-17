@@ -1,6 +1,8 @@
 @if(isset($data))
 
-  {{ $message ?? '' }}
+  <div class="search-result-message">
+    <h1>{{ $message ?? '' }}</h1>
+  </div>
 
 <div class="sort-options">
     <div class="sorting">
@@ -57,5 +59,7 @@
 
   </div>
   @else
-    {{ $message ?? '' }}
+    <div class="search-result-message">
+      <h1>{{ $message ?? '' }}</h1>
+    </div>
   @endif
