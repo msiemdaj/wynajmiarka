@@ -55,7 +55,7 @@
     </div>
   @endforeach
 
-  {{ $data->onEachSide(1)->links() }}
+  {{ $data->onEachSide(2)->links() }}
 
   </div>
   @else

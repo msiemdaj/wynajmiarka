@@ -271,10 +271,7 @@ class OgloszeniaController extends Controller
         $data = DB::table('ogloszenia')
                       ->Where('city', 'like', '%'.$query.'%')
                       ->orWhere('district', 'like', '%'.$query.'%')
-                      ->orderBy($sort_by, $sort_order)->paginate(10);
-
-                      // paginate
-                      // return compact(?)
+                      ->orderBy($sort_by, $sort_order)->paginate(15);
 
                       $i = 0;
                       foreach($data as $dataa){

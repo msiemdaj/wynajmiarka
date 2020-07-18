@@ -1101,7 +1101,7 @@
 			font-weight: bold;
 	    font-size: 26px;
 			padding-top: 1em;
-			border-top: 1px solid #ddd;	
+			border-top: 1px solid #ddd;
 		}
 
 		.empty-ogl a{
@@ -1507,3 +1507,19 @@
 					max-width: 0;
 				}
 			}
+
+		@media screen and ( max-width: 400px ){
+    li.page-item {
+
+        display: none;
+    }
+
+    .page-item:first-child,
+    .page-item:nth-child( 2 ),
+    .page-item:nth-last-child( 2 ),
+    .page-item:last-child,
+    .page-item.active,
+    .page-item.disabled {
+        display: block;
+    }
+}
