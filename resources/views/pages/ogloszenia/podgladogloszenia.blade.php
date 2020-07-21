@@ -196,13 +196,43 @@
         </div>
 
         {{-- add to favourite --}}
-              <a href="/ogloszenia/{{$ogloszenie->id}}/addtofav">dodaj do ulubionych</a>
+              {{-- <a id="favRequest">dodaj do ulubionych</a> --}}
 
-              @php
-              foreach($ogloszenie->favoriters as $user) {
-                echo $user->name;
-              }
-              @endphp
+
+
+
+                  <div id="data-id" data-id="{{ $ogloszenie->id }}">
+                      <input type="button" id="like{{$ogloszenie->id}}" value="@if(!$ogloszenie->isFavoritedBy(auth()->user())) polub @else odlub @endif" class="likebtn @if(!$ogloszenie->isFavoritedBy(auth()->user())) like-post @endif">
+                  </div>
+
+
+              <script type="text/javascript">
+                  $(document).ready(function() {
+
+
+                      $.ajaxSetup({
+                          headers: {
+                              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                          }
+                      });
+
+
+                      $('#data-id').click(function(){
+                          var id = $('#data-id').data('id');
+                          // var cObjId = this.id;
+                          // var cObj = $(this);
+
+                          $.ajax({
+                             type:'POST',
+                             url:'/favRequest',
+                             data:{id:id},
+                             success:function(data){
+
+                             }
+                          });
+                      });
+                  });
+              </script>
         {{-- add to favourite --}}
 
 

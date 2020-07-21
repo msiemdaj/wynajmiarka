@@ -47,4 +47,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('ogloszenia/{id}/addtofav', 'OgloszeniaController@addToFavourite');
+// Route::get('ogloszenia/{id}/addtofav', 'OgloszeniaController@addToFavourite');
+
+Route::post('favRequest', 'OgloszeniaController@favRequest')->name('favRequest');
