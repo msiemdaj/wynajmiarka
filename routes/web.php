@@ -46,3 +46,5 @@ Route::get('/wiadomosci/{id}/changeviewedstatus', 'MessagesController@changeView
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('ogloszenia/{id}/addtofav', 'OgloszeniaController@addToFavourite');

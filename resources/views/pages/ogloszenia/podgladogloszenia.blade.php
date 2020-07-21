@@ -52,17 +52,6 @@
             @endforeach
           @endif
 
-          {{-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner"> --}}
-              {{-- <div class="carousel-item active">
-                <img class="d-block w-100" src="{{ asset('images/'.$ogloszenie->id.'/'.$imageName) }}" alt="First slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="{{ asset('images/'.$ogloszenie->id.'/'.$imageName) }}" alt="Second slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="{{ asset('images/'.$ogloszenie->id.'/'.$imageName) }}" alt="Third slide">
-              </div> --}}
             </div>
           </div>
 
@@ -205,6 +194,18 @@
           <hr>
           <small>Dodano: {{ $ogloszenie->created_at }}</small>
         </div>
+
+        {{-- add to favourite --}}
+              <a href="/ogloszenia/{{$ogloszenie->id}}/addtofav">dodaj do ulubionych</a>
+
+              @php
+              foreach($ogloszenie->favoriters as $user) {
+                echo $user->name;
+              }
+              @endphp
+        {{-- add to favourite --}}
+
+
   </div>
 
 <div class="modal fade bd-example-modal-xl" id="galleryModal" tabindex="-1" role="dialog" aria-hidden="true">
