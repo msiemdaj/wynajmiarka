@@ -202,7 +202,11 @@
 
 
                   <div id="data-id" data-id="{{ $ogloszenie->id }}">
-                      <input type="button" id="like{{$ogloszenie->id}}" value="@if(!$ogloszenie->isFavoritedBy(auth()->user())) polub @else odlub @endif" class="likebtn @if(!$ogloszenie->isFavoritedBy(auth()->user())) like-post @endif">
+                    @if(!$ogloszenie->isFavoritedBy(auth()->user()))
+                      <input type="button" id="like{{$ogloszenie->id}}" value="dodaj do ulubionych" class="likebtn dodaj">
+                    @else
+                      <input type="button" id="like{{$ogloszenie->id}}" value="usuń z ulubionych" class="likebtn">
+                    @endif
                   </div>
 
 
@@ -227,7 +231,21 @@
                              url:'/favRequest',
                              data:{id:id},
                              success:function(data){
+                               if(data){
+                                 const element = document.querySelector('#like'+id);
+                                 if (element.classList.contains("dodaj")){
+                                   // $('#like'+id).removeClass("dodaj");
+                                   $('#like'+id).replaceWith('<input type="button" id="like{{$ogloszenie->id}}" value="usuń z ulubionych" class="likebtn">');
+                                   console.log('removed class');
+                                 }else{
+                                   // $('#like'+id).addClass("dodaj");
+                                   $('#like'+id).replaceWith('<input type="button" id="like{{$ogloszenie->id}}" value="dodaj do ulubionych" class="likebtn dodaj">');
+                                   console.log('added class');
+                                 }
 
+                                   // $('#like'+id).replaceWith('<input type="button" id="like{{$ogloszenie->id}}" value="zmiana elo" class="likebtn @if(!$ogloszenie->isFavoritedBy(auth()->user())) like-post @endif">');
+
+                               }
                              }
                           });
                       });

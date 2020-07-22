@@ -295,19 +295,13 @@ class OgloszeniaController extends Controller
     }
   }
 
-  // public function addToFavourite($id){
-  //   $user = User::find(auth()->user()->id);
-  //   $ogloszenie = Ogloszenie::find($id);
-  //
-  //   $user->toggleFavorite($ogloszenie);
-  //   return back();
-  // }
-
-  public function favRequest(Request $request)
-  {
+  public function favRequest(Request $request){
+    $user = User::find(auth()->user()->id);
     $ogloszenie = Ogloszenie::find($request->id);
-    $response = auth()->user()->toggleFavorite($ogloszenie);
-    return response()->json(['success'=>$response]);
+
+    $user->toggleFavorite($ogloszenie);
+
+    return response()->json(['success' => true]);
   }
 
 }
