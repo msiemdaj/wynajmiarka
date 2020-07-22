@@ -194,16 +194,25 @@
           <hr>
           <small>Dodano: {{ $ogloszenie->created_at }}</small>
 
-          <div id="favourite" data-id="{{ $ogloszenie->id }}">
+          <div id="favorite" data-id="{{ $ogloszenie->id }}">
             @if(!$ogloszenie->isFavoritedBy(auth()->user()))
-              <input type="button" id="favo{{$ogloszenie->id}}" value="dodaj do ulubionych" class="favourite dodaj" data-id="{{ $ogloszenie->id }}">
+              <i class="favorite dodaj large material-icons" id="favo{{$ogloszenie->id}}" data-toggle="tooltip" data-placement="top" title="Dodaj do ulubionych">favorite_border</i>
             @else
-              <input type="button" id="favo{{$ogloszenie->id}}" value="usuń z ulubionych" class="favourite" data-id="{{ $ogloszenie->id }}">
+              <i class="favorite large material-icons" id="favo{{$ogloszenie->id}}" data-toggle="tooltip" data-placement="top" title="Usuń z ulubionych">favorite</i>
             @endif
           </div>
         </div>
 
-        {{-- add to favourite --}}
+        {{-- add to favorite --}}
+              <script type="text/javascript">
+              $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+                })
+
+                // $('[data-toggle="tooltip"]').click(function () {
+                //    $('[data-toggle="tooltip"]').tooltip("hide");
+                // });
+              </script>
 
               <script type="text/javascript">
                   $(document).ready(function() {
@@ -214,8 +223,8 @@
                           }
                       });
 
-                      $('#favourite').click(function(){
-                          var id = $('#favourite').data('id');
+                      $('#favorite').click(function(){
+                          var id = $('#favorite').data('id');
 
                           $.ajax({
                              type:'POST',
@@ -225,9 +234,11 @@
                                if(data){
                                  const element = document.querySelector('#favo'+id);
                                  if (element.classList.contains("dodaj")){
-                                   $('#favo'+id).replaceWith('<input type="button" id="favo{{$ogloszenie->id}}" value="usuń z ulubionych" class="favourite">');
+                                   // $('#favo'+id).replaceWith('<input type="button" id="favo{{$ogloszenie->id}}" value="usuń z ulubionych" class="favorite">');
+                                   $('#favo'+id).replaceWith('<i class="favorite large material-icons" id="favo{{$ogloszenie->id}}">favorite</i>');
                                  }else{
-                                   $('#favo'+id).replaceWith('<input type="button" id="favo{{$ogloszenie->id}}" value="dodaj do ulubionych" class="favourite dodaj">');
+                                   // $('#favo'+id).replaceWith('<input type="button" id="favo{{$ogloszenie->id}}" value="dodaj do ulubionych" class="favorite dodaj">');
+                                   $('#favo'+id).replaceWith('<i class="favorite dodaj large material-icons" id="favo{{$ogloszenie->id}}">favorite_border</i>');
                                  }
                                }
                              }
@@ -235,7 +246,7 @@
                       });
                   });
               </script>
-        {{-- add to favourite --}}
+        {{-- add to favorite --}}
 
   </div>
 

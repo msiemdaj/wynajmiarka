@@ -187,7 +187,8 @@
 			}
 
 			.dodaj-ogloszenie-btn,
-			.simpl-head{
+			.simpl-head,
+			.favorite-ogloszenia{
 				padding-left: 1em;
 			}
 
@@ -266,7 +267,8 @@
 			.msg-option-container,
 			ul.nav-skrzynka,
 			.tab-content h1,
-			.dodaj-ogloszenie-btn{
+			.dodaj-ogloszenie-btn,
+			.favorite-ogloszenia{
 				padding: 0;
 			}
 
@@ -837,7 +839,8 @@
 			border-bottom: 1px solid #adb5bd;
 		}
 
-		.simpl-head{
+		.simpl-head,
+		.favorite-ogloszenia{
 			margin: 2em 0 2em 0;
 		}
 
@@ -848,7 +851,8 @@
 				margin-bottom: 2em;
 			}
 
-			.simpl-head{
+			.simpl-head,
+			.favorite-ogloszenia{
 				display: block;
 			}
 		}
@@ -860,17 +864,18 @@
 				margin: 2em 0;
 			}
 
-			.simpl-head{
+			.simpl-head,
+			.favorite-ogloszenia{
 				display: inline-block;
 			}
 		}
 
-		.ogloszenie-heading h2, .simpl-head h2{
+		.ogloszenie-heading h2, .simpl-head h2, .favorite-ogloszenia h2{
 			font-weight: bold;
 			font-size: 26px;
 		}
 
-		.ogloszenie-heading h4, .simpl-head h4{
+		.ogloszenie-heading h4, .simpl-head h4, .favorite-ogloszenia h4{
 			font-weight: lighter;
 			font-size: 16px;
 		}
@@ -1523,3 +1528,26 @@
         display: block;
     }
 }
+
+	#favorite{
+		width: 24px;
+		height: 24px;
+		display: inline-block;
+		float: right;
+	}
+
+	.favorite{
+		color: #2a66b5;
+		cursor: pointer;
+		-webkit-touch-callout: none; /* iOS Safari */
+	    -webkit-user-select: none; /* Safari */
+	     -khtml-user-select: none; /* Konqueror HTML */
+	       -moz-user-select: none; /* Old versions of Firefox */
+	        -ms-user-select: none; /* Internet Explorer/Edge */
+	            user-select: none; /* Non-prefixed version, currently
+	                                  supported by Chrome, Edge, Opera and Firefox */
+	}
+
+	.favorite:hover{
+		color: #3490dc;
+	}
