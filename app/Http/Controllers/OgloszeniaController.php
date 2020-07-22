@@ -248,11 +248,17 @@ class OgloszeniaController extends Controller
       return redirect('/twojeogloszenia')->with('message', $message);
     }
 
-    public function twojeogloszenia(){
+
+  public function twojeogloszenia(){
       $user_id = auth()->user()->id;
       $user = User::find($user_id);
-      return view('pages/ogloszenia/twojeogloszenia')->with('ogloszenia', $user->ogloszenia);
+
+      $favoriteOgloszenia = $user->getFavoriteItems(Ogloszenie::class)->get();
+
+      return view('pages/ogloszenia/twojeogloszenia')->with(['ogloszenia' => $user->ogloszenia,
+                                                             'favoriteOgloszenia' => $favoriteOgloszenia]);
     }
+
 
   function search(Request $request){
        if($request->ajax()){
