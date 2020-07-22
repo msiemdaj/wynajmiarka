@@ -194,11 +194,11 @@
           <hr>
           <small>Dodano: {{ $ogloszenie->created_at }}</small>
 
-          <div id="data-id" data-id="{{ $ogloszenie->id }}">
+          <div id="favourite" data-id="{{ $ogloszenie->id }}">
             @if(!$ogloszenie->isFavoritedBy(auth()->user()))
-              <input type="button" id="favo{{$ogloszenie->id}}" value="dodaj do ulubionych" class="favourite dodaj">
+              <input type="button" id="favo{{$ogloszenie->id}}" value="dodaj do ulubionych" class="favourite dodaj" data-id="{{ $ogloszenie->id }}">
             @else
-              <input type="button" id="favo{{$ogloszenie->id}}" value="usuń z ulubionych" class="favourite">
+              <input type="button" id="favo{{$ogloszenie->id}}" value="usuń z ulubionych" class="favourite" data-id="{{ $ogloszenie->id }}">
             @endif
           </div>
         </div>
@@ -214,8 +214,8 @@
                           }
                       });
 
-                      $('#data-id').click(function(){
-                          var id = $('#data-id').data('id');
+                      $('#favourite').click(function(){
+                          var id = $('#favourite').data('id');
 
                           $.ajax({
                              type:'POST',
@@ -236,7 +236,6 @@
                   });
               </script>
         {{-- add to favourite --}}
-
 
   </div>
 
