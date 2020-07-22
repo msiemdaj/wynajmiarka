@@ -193,26 +193,20 @@
           <span>{{ $ogloszenie->description }}</span>
           <hr>
           <small>Dodano: {{ $ogloszenie->created_at }}</small>
+
+          <div id="data-id" data-id="{{ $ogloszenie->id }}">
+            @if(!$ogloszenie->isFavoritedBy(auth()->user()))
+              <input type="button" id="favo{{$ogloszenie->id}}" value="dodaj do ulubionych" class="favourite dodaj">
+            @else
+              <input type="button" id="favo{{$ogloszenie->id}}" value="usuń z ulubionych" class="favourite">
+            @endif
+          </div>
         </div>
 
         {{-- add to favourite --}}
-              {{-- <a id="favRequest">dodaj do ulubionych</a> --}}
-
-
-
-
-                  <div id="data-id" data-id="{{ $ogloszenie->id }}">
-                    @if(!$ogloszenie->isFavoritedBy(auth()->user()))
-                      <input type="button" id="like{{$ogloszenie->id}}" value="dodaj do ulubionych" class="likebtn dodaj">
-                    @else
-                      <input type="button" id="like{{$ogloszenie->id}}" value="usuń z ulubionych" class="likebtn">
-                    @endif
-                  </div>
-
 
               <script type="text/javascript">
                   $(document).ready(function() {
-
 
                       $.ajaxSetup({
                           headers: {
@@ -220,11 +214,8 @@
                           }
                       });
 
-
                       $('#data-id').click(function(){
                           var id = $('#data-id').data('id');
-                          // var cObjId = this.id;
-                          // var cObj = $(this);
 
                           $.ajax({
                              type:'POST',
@@ -232,19 +223,12 @@
                              data:{id:id},
                              success:function(data){
                                if(data){
-                                 const element = document.querySelector('#like'+id);
+                                 const element = document.querySelector('#favo'+id);
                                  if (element.classList.contains("dodaj")){
-                                   // $('#like'+id).removeClass("dodaj");
-                                   $('#like'+id).replaceWith('<input type="button" id="like{{$ogloszenie->id}}" value="usuń z ulubionych" class="likebtn">');
-                                   console.log('removed class');
+                                   $('#favo'+id).replaceWith('<input type="button" id="favo{{$ogloszenie->id}}" value="usuń z ulubionych" class="favourite">');
                                  }else{
-                                   // $('#like'+id).addClass("dodaj");
-                                   $('#like'+id).replaceWith('<input type="button" id="like{{$ogloszenie->id}}" value="dodaj do ulubionych" class="likebtn dodaj">');
-                                   console.log('added class');
+                                   $('#favo'+id).replaceWith('<input type="button" id="favo{{$ogloszenie->id}}" value="dodaj do ulubionych" class="favourite dodaj">');
                                  }
-
-                                   // $('#like'+id).replaceWith('<input type="button" id="like{{$ogloszenie->id}}" value="zmiana elo" class="likebtn @if(!$ogloszenie->isFavoritedBy(auth()->user())) like-post @endif">');
-
                                }
                              }
                           });
