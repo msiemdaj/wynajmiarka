@@ -35,6 +35,7 @@
 <script type="application/javascript">
 $(document).ready(function(){
  function fetch_data(query, sort_by, page){
+
   $.ajax({
    url:"/search?query="+query+"&sort_by="+sort_by+"&page="+page,
 

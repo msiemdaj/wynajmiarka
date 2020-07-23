@@ -19,7 +19,7 @@
     <div class="favorite-list">
       @foreach ($favoriteOgloszenia as $ulubione)
         <div class="favorite-item">
-          <div class="ogl-image">
+          <div class="favorite-image">
             @php
               $coverImage = json_decode($ulubione->image);
             @endphp
@@ -114,7 +114,6 @@
                       </div>
                       {{-- modal end --}}
                     </td>
-
                   </tr>
                 @endforeach
               </table>

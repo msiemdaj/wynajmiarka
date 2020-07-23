@@ -194,6 +194,8 @@
           <hr>
           <small>Dodano: {{ $ogloszenie->created_at }}</small>
 
+          @if (Auth::check())
+            @if (Auth::user()->email_verified_at)
           <div id="favorite" data-id="{{ $ogloszenie->id }}">
             @if(!$ogloszenie->isFavoritedBy(auth()->user()))
               <i class="favorite dodaj large material-icons" id="favo{{$ogloszenie->id}}" data-toggle="tooltip" data-placement="top" title="Dodaj do ulubionych">favorite_border</i>
@@ -201,8 +203,12 @@
               <i class="favorite large material-icons" id="favo{{$ogloszenie->id}}" data-toggle="tooltip" data-placement="top" title="Usuń z ulubionych">favorite</i>
             @endif
           </div>
+        @endif
+      @endif
         </div>
 
+        @if (Auth::check())
+          @if (Auth::user()->email_verified_at)
         {{-- add to favorite --}}
               <script type="text/javascript">
               $(function () {
@@ -246,6 +252,8 @@
                       });
                   });
               </script>
+            @endif
+          @endif
         {{-- add to favorite --}}
 
   </div>

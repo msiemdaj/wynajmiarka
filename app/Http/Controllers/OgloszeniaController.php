@@ -279,15 +279,20 @@ class OgloszeniaController extends Controller
                       ->orWhere('district', 'like', '%'.$query.'%')
                       ->orderBy($sort_by, $sort_order)->paginate(15);
 
-                      $i = 0;
-                      foreach($data as $dataa){
-                        $useride = $dataa->user_id;
-                        $userdata = User::find($useride);
-                        if($userdata->deleted == true){
-                          unset($data[$i]);
-                        }
-                        $i++;
-                      }
+          $i = 0;
+          foreach($data as $dataa){
+            $useride = $dataa->user_id;
+            $userdata = User::find($useride);
+          if($userdata->deleted == true){
+            unset($data[$i]);
+          }
+            $i++;
+          }
+
+
+      $user = User::find(auth()->user()->id);
+      $favortePosts = $user->getFavoriteItems(Ogloszenie::class)->paginate(2);
+      dd($favortePosts);
 
       if($data->isEmpty()){
         $message = 'Brak wyników dla frazy "'.$query.'"';

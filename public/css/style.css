@@ -215,6 +215,14 @@
 				font-size: 18px;
 				padding: 0.5em;
 			}
+
+			.ogl-bttm{
+				width: 90%;
+			}
+
+			.ogl-info #favorite{
+				padding-top: 40px;
+			}
 		}
 
 
@@ -257,6 +265,12 @@
 			.ogl-bttm{
 				position: absolute;
 				bottom: 2px;
+			}
+
+			.ogl-info .favorite{
+				position: absolute;
+				bottom: 10.8px;
+				padding: 0;
 			}
 		}
 
@@ -369,6 +383,10 @@
 
 			.empty-mailbox{
 				width: 680px;
+			}
+
+			.ogl-info .favorite{
+				bottom: 14.4px;
 			}
 		}
 
@@ -1555,6 +1573,26 @@
 	.favorite-item{
 		display: inline-block;
 		background: #dee2e6;
-		width: 300px;
-		height: 400px;
+		width: 274.7px;
+		height: 300px;
+		margin-right: 10px;
+	}
+
+	.favorite-list{
+		margin-top: 2em;
+	}
+
+	.favorite-item:last-of-type {
+		margin: 0;
+	}
+
+	.favorite-image{
+		width: 100%;
+		height: auto;
+	}
+
+	.favorite-image img{
+		width: 100%;
+		height: auto;
+		max-height: 154.5px;
 	}
