@@ -1551,3 +1551,10 @@
 	.favorite:hover{
 		color: #3490dc;
 	}
+
+	.favorite-item{
+		display: inline-block;
+		background: #dee2e6;
+		width: 300px;
+		height: 400px;
+	}
