@@ -43,8 +43,7 @@
 
         @if (Auth::check())
           @if (Auth::user()->email_verified_at)
-            <div id="favorite" data-id="{{ $ogloszenie->id }}">
-
+            <div class="favor" data-id="{{ $ogloszenie->id }}">
             @if(!$ogloszenie->isFavoritedBy(auth()->user()))
               <i class="favorite dodaj large material-icons" id="favo{{$ogloszenie->id}}" data-toggle="tooltip" data-placement="top" title="Dodaj do ulubionych">favorite_border</i>
             @else
@@ -68,6 +67,37 @@
       </div>
     </div>
   @endforeach
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+
+          $('.favor').click(function(){
+              var id = $(this).data('id');
+
+              $.ajax({
+                 type:'POST',
+                 url:'/favRequest',
+                 data:{id:id},
+                 success:function(data){
+                   if(data){
+                     const element = document.querySelector('#favo'+id);
+                     if (element.classList.contains("dodaj")){
+                       $('#favo'+id).replaceWith('<i class="favorite large material-icons" id="favo'+id+'">favorite</i>');
+                     }else{
+                       $('#favo'+id).replaceWith('<i class="favorite dodaj large material-icons" id="favo'+id+'">favorite_border</i>');
+                     }
+                   }
+                 }
+              });
+          });
+      });
+  </script>
 
   {{ $data->onEachSide(2)->links() }}
 

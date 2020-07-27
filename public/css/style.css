@@ -220,7 +220,7 @@
 				width: 90%;
 			}
 
-			.ogl-info #favorite{
+			.ogl-info .favor{
 				padding-top: 40px;
 			}
 		}
@@ -1547,7 +1547,7 @@
     }
 }
 
-	#favorite{
+	#favorite, .favor{
 		width: 24px;
 		height: 24px;
 		display: inline-block;
