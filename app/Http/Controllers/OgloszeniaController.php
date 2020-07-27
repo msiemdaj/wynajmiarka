@@ -274,10 +274,21 @@ class OgloszeniaController extends Controller
           $sort_order = 'asc';
         }
 
-        $data = DB::table('ogloszenia')
-                      ->Where('city', 'like', '%'.$query.'%')
-                      ->orWhere('district', 'like', '%'.$query.'%')
-                      ->orderBy($sort_by, $sort_order)->paginate(15);
+        $data = Ogloszenie::Where('city', 'like', '%'.$query.'%')
+                              ->orWhere('district', 'like', '%'.$query.'%')
+                              ->orderBy($sort_by, $sort_order)->paginate(15);
+                              
+        // $data = DB::table('ogloszenia')
+        //               ->Where('city', 'like', '%'.$query.'%')
+        //               ->orWhere('district', 'like', '%'.$query.'%')
+        //               ->orderBy($sort_by, $sort_order)->paginate(15);
+
+
+          // $ogloszenie = Ogloszenie::find($id);
+          // foreach ($data as $dataFind) {
+          //   $data = Find::Ogloszenie($data->id);
+          // }
+
 
           $i = 0;
           foreach($data as $dataa){
@@ -289,10 +300,6 @@ class OgloszeniaController extends Controller
             $i++;
           }
 
-
-      $user = User::find(auth()->user()->id);
-      $favortePosts = $user->getFavoriteItems(Ogloszenie::class)->paginate(2);
-      dd($favortePosts);
 
       if($data->isEmpty()){
         $message = 'Brak wyników dla frazy "'.$query.'"';

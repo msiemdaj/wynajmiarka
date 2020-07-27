@@ -45,13 +45,13 @@
           @if (Auth::user()->email_verified_at)
             <div id="favorite" data-id="{{ $ogloszenie->id }}">
 
-            {{-- @if(!$ogloszenie->isFavoritedBy(auth()->user())) --}}
+            @if(!$ogloszenie->isFavoritedBy(auth()->user()))
               <i class="favorite dodaj large material-icons" id="favo{{$ogloszenie->id}}" data-toggle="tooltip" data-placement="top" title="Dodaj do ulubionych">favorite_border</i>
             @else
               <i class="favorite large material-icons" id="favo{{$ogloszenie->id}}" data-toggle="tooltip" data-placement="top" title="Usuń z ulubionych">favorite</i>
             @endif
           </div>
-          {{-- @endif --}}
+          @endif
         @endif
 
         <div class="ogl-bttm">
