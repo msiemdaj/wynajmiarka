@@ -68,6 +68,17 @@
     </div>
   @endforeach
 
+
+{{-- AUTH CHECK --}}
+
+  <script type="text/javascript">
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip({
+      trigger : 'hover'
+      });
+    });
+  </script>
+
   <script type="text/javascript">
       $(document).ready(function() {
 
@@ -87,11 +98,15 @@
                  success:function(data){
                    if(data){
                      const element = document.querySelector('#favo'+id);
+                     $('#favo'+id).tooltip('hide');
                      if (element.classList.contains("dodaj")){
-                       $('#favo'+id).replaceWith('<i class="favorite large material-icons" id="favo'+id+'">favorite</i>');
+                       $('#favo'+id).replaceWith('<i class="favorite large material-icons" id="favo'+id+'" data-toggle="tooltip" data-placement="top" title="Usuń z ulubionych">favorite</i>');
                      }else{
-                       $('#favo'+id).replaceWith('<i class="favorite dodaj large material-icons" id="favo'+id+'">favorite_border</i>');
+                       $('#favo'+id).replaceWith('<i class="favorite dodaj large material-icons" id="favo'+id+'" data-toggle="tooltip" data-placement="top" title="Dodaj do ulubionych">favorite_border</i>');
                      }
+                     $('#favo'+id).tooltip({
+                       trigger : 'hover'
+                       });
                    }
                  }
               });

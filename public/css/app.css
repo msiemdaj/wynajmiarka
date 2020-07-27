@@ -6453,6 +6453,7 @@ a.close.disabled {
   display: block;
   width: 0.8rem;
   height: 0.4rem;
+  display: none !important;
 }
 
 .tooltip .arrow::before {
@@ -6539,7 +6540,7 @@ a.close.disabled {
   padding: 0.25rem 0.5rem;
   color: #fff;
   text-align: center;
-  background-color: #000;
+  background-color: #3490dc;
   border-radius: 0.25rem;
 }
 

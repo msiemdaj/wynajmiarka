@@ -212,12 +212,10 @@
         {{-- add to favorite --}}
               <script type="text/javascript">
               $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-                })
-
-                // $('[data-toggle="tooltip"]').click(function () {
-                //    $('[data-toggle="tooltip"]').tooltip("hide");
-                // });
+                $('[data-toggle="tooltip"]').tooltip({
+                  trigger : 'hover'
+                  });
+                });
               </script>
 
               <script type="text/javascript">
@@ -239,13 +237,15 @@
                              success:function(data){
                                if(data){
                                  const element = document.querySelector('#favo'+id);
+                                 $('#favo'+id).tooltip('hide');
                                  if (element.classList.contains("dodaj")){
-                                   // $('#favo'+id).replaceWith('<input type="button" id="favo{{$ogloszenie->id}}" value="usuń z ulubionych" class="favorite">');
-                                   $('#favo'+id).replaceWith('<i class="favorite large material-icons" id="favo{{$ogloszenie->id}}">favorite</i>');
+                                   $('#favo'+id).replaceWith('<i class="favorite large material-icons" id="favo{{$ogloszenie->id}}" data-toggle="tooltip" data-placement="top" title="Usuń z ulubionych">favorite</i>');
                                  }else{
-                                   // $('#favo'+id).replaceWith('<input type="button" id="favo{{$ogloszenie->id}}" value="dodaj do ulubionych" class="favorite dodaj">');
-                                   $('#favo'+id).replaceWith('<i class="favorite dodaj large material-icons" id="favo{{$ogloszenie->id}}">favorite_border</i>');
+                                   $('#favo'+id).replaceWith('<i class="favorite dodaj large material-icons" id="favo{{$ogloszenie->id}}" data-toggle="tooltip" data-placement="top" title="Dodaj do ulubionych">favorite_border</i>');
                                  }
+                                 $('#favo'+id).tooltip({
+                                   trigger : 'hover'
+                                   });
                                }
                              }
                           });
