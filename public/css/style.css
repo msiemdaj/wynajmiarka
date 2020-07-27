@@ -1571,20 +1571,20 @@
 	}
 
 	.favorite-item{
-		display: inline-block;
 		background: #dee2e6;
-		width: 274.7px;
+		width: 220px;
 		height: 300px;
-		margin-right: 10px;
+		/* margin-right: 10px; */
 	}
 
 	.favorite-list{
-		margin-top: 2em;
+		display: flex;
+		justify-content: space-between;
 	}
 
-	.favorite-item:last-of-type {
+	/* .favorite-item:last-of-type {
 		margin: 0;
-	}
+	} */
 
 	.favorite-image{
 		width: 100%;
