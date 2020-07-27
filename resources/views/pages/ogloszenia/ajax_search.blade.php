@@ -43,7 +43,7 @@
 
         @if (Auth::check())
           @if (Auth::user()->email_verified_at)
-            <div class="favor" data-id="{{ $ogloszenie->id }}">
+            <div class="favoriteContainer" data-id="{{ $ogloszenie->id }}">
             @if(!$ogloszenie->isFavoritedBy(auth()->user()))
               <i class="favorite dodaj large material-icons" id="favo{{$ogloszenie->id}}" data-toggle="tooltip" data-placement="top" title="Dodaj do ulubionych">favorite_border</i>
             @else
@@ -77,7 +77,7 @@
               }
           });
 
-          $('.favor').click(function(){
+          $('.favoriteContainer').click(function(){
               var id = $(this).data('id');
 
               $.ajax({
