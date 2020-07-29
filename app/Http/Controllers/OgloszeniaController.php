@@ -49,7 +49,7 @@ class OgloszeniaController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-        'title' => 'required|min:8|unique:ogloszenia',
+        'title' => 'required|min:8|unique:ogloszenia|max:191',
         'city' => 'required',
         'district' => 'required',
         'description' => 'required|min:8',
@@ -149,7 +149,7 @@ class OgloszeniaController extends Controller
     {
 
       $this->validate($request, [
-        'title' => 'required|min:8',
+        'title' => 'required|min:8|unique:ogloszenia|max:191',
         'city' => 'required',
         'district' => 'required',
         'description' => 'required|min:8',
@@ -277,11 +277,6 @@ class OgloszeniaController extends Controller
         $data = Ogloszenie::Where('city', 'like', '%'.$query.'%')
                               ->orWhere('district', 'like', '%'.$query.'%')
                               ->orderBy($sort_by, $sort_order)->paginate(15);
-
-        // $data = DB::table('ogloszenia')
-        //               ->Where('city', 'like', '%'.$query.'%')
-        //               ->orWhere('district', 'like', '%'.$query.'%')
-        //               ->orderBy($sort_by, $sort_order)->paginate(15);
 
           $i = 0;
           foreach($data as $dataa){
