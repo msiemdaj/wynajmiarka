@@ -50,6 +50,12 @@
     </div>
   </div>
 
+  <script type="text/javascript">
+    $('.show-more').click(function(){
+      $('.favorite-item').eq(4).nextAll('.favorite-item').addClass('hidden');
+    });
+  </script>
+
   <div class="simpl-head">
     <h2>Twoje Ogłoszenia</h2>
     <h4>Przeglądaj, edytuj lub usuń dodane przez ciebie ogłoszenia.</h4>

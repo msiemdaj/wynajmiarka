@@ -57,9 +57,10 @@ $this->validate($request, [
     if (!empty($email) && $email !== $user->email){
       $user->email = $email;
       $user->save();
-      $user->sendEmailVerificationNotification(); // jak wyslac to na nowy email bez jego wczesniejszej zmiany
-                                                  // zmienic email w bazie po jego veryfikazji z linku
-      $message = 'Twoje dane zostały poprawnie zmienione'; // wyslalismy na twoj email link aktywacyjny
+      // $user->sendEmailVerificationNotification(); // jak wyslac to na nowy email bez jego wczesniejszej zmiany
+      //                                             // zmienic email w bazie po jego veryfikazji z linku
+
+      $message = 'Twoje dane zostały poprawnie zmienione';
     }
 
     if(!empty($phonenumber) && $phonenumber !== $user->phonenumber){

@@ -1572,8 +1572,8 @@
 
 	.favorite-item{
 		background: #dee2e6;
-		width: 220px;
-		height: 300px;
+		width: 270px;
+		height: 320px;
 		/* margin-right: 10px; */
 	}
 
@@ -1593,6 +1593,10 @@
 
 	.favorite-image img{
 		width: 100%;
-		height: auto;
-		max-height: 154.5px;
+		height: 160px;
+	}
+
+	/*  */
+	.favorite-item:nth-of-type(4) ~ .favorite-item {
+    display: none;
 	}
