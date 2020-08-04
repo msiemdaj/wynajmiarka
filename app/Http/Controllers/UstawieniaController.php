@@ -20,18 +20,22 @@ class UstawieniaController extends Controller
     return view('pages/ustawienia')->with('user', $user);
   }
 
+// change user password
   public function security(Request $request){
 
-$this->validate($request, [
-    'currentpassword' => 'required|password',
-    'newpassword'     => 'required|min:6|same:confirmpassword',
-    'confirmpassword' => 'required|min:6|same:newpassword',
-]);
+// validate input data
+  $this->validate($request, [
+      'currentpassword' => 'required|password',
+      'newpassword'     => 'required|min:6|same:confirmpassword',
+      'confirmpassword' => 'required|min:6|same:newpassword',
+  ]);
 
     $user = User::find(auth()->user()->id);
 
     $currentpassword = $request->input('currentpassword');
 
+// compare validated input password with current hashed value from model.
+// If password match overwrite it with new hashed value.
     if (Hash::check("$currentpassword", "$user->password")) {
       $user->password = Hash::make($request->input('newpassword'));
       $user->save();
@@ -39,13 +43,16 @@ $this->validate($request, [
     }else{
       $message = 'Obecne hasło jest nieprawidłowe';
     }
+// Route back to settings tab.
     return redirect()->route('ustawienia')->with('message', $message);
   }
 
-  public function contact(Request $request){
 
+// Change user contact data.
+  public function contact(Request $request){
+// Validate inputs.
     $this->validate($request, [
-      'email' => 'nullable|email|unique:users,email', // CHECK FOR DUPLICATE
+      'email' => 'nullable|email|unique:users,email',
       'phonenumber' => 'nullable|numeric|digits:9'
     ]);
 
@@ -54,31 +61,36 @@ $this->validate($request, [
     $phonenumber = $request->input('phonenumber');
     $email = $request->input('email');
 
+
+// Check for empty inputs and overwrite user data.
     if (!empty($email) && $email !== $user->email){
       $user->email = $email;
       $user->save();
-      // $user->sendEmailVerificationNotification(); // jak wyslac to na nowy email bez jego wczesniejszej zmiany
-      //                                             // zmienic email w bazie po jego veryfikazji z linku
 
       $message = 'Twoje dane zostały poprawnie zmienione';
     }
 
+// Check for empty inputs and overwrite user data.
     if(!empty($phonenumber) && $phonenumber !== $user->phonenumber){
       $user->phonenumber = $phonenumber;
       $user->save();
       $message = 'Twoje dane zostały poprawnie zmienione';
     }
 
+// Route back to settings tab.
     if(isset($message)){
       return redirect()->route('ustawienia')->with('message', $message);
-
     }else{
       return redirect()->route('ustawienia');
     }
   }
 
+
+// Set notifications status(on/off switch) for receiving new messages from users.
   public function changeNotification(Request $request){
     $user = User::find(auth()->user()->id);
+// Check for current notifications status from Model.
+// Change norification status depending of their current value.
     if($user->notifications == true){
       $user->notifications = false;
       $message = 'Powiadomienia zostały wyłączone.';
@@ -86,10 +98,14 @@ $this->validate($request, [
       $user->notifications = true;
       $message = 'Powiadomienia zostały włączone.';
     }
+// Save data in DB and redirect back to settings.
     $user->save();
     return redirect()->back()->with('message', $message);
   }
 
+
+// Deactivate User account by changing modal value for user->deleted.
+// Saving Data in DB and logs out the user.
   public function deactivate(Request $request){
     $user = User::find(auth()->user()->id);
     $user->deleted = true;
