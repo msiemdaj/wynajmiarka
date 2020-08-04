@@ -15,6 +15,7 @@ class UstawieniaController extends Controller
       $this->middleware(['auth','verified']);
   }
 
+// Return view for Ustawienia page.
   public function index(){
     $user = User::find(auth()->user()->id);
     return view('pages/ustawienia')->with('user', $user);
@@ -23,7 +24,7 @@ class UstawieniaController extends Controller
 // change user password
   public function security(Request $request){
 
-// validate input data
+// Validate input data
   $this->validate($request, [
       'currentpassword' => 'required|password',
       'newpassword'     => 'required|min:6|same:confirmpassword',
