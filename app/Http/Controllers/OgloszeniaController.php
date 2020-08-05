@@ -47,6 +47,13 @@ class OgloszeniaController extends Controller
       $ogloszenie->size = $request->input('size');
       $ogloszenie->price = $request->input('price');
       $ogloszenie->to_negotiate = $request->input('to_negotiate');
+      //
+      $ogloszenie->additional_costs = $request->input('dodatkowy_czynsz');
+      $ogloszenie->rooms = $request->input('pokoje');
+      $ogloszenie->floor = $request->input('pietro');
+      $ogloszenie->condition = $request->input('stan');
+      $ogloszenie->heating = $request->input('ogrzewanie');
+      $ogloszenie->year_of_construction = $request->input('rok');
 
 // Check if uses checked to_negotiate chechbox. If not remain it as false.
       if ($request->has('to_negotiate')) {
@@ -71,8 +78,14 @@ class OgloszeniaController extends Controller
         $imageArray[] = $newImage;
       }
 
-// Encode images array to json and save it in DB.
+// Encode images array to json.
       $ogloszenie->image=json_encode($imageArray);
+
+// Encode checkbox values to json.
+      $ogloszenie->equipment = json_encode($request->get('equipment'));
+      $ogloszenie->additional_info = json_encode($request->get('additional_info'));
+
+// Save data into DB.
       $saved = $ogloszenie->save();
 
 // If Ogloszenie is successfully saved redirect user to his advertisements tab.

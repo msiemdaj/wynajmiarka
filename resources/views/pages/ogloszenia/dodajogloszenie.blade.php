@@ -149,25 +149,25 @@
           <div class="form-group">
             <h4>Wyposażenie</h2>
 
-            <input type="checkbox" name="meble" value="meble" @if(old('meble')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="meble" @if(old('meble')) checked @endif>
             {{ Form::label('meble', 'Meble') }}
 
-            <input type="checkbox" name="pralka" value="pralka" @if(old('pralka')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="pralka" @if(old('pralka')) checked @endif>
             {{ Form::label('pralka', 'Pralka') }}
 
-            <input type="checkbox" name="zmywarka" value="zmywarka" @if(old('zmywarka')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="zmywarka" @if(old('zmywarka')) checked @endif>
             {{ Form::label('zmywarka', 'Zmywarka') }}
 
-            <input type="checkbox" name="lodowka" value="lodowka" @if(old('lodowka')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="lodówka" @if(old('lodowka')) checked @endif>
             {{ Form::label('lodowka', 'Lodówka') }}
 
-            <input type="checkbox" name="kuchenka" value="kuchenka" @if(old('kuchenka')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="kuchenka" @if(old('kuchenka')) checked @endif>
             {{ Form::label('kuchenka', 'Kuchenka') }}
 
-            <input type="checkbox" name="piekarnik" value="piekarnik" @if(old('piekarnik')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="piekarnik" @if(old('piekarnik')) checked @endif>
             {{ Form::label('piekarnik', 'Piekarnik') }}
 
-            <input type="checkbox" name="telewizor" value="telewizor" @if(old('telewizor')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="telewizor" @if(old('telewizor')) checked @endif>
             {{ Form::label('telewizor', 'Telewizor') }}
 
           </div>
@@ -175,27 +175,26 @@
           <div class="form-group">
             <h4>Dodatkowe informacje</h2>
 
-            <input type="checkbox" name="balkon" value="balkon" @if(old('balkon')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="balkon" @if(old('additional_info.0')) checked @endif>
             {{ Form::label('balkon', 'Balkon') }}
 
-            <input type="checkbox" name="garaz" value="garaz" @if(old('garaz')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="garaż" @if(old('additional_info.1')) checked @endif>
             {{ Form::label('garaz', 'Garaż') }}
 
-            <input type="checkbox" name="miejsce_parkingowe" value="miejsce_parkingowe" @if(old('miejsce_parkingowe')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="miejsce parkingowe" @if(old('additional_info.2')) checked @endif>
             {{ Form::label('miejsce_parkingowe', 'Miejsce parkingowe') }}
 
-            <input type="checkbox" name="piwnica" value="piwnica" @if(old('piwnica')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="piwnica" @if(old('additional_info.3')) checked @endif>
             {{ Form::label('piwnica', 'Piwnica') }}
 
-            <input type="checkbox" name="ogrodek" value="ogrodek" @if(old('ogrodek')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="ogródek" @if(old('additional_info.4')) checked @endif>
             {{ Form::label('ogrodek', 'Ogródek') }}
 
-            <input type="checkbox" name="klimatyzacja" value="klimatyzacja" @if(old('klimatyzacja')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="klimatyzacja" @if(old('additional_info.5')) checked @endif>
             {{ Form::label('klimatyzacja', 'Klimatyzacja') }}
 
-            <input type="checkbox" name="winda" value="winda" @if(old('winda')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="winda" @if(old('additional_info.6')) checked @endif>
             {{ Form::label('winda', 'Winda') }}
-
           </div>
 
           {{--
