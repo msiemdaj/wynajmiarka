@@ -130,7 +130,7 @@
               <option value="gazowe">gazowe</option>
               <option value="piec_kaflowy">piec kaflowy</option>
               <option value="elektryczne">elektryczne</option>
-              <option value="kotłownia">kotłownia</option>
+              <option value="kotlownia">kotłownia</option>
               <option value="inne">inne</option>
             </select>
           </div>
