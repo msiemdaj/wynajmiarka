@@ -149,25 +149,25 @@
           <div class="form-group">
             <h4>Wyposażenie</h2>
 
-            <input type="checkbox" name="equipment[]" value="meble" @if(old('meble')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="meble" {{ (is_array(old('equipment')) and in_array('meble', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('meble', 'Meble') }}
 
-            <input type="checkbox" name="equipment[]" value="pralka" @if(old('pralka')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="pralka" {{ (is_array(old('equipment')) and in_array('pralka', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('pralka', 'Pralka') }}
 
-            <input type="checkbox" name="equipment[]" value="zmywarka" @if(old('zmywarka')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="zmywarka" {{ (is_array(old('equipment')) and in_array('zmywarka', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('zmywarka', 'Zmywarka') }}
 
-            <input type="checkbox" name="equipment[]" value="lodówka" @if(old('lodowka')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="lodówka" {{ (is_array(old('equipment')) and in_array('lodówka', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('lodowka', 'Lodówka') }}
 
-            <input type="checkbox" name="equipment[]" value="kuchenka" @if(old('kuchenka')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="kuchenka" {{ (is_array(old('equipment')) and in_array('kuchenka', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('kuchenka', 'Kuchenka') }}
 
-            <input type="checkbox" name="equipment[]" value="piekarnik" @if(old('piekarnik')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="piekarnik" {{ (is_array(old('equipment')) and in_array('piekarnik', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('piekarnik', 'Piekarnik') }}
 
-            <input type="checkbox" name="equipment[]" value="telewizor" @if(old('telewizor')) checked @endif>
+            <input type="checkbox" name="equipment[]" value="telewizor" {{ (is_array(old('equipment')) and in_array('telewizor', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('telewizor', 'Telewizor') }}
 
           </div>
@@ -175,30 +175,38 @@
           <div class="form-group">
             <h4>Dodatkowe informacje</h2>
 
-            <input type="checkbox" name="additional_info[]" value="balkon" @if(old('additional_info.0')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="balkon" {{ (is_array(old('additional_info')) and in_array('balkon', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('balkon', 'Balkon') }}
 
-            <input type="checkbox" name="additional_info[]" value="garaż" @if(old('additional_info.1')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="garaż" {{ (is_array(old('additional_info')) and in_array('garaż', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('garaz', 'Garaż') }}
 
-            <input type="checkbox" name="additional_info[]" value="miejsce parkingowe" @if(old('additional_info.2')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="miejsce parkingowe" {{ (is_array(old('additional_info')) and in_array('miejsce parkingowe', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('miejsce_parkingowe', 'Miejsce parkingowe') }}
 
-            <input type="checkbox" name="additional_info[]" value="piwnica" @if(old('additional_info.3')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="piwnica" {{ (is_array(old('additional_info')) and in_array('piwnica', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('piwnica', 'Piwnica') }}
 
-            <input type="checkbox" name="additional_info[]" value="ogródek" @if(old('additional_info.4')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="ogródek" {{ (is_array(old('additional_info')) and in_array('ogródek', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('ogrodek', 'Ogródek') }}
 
-            <input type="checkbox" name="additional_info[]" value="klimatyzacja" @if(old('additional_info.5')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="klimatyzacja" {{ (is_array(old('additional_info')) and in_array('klimatyzacja', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('klimatyzacja', 'Klimatyzacja') }}
 
-            <input type="checkbox" name="additional_info[]" value="winda" @if(old('additional_info.6')) checked @endif>
+            <input type="checkbox" name="additional_info[]" value="winda" {{ (is_array(old('additional_info')) and in_array('winda', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('winda', 'Winda') }}
           </div>
 
           {{--
            --}}
+
+           {{-- <div>
+<label for="features">Product Features</label><br/>
+<label class="checkbox-inline"><input type="checkbox" name="features[]" value="Camera" {{ (is_array(old('features')) and in_array('Camera', old('features'))) ? ' checked' : '' }}/>Camera</label>
+<label class="checkbox-inline"><input type="checkbox" name="features[]" value="FrontCamera" {{ (is_array(old('features')) and in_array("FrontCamera", old('features'))) ? ' checked' : '' }}/>Front Camera</label>
+<label class="checkbox-inline"><input type="checkbox" name="features[]" value="FingerPrint" {{ (is_array(old('features')) and in_array('FingerPrint', old('features'))) ? ' checked' : '' }}/>Finger print sensor</label>
+<label class="checkbox-inline"><input type="checkbox" name="features[]" value="DualSim" {{ (is_array(old('features')) and in_array('DualSim', old('features'))) ? ' checked' : '' }}/>Dual sim</label>
+</div> --}}
 
     <script type="application/javascript">
       $(function () {
