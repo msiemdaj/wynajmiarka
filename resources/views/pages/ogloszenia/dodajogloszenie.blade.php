@@ -164,7 +164,6 @@
 
             <input type="checkbox" name="equipment[]" value="telewizor" {{ (is_array(old('equipment')) and in_array('telewizor', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('telewizor', 'Telewizor') }}
-
           </div>
 
           <div class="form-group">
@@ -194,14 +193,6 @@
 
           {{--
            --}}
-
-           {{-- <div>
-<label for="features">Product Features</label><br/>
-<label class="checkbox-inline"><input type="checkbox" name="features[]" value="Camera" {{ (is_array(old('features')) and in_array('Camera', old('features'))) ? ' checked' : '' }}/>Camera</label>
-<label class="checkbox-inline"><input type="checkbox" name="features[]" value="FrontCamera" {{ (is_array(old('features')) and in_array("FrontCamera", old('features'))) ? ' checked' : '' }}/>Front Camera</label>
-<label class="checkbox-inline"><input type="checkbox" name="features[]" value="FingerPrint" {{ (is_array(old('features')) and in_array('FingerPrint', old('features'))) ? ' checked' : '' }}/>Finger print sensor</label>
-<label class="checkbox-inline"><input type="checkbox" name="features[]" value="DualSim" {{ (is_array(old('features')) and in_array('DualSim', old('features'))) ? ' checked' : '' }}/>Dual sim</label>
-</div> --}}
 
     <script type="application/javascript">
       $(function () {
