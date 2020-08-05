@@ -35,7 +35,7 @@ class OgloszeniaController extends Controller
         'price' => 'required|numeric',
         'images' => 'required',
         'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'dodatkowy_czynsz' => 'numeric'
+        'dodatkowy_czynsz' => 'numeric|nullable'
       ]);
 
 // If validation passes, Create new Model and bind values from request.
@@ -48,13 +48,35 @@ class OgloszeniaController extends Controller
       $ogloszenie->size = $request->input('size');
       $ogloszenie->price = $request->input('price');
       $ogloszenie->to_negotiate = $request->input('to_negotiate');
-      //
       $ogloszenie->additional_costs = $request->input('dodatkowy_czynsz');
-      $ogloszenie->rooms = $request->input('pokoje');
-      $ogloszenie->floor = $request->input('pietro');
-      $ogloszenie->condition = $request->input('stan');
-      $ogloszenie->heating = $request->input('ogrzewanie');
       $ogloszenie->year_of_construction = $request->input('rok');
+
+// Check for default values and insert NULL into DB if user has not selected any option.
+      if($request->input('pokoje') == 'wybierz'){
+        $ogloszenie->rooms = NULL;
+      }else{
+        $ogloszenie->rooms = $request->input('pokoje');
+      }
+
+      if($request->input('pietro') == 'wybierz'){
+        $ogloszenie->floor = NULL;
+      }else{
+        $ogloszenie->floor = $request->input('pietro');
+      }
+
+      if($request->input('stan') == 'wybierz'){
+        $ogloszenie->condition = NULL;
+      }else{
+        $ogloszenie->condition = $request->input('stan');
+      }
+
+      if($request->input('ogrzewanie') == 'wybierz'){
+        $ogloszenie->heating = NULL;
+      }else{
+        $ogloszenie->heating = $request->input('ogrzewanie');
+      }
+
+
 
 // Check if uses checked to_negotiate chechbox. If not remain it as false.
       if ($request->has('to_negotiate')) {
@@ -82,9 +104,18 @@ class OgloszeniaController extends Controller
 // Encode images array to json.
       $ogloszenie->image=json_encode($imageArray);
 
-// Encode checkbox values to json.
+// Encode checkbox values to json if they arent empty.
+    if(empty($request->get('equipment'))){
+      $ogloszenie->equipment = NULL;
+    }else{
       $ogloszenie->equipment = json_encode($request->get('equipment'));
+    }
+
+    if(empty($request->get('additional_info'))){
+      $ogloszenie->additional_info = NULL;
+    }else{
       $ogloszenie->additional_info = json_encode($request->get('additional_info'));
+    }
 
 // Save data into DB.
       $saved = $ogloszenie->save();
