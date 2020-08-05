@@ -87,51 +87,46 @@
 
           <div class="form-group">
             {{ Form::label('pokoje', 'Pokoje') }}
-            <select class="form-control" name="pokoje" value="{{ old('pokoje') }}">
+            <select class="form-control" name="pokoje">
               <option>wybierz</option>
-              @php
-                for ($i=1; $i <= 5; $i++){
-                  echo '<option value="'.$i.'">'.$i.'</option>';
-                }
-              @endphp
-              <option value="wiecejniz5">więcej niż 5</option>
+              @for ($i=1; $i <= 5; $i++)
+                <option value="{{$i}}" {{ old('pokoje') == $i ? 'selected' : '' }}>{{$i}}</option>
+              @endfor
+              <option value="wiecej_niz_5" {{ old('pokoje') == 'wiecej_niz_5' ? 'selected' : '' }}>więcej niż 5</option>
             </select>
           </div>
-
           <div class="form-group">
             {{ Form::label('pietro', 'Piętro') }}
-            <select class="form-control" name="pietro" value="{{ old('pietro') }}">
+            <select class="form-control" name="pietro">
               <option>wybierz</option>
-              <option value="parter">parter</option>
-              @php
-                for ($i=1; $i <= 10; $i++){
-                  echo '<option value="'.$i.'">'.$i.'</option>';
-                }
-              @endphp
-              <option value="wiecejniz10">więcej niż 10</option>
+              <option value="parter" {{ old('pietro') == 'parter' ? 'selected' : '' }}>parter</option>
+              @for ($i=1; $i <= 10; $i++)
+                <option value="{{$i}}" {{ old('pietro') == $i ? 'selected' : '' }}>{{$i}}</option>
+              @endfor
+              <option value="wiecej_niz_10" {{ old('pietro') == 'wiecej_niz_10' ? 'selected' : '' }}>więcej niż 10</option>
             </select>
           </div>
 
           <div class="form-group">
             {{ Form::label('stan', 'Stan') }}
-            <select class="form-control" name="stan" value="{{ old('stan') }}">
+            <select class="form-control" name="stan">
               <option>wybierz</option>
-              <option value="do_zamieszkania">do zamieszkania</option>
-              <option value="do_wykonczenia">do wykończenia</option>
-              <option value="do_remontu">do remontu</option>
+              <option value="do_zamieszkania" {{ old('stan') == 'do_zamieszkania' ? 'selected' : '' }}>do zamieszkania</option>
+              <option value="do_wykonczenia" {{ old('stan') == 'do_wykonczenia' ? 'selected' : '' }}>do wykończenia</option>
+              <option value="do_remontu" {{ old('stan') == 'do_remontu' ? 'selected' : '' }}>do remontu</option>
             </select>
           </div>
 
           <div class="form-group">
             {{ Form::label('ogrzewanie', 'Ogrzewanie') }}
-            <select class="form-control" name="ogrzewanie" value="{{ old('ogrzewanie') }}">
+            <select class="form-control" name="ogrzewanie">
               <option>wybierz</option>
-              <option value="miejskie">miejskie</option>
-              <option value="gazowe">gazowe</option>
-              <option value="piec_kaflowy">piec kaflowy</option>
-              <option value="elektryczne">elektryczne</option>
-              <option value="kotlownia">kotłownia</option>
-              <option value="inne">inne</option>
+              <option value="miejskie" {{ old('ogrzewanie') == 'miejskie' ? 'selected' : '' }}>miejskie</option>
+              <option value="gazowe" {{ old('ogrzewanie') == 'gazowe' ? 'selected' : '' }}>gazowe</option>
+              <option value="piec_kaflowy" {{ old('ogrzewanie') == 'piec_kaflowy' ? 'selected' : '' }}>piec kaflowy</option>
+              <option value="elektryczne" {{ old('ogrzewanie') == 'elektryczne' ? 'selected' : '' }}>elektryczne</option>
+              <option value="kotlownia" {{ old('ogrzewanie') == 'kotlownia' ? 'selected' : '' }}>kotłownia</option>
+              <option value="inne" {{ old('ogrzewanie') == 'inne' ? 'selected' : '' }}>inne</option>
             </select>
           </div>
 

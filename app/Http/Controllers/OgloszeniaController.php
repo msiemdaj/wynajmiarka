@@ -34,7 +34,8 @@ class OgloszeniaController extends Controller
         'size' => 'required|numeric',
         'price' => 'required|numeric',
         'images' => 'required',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'dodatkowy_czynsz' => 'numeric'
       ]);
 
 // If validation passes, Create new Model and bind values from request.
