@@ -50,15 +50,31 @@
                   </span>
               @enderror
           </div>
-          <div class="form-group">
-            {{ Form::label('size', 'Metraż') }}
-            <input type="text" name="size" class="form-control @error('size') is-invalid @enderror" value="{{ old('size') }}">
-              @error('size')
-                  <span class="invalid-feedback" role="alert">
-                    {{ $message }}
-                  </span>
-              @enderror
+
+          <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-group">
+              {{ Form::label('size', 'Metraż') }}
+              <input type="text" name="size" class="form-control @error('size') is-invalid @enderror" value="{{ old('size') }}">
+                @error('size')
+                    <span class="invalid-feedback" role="alert">
+                      {{ $message }}
+                    </span>
+                @enderror
+            </div>
           </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              {{ Form::label('rok', 'Rok budowy') }}
+              <input type="text" name="rok" class="form-control @error('rok') is-invalid @enderror" value="{{ old('rok') }}">
+                @error('rok')
+                    <span class="invalid-feedback" role="alert">
+                      {{ $message }}
+                    </span>
+                @enderror
+            </div>
+          </div>
+        </div>
 
           <div class="form-row">
             <div class="col-md-4">
@@ -102,7 +118,7 @@
               <label class="custom-control-label" for="to_negotiate">Cena do negocjacji</label>
             </div>
           </div>
-          
+
           <div class="form-row">
             <div class="col-md-6">
               <div class="form-group">
@@ -159,19 +175,6 @@
             </div>
           </div>
 
-          <div class="form-row">
-          <div class="col-md-6">
-            <div class="form-group">
-              {{ Form::label('rok', 'Rok budowy') }}
-              <input type="text" name="rok" class="form-control @error('rok') is-invalid @enderror" value="{{ old('rok') }}">
-                @error('rok')
-                    <span class="invalid-feedback" role="alert">
-                      {{ $message }}
-                    </span>
-                @enderror
-            </div>
-        </div>
-      </div>
 
           <div class="form-group noS-Pt">
             <h4>Wyposażenie</h2>

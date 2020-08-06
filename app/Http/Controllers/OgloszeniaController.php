@@ -140,7 +140,7 @@ class OgloszeniaController extends Controller
 // Find Ogloszenie Model by id and redirect user for certain advertisement page.
     public function show($id){
       $ogloszenie = Ogloszenie::find($id);
-
+      
       if($ogloszenie){
       return view('pages/ogloszenia/podgladogloszenia')->with('ogloszenie', $ogloszenie);
       }else{
