@@ -37,6 +37,7 @@ class OgloszeniaController extends Controller
         'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'dodatkowy_czynsz' => 'numeric|nullable',
         'rok' => 'numeric|digits:4|nullable',
+        'deposit' => 'numeric|nullable',
         'pokoje' => 'in:wybierz,1,2,3,4,5,więcej_niż_5|nullable',
         'pietro' => 'in:wybierz,parter,1,2,3,4,5,6,7,8,9,10,więcej_niż_10|nullable',
         'stan' => 'in:wybierz,do_zamieszkania,do_remontu,do_wykończenia|nullable',
@@ -57,6 +58,7 @@ class OgloszeniaController extends Controller
       $ogloszenie->to_negotiate = $request->input('to_negotiate');
       $ogloszenie->additional_costs = $request->input('dodatkowy_czynsz');
       $ogloszenie->year_of_construction = $request->input('rok');
+      $ogloszenie->deposit = $request->input('kaucja');
 
 // Check for default values and insert NULL into DB if user has not selected any option.
       if($request->input('pokoje') == 'wybierz'){
@@ -140,7 +142,7 @@ class OgloszeniaController extends Controller
 // Find Ogloszenie Model by id and redirect user for certain advertisement page.
     public function show($id){
       $ogloszenie = Ogloszenie::find($id);
-      
+
       if($ogloszenie){
       return view('pages/ogloszenia/podgladogloszenia')->with('ogloszenie', $ogloszenie);
       }else{
