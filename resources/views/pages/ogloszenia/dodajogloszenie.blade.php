@@ -92,7 +92,7 @@
               @for ($i=1; $i <= 5; $i++)
                 <option value="{{$i}}" {{ old('pokoje') == $i ? 'selected' : '' }}>{{$i}}</option>
               @endfor
-              <option value="wiecej_niz_5" {{ old('pokoje') == 'wiecej_niz_5' ? 'selected' : '' }}>więcej niż 5</option>
+              <option value="więcej_niż_5" {{ old('pokoje') == 'więcej_niż_5' ? 'selected' : '' }}>więcej niż 5</option>
             </select>
           </div>
           <div class="form-group">
@@ -103,7 +103,7 @@
               @for ($i=1; $i <= 10; $i++)
                 <option value="{{$i}}" {{ old('pietro') == $i ? 'selected' : '' }}>{{$i}}</option>
               @endfor
-              <option value="wiecej_niz_10" {{ old('pietro') == 'wiecej_niz_10' ? 'selected' : '' }}>więcej niż 10</option>
+              <option value="więcej_niż_10" {{ old('pietro') == 'więcej_niż_10' ? 'selected' : '' }}>więcej niż 10</option>
             </select>
           </div>
 
@@ -112,7 +112,7 @@
             <select class="form-control" name="stan">
               <option>wybierz</option>
               <option value="do_zamieszkania" {{ old('stan') == 'do_zamieszkania' ? 'selected' : '' }}>do zamieszkania</option>
-              <option value="do_wykonczenia" {{ old('stan') == 'do_wykonczenia' ? 'selected' : '' }}>do wykończenia</option>
+              <option value="do_wykończenia" {{ old('stan') == 'do_wykończenia' ? 'selected' : '' }}>do wykończenia</option>
               <option value="do_remontu" {{ old('stan') == 'do_remontu' ? 'selected' : '' }}>do remontu</option>
             </select>
           </div>
@@ -125,20 +125,10 @@
               <option value="gazowe" {{ old('ogrzewanie') == 'gazowe' ? 'selected' : '' }}>gazowe</option>
               <option value="piec_kaflowy" {{ old('ogrzewanie') == 'piec_kaflowy' ? 'selected' : '' }}>piec kaflowy</option>
               <option value="elektryczne" {{ old('ogrzewanie') == 'elektryczne' ? 'selected' : '' }}>elektryczne</option>
-              <option value="kotlownia" {{ old('ogrzewanie') == 'kotlownia' ? 'selected' : '' }}>kotłownia</option>
+              <option value="kotłownia" {{ old('ogrzewanie') == 'kotłownia' ? 'selected' : '' }}>kotłownia</option>
               <option value="inne" {{ old('ogrzewanie') == 'inne' ? 'selected' : '' }}>inne</option>
             </select>
           </div>
-
-          @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
           <div class="form-group">
             {{ Form::label('rok', 'Rok budowy') }}
@@ -200,6 +190,16 @@
             {{ Form::label('winda', 'Winda') }}
           </div>
 
+
+          @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
           {{--
 
            --}}
