@@ -181,6 +181,7 @@
 
 			.ogloszenie-heading,
 			.dodaj-ogloszenie-form,
+			.edit-ogloszenie-form,
 			.msg-option-container,
 			ul.nav-skrzynka{
 				padding: 1em;
@@ -277,6 +278,7 @@
 		@media (min-width: 576px){
 			.ogloszenie-heading,
 			.dodaj-ogloszenie-form,
+			.edit-ogloszenie-form,
 			.simpl-head,
 			.msg-option-container,
 			ul.nav-skrzynka,
@@ -286,7 +288,8 @@
 				padding: 0;
 			}
 
-			.dodaj-ogloszenie-form{
+			.dodaj-ogloszenie-form,
+			.edit-ogloszenie-form{
 				margin-bottom: 2em;
 			}
 

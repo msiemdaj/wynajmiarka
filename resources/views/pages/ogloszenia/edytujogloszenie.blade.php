@@ -10,7 +10,8 @@
       {!! Form::open(['action' => ['OgloszeniaController@update', $ogloszenie->id],
                       'method' => 'PUT',
                       'enctype' => 'multipart/form-data',
-                      'data-toggle' => 'validator']) !!}
+                      'data-toggle' => 'validator',
+                      'class' => 'edit-ogloszenie-form']) !!}
           @csrf
           <div class="form-group">
             <label for="title" class="required">Tytuł ogłoszenia</label>
@@ -79,20 +80,10 @@
           </div>
         </div>
 
-          <div class="form-group">
-            <label for="price" class="required">Cena</label>
-            <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ $ogloszenie->price }}">
-              @error('price')
-                <span class="invalid-feedback" role="alert">
-                      {{ $message }}
-                  </span>
-              @enderror
-          </div>
-
           <div class="form-row">
             <div class="col-md-4">
               <div class="form-group">
-                {{ Form::label('price', 'Cena') }}
+                <label for="price" class="required">Cena</label>
                 <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" @if(old('price')) value="{{ old('price') }}"
                                                                                                           @else value="{{ $ogloszenie->price }}" @endif>
                   @error('price')
