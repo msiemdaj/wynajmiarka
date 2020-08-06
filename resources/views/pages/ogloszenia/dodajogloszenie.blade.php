@@ -60,134 +60,185 @@
               @enderror
           </div>
 
-          <div class="form-group">
-            {{ Form::label('price', 'Cena') }}
-            <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}">
-              @error('price')
-                  <span class="invalid-feedback" role="alert">
-                    {{ $message }}
-                  </span>
-              @enderror
+          <div class="form-row">
+            <div class="col-md-4">
+              <div class="form-group">
+                {{ Form::label('price', 'Cena') }}
+                <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}">
+                  @error('price')
+                      <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                      </span>
+                  @enderror
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                {{ Form::label('dodatkowy_czynsz', 'Dodatkowy czynsz') }}
+                <input type="text" name="dodatkowy_czynsz" class="form-control @error('dodatkowy_czynsz') is-invalid @enderror" value="{{ old('dodatkowy_czynsz') }}">
+                  @error('dodatkowy_czynsz')
+                      <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                      </span>
+                  @enderror
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                {{ Form::label('kaucja', 'Kaucja') }}
+                <input type="text" name="kaucja" class="form-control @error('kaucja') is-invalid @enderror" value="{{ old('kaucja') }}">
+                  @error('kaucja')
+                    <span class="invalid-feedback" role="alert">
+                      {{ $message }}
+                    </span>
+                  @enderror
+              </div>
+            </div>
           </div>
 
           <div class="form-group noS-Pt">
-            <input type="checkbox" name="to_negotiate" id="to_negotiate" value="to_negotiate" @if(old('to_negotiate')) checked @endif>
-            {{ Form::label('to_negotiate', 'Cena do negocjacji') }}
+            <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" name="to_negotiate" id="to_negotiate" class="custom-control-input" value="to_negotiate" @if(old('to_negotiate')) checked @endif>
+              <label class="custom-control-label" for="to_negotiate">Cena do negocjacji</label>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ Form::label('pokoje', 'Pokoje') }}
+                <select class="form-control" name="pokoje">
+                  <option>wybierz</option>
+                  @for ($i=1; $i <= 5; $i++)
+                    <option value="{{$i}}" {{ old('pokoje') == $i ? 'selected' : '' }}>{{$i}}</option>
+                  @endfor
+                  <option value="więcej_niż_5" {{ old('pokoje') == 'więcej_niż_5' ? 'selected' : '' }}>więcej niż 5</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ Form::label('pietro', 'Piętro') }}
+                <select class="form-control" name="pietro">
+                  <option>wybierz</option>
+                  <option value="parter" {{ old('pietro') == 'parter' ? 'selected' : '' }}>parter</option>
+                  @for ($i=1; $i <= 10; $i++)
+                    <option value="{{$i}}" {{ old('pietro') == $i ? 'selected' : '' }}>{{$i}}</option>
+                  @endfor
+                  <option value="więcej_niż_10" {{ old('pietro') == 'więcej_niż_10' ? 'selected' : '' }}>więcej niż 10</option>
+                </select>
+              </div>
+            </div>
           </div>
 
-          <div class="form-group">
-            {{ Form::label('dodatkowy_czynsz', 'Dodatkowy czynsz') }}
-            <input type="text" name="dodatkowy_czynsz" class="form-control @error('dodatkowy_czynsz') is-invalid @enderror" value="{{ old('dodatkowy_czynsz') }}">
-              @error('dodatkowy_czynsz')
-                  <span class="invalid-feedback" role="alert">
-                    {{ $message }}
-                  </span>
-              @enderror
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ Form::label('stan', 'Stan') }}
+                <select class="form-control" name="stan">
+                  <option>wybierz</option>
+                  <option value="do_zamieszkania" {{ old('stan') == 'do_zamieszkania' ? 'selected' : '' }}>do zamieszkania</option>
+                  <option value="do_wykończenia" {{ old('stan') == 'do_wykończenia' ? 'selected' : '' }}>do wykończenia</option>
+                  <option value="do_remontu" {{ old('stan') == 'do_remontu' ? 'selected' : '' }}>do remontu</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ Form::label('ogrzewanie', 'Ogrzewanie') }}
+                <select class="form-control" name="ogrzewanie">
+                  <option>wybierz</option>
+                  <option value="miejskie" {{ old('ogrzewanie') == 'miejskie' ? 'selected' : '' }}>miejskie</option>
+                  <option value="gazowe" {{ old('ogrzewanie') == 'gazowe' ? 'selected' : '' }}>gazowe</option>
+                  <option value="piec_kaflowy" {{ old('ogrzewanie') == 'piec_kaflowy' ? 'selected' : '' }}>piec kaflowy</option>
+                  <option value="elektryczne" {{ old('ogrzewanie') == 'elektryczne' ? 'selected' : '' }}>elektryczne</option>
+                  <option value="kotłownia" {{ old('ogrzewanie') == 'kotłownia' ? 'selected' : '' }}>kotłownia</option>
+                  <option value="inne" {{ old('ogrzewanie') == 'inne' ? 'selected' : '' }}>inne</option>
+                </select>
+              </div>
+            </div>
           </div>
 
-          <div class="form-group">
-            {{ Form::label('pokoje', 'Pokoje') }}
-            <select class="form-control" name="pokoje">
-              <option>wybierz</option>
-              @for ($i=1; $i <= 5; $i++)
-                <option value="{{$i}}" {{ old('pokoje') == $i ? 'selected' : '' }}>{{$i}}</option>
-              @endfor
-              <option value="więcej_niż_5" {{ old('pokoje') == 'więcej_niż_5' ? 'selected' : '' }}>więcej niż 5</option>
-            </select>
-          </div>
-          <div class="form-group">
-            {{ Form::label('pietro', 'Piętro') }}
-            <select class="form-control" name="pietro">
-              <option>wybierz</option>
-              <option value="parter" {{ old('pietro') == 'parter' ? 'selected' : '' }}>parter</option>
-              @for ($i=1; $i <= 10; $i++)
-                <option value="{{$i}}" {{ old('pietro') == $i ? 'selected' : '' }}>{{$i}}</option>
-              @endfor
-              <option value="więcej_niż_10" {{ old('pietro') == 'więcej_niż_10' ? 'selected' : '' }}>więcej niż 10</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            {{ Form::label('stan', 'Stan') }}
-            <select class="form-control" name="stan">
-              <option>wybierz</option>
-              <option value="do_zamieszkania" {{ old('stan') == 'do_zamieszkania' ? 'selected' : '' }}>do zamieszkania</option>
-              <option value="do_wykończenia" {{ old('stan') == 'do_wykończenia' ? 'selected' : '' }}>do wykończenia</option>
-              <option value="do_remontu" {{ old('stan') == 'do_remontu' ? 'selected' : '' }}>do remontu</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            {{ Form::label('ogrzewanie', 'Ogrzewanie') }}
-            <select class="form-control" name="ogrzewanie">
-              <option>wybierz</option>
-              <option value="miejskie" {{ old('ogrzewanie') == 'miejskie' ? 'selected' : '' }}>miejskie</option>
-              <option value="gazowe" {{ old('ogrzewanie') == 'gazowe' ? 'selected' : '' }}>gazowe</option>
-              <option value="piec_kaflowy" {{ old('ogrzewanie') == 'piec_kaflowy' ? 'selected' : '' }}>piec kaflowy</option>
-              <option value="elektryczne" {{ old('ogrzewanie') == 'elektryczne' ? 'selected' : '' }}>elektryczne</option>
-              <option value="kotłownia" {{ old('ogrzewanie') == 'kotłownia' ? 'selected' : '' }}>kotłownia</option>
-              <option value="inne" {{ old('ogrzewanie') == 'inne' ? 'selected' : '' }}>inne</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            {{ Form::label('rok', 'Rok budowy') }}
-            <input type="text" name="rok" class="form-control @error('rok') is-invalid @enderror" value="{{ old('rok') }}">
-              @error('rok')
-                  <span class="invalid-feedback" role="alert">
-                    {{ $message }}
-                  </span>
-              @enderror
-          </div>
+          <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-group">
+              {{ Form::label('rok', 'Rok budowy') }}
+              <input type="text" name="rok" class="form-control @error('rok') is-invalid @enderror" value="{{ old('rok') }}">
+                @error('rok')
+                    <span class="invalid-feedback" role="alert">
+                      {{ $message }}
+                    </span>
+                @enderror
+            </div>
+        </div>
+      </div>
 
           <div class="form-group noS-Pt">
             <h4>Wyposażenie</h2>
 
-            <input type="checkbox" id="meble" name="equipment[]" value="meble" {{ (is_array(old('equipment')) and in_array('meble', old('equipment'))) ? ' checked' : '' }}>
-            {{ Form::label('meble', 'Meble') }}
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input type="checkbox" id="meble" name="equipment[]" class="custom-control-input" value="meble" {{ (is_array(old('equipment')) and in_array('meble', old('equipment'))) ? ' checked' : '' }}>
+              <label class="custom-control-label" for="meble">Meble</label>
+            </div>
 
-            <input type="checkbox" id="pralka" name="equipment[]" value="pralka" {{ (is_array(old('equipment')) and in_array('pralka', old('equipment'))) ? ' checked' : '' }}>
-            {{ Form::label('pralka', 'Pralka') }}
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input type="checkbox" id="pralka" name="equipment[]" class="custom-control-input" value="pralka" {{ (is_array(old('equipment')) and in_array('pralka', old('equipment'))) ? ' checked' : '' }}>
+              <label class="custom-control-label" for="pralka">Pralka</label>
+            </div>
 
-            <input type="checkbox" id="zmywarka" name="equipment[]" value="zmywarka" {{ (is_array(old('equipment')) and in_array('zmywarka', old('equipment'))) ? ' checked' : '' }}>
-            {{ Form::label('zmywarka', 'Zmywarka') }}
-
-            <input type="checkbox" id="lodowka" name="equipment[]" value="lodówka" {{ (is_array(old('equipment')) and in_array('lodówka', old('equipment'))) ? ' checked' : '' }}>
-            {{ Form::label('lodowka', 'Lodówka') }}
-
-            <input type="checkbox" id="kuchenka" name="equipment[]" value="kuchenka" {{ (is_array(old('equipment')) and in_array('kuchenka', old('equipment'))) ? ' checked' : '' }}>
-            {{ Form::label('kuchenka', 'Kuchenka') }}
-
-            <input type="checkbox" id="piekarnik" name="equipment[]" value="piekarnik" {{ (is_array(old('equipment')) and in_array('piekarnik', old('equipment'))) ? ' checked' : '' }}>
-            {{ Form::label('piekarnik', 'Piekarnik') }}
-
-            <input type="checkbox" id="telewizor" name="equipment[]" value="telewizor" {{ (is_array(old('equipment')) and in_array('telewizor', old('equipment'))) ? ' checked' : '' }}>
-            {{ Form::label('telewizor', 'Telewizor') }}
+            <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="zmywarka" name="equipment[]" class="custom-control-input" value="zmywarka" {{ (is_array(old('equipment')) and in_array('zmywarka', old('equipment'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="zmywarka">Zmywarka</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="lodowka" name="equipment[]" class="custom-control-input" value="lodówka" {{ (is_array(old('equipment')) and in_array('lodówka', old('equipment'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="lodowka">Lodówka</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="kuchenka" name="equipment[]" class="custom-control-input" value="kuchenka" {{ (is_array(old('equipment')) and in_array('kuchenka', old('equipment'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="kuchenka">Kuchenka</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="piekarnik" name="equipment[]" class="custom-control-input" value="piekarnik" {{ (is_array(old('equipment')) and in_array('piekarnik', old('equipment'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="piekarnik">Piekarnik</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="telewizor" name="equipment[]" class="custom-control-input" value="telewizor" {{ (is_array(old('equipment')) and in_array('telewizor', old('equipment'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="telewizor">Telewizor</label>
+          </div>
           </div>
 
           <div class="form-group noS-Pt">
             <h4>Dodatkowe informacje</h2>
 
-            <input type="checkbox" id="balkon" name="additional_info[]" value="balkon" {{ (is_array(old('additional_info')) and in_array('balkon', old('additional_info'))) ? ' checked' : '' }}>
-            {{ Form::label('balkon', 'Balkon') }}
-
-            <input type="checkbox" id="garaz" name="additional_info[]" value="garaż" {{ (is_array(old('additional_info')) and in_array('garaż', old('additional_info'))) ? ' checked' : '' }}>
-            {{ Form::label('garaz', 'Garaż') }}
-
-            <input type="checkbox" id="miejsce_parkingowe" name="additional_info[]" value="miejsce parkingowe" {{ (is_array(old('additional_info')) and in_array('miejsce parkingowe', old('additional_info'))) ? ' checked' : '' }}>
-            {{ Form::label('miejsce_parkingowe', 'Miejsce parkingowe') }}
-
-            <input type="checkbox" id="piwnica" name="additional_info[]" value="piwnica" {{ (is_array(old('additional_info')) and in_array('piwnica', old('additional_info'))) ? ' checked' : '' }}>
-            {{ Form::label('piwnica', 'Piwnica') }}
-
-            <input type="checkbox" id="ogrodek" name="additional_info[]" value="ogródek" {{ (is_array(old('additional_info')) and in_array('ogródek', old('additional_info'))) ? ' checked' : '' }}>
-            {{ Form::label('ogrodek', 'Ogródek') }}
-
-            <input type="checkbox" id="klimatyzacja" name="additional_info[]" value="klimatyzacja" {{ (is_array(old('additional_info')) and in_array('klimatyzacja', old('additional_info'))) ? ' checked' : '' }}>
-            {{ Form::label('klimatyzacja', 'Klimatyzacja') }}
-
-            <input type="checkbox" id="winda" name="additional_info[]" value="winda" {{ (is_array(old('additional_info')) and in_array('winda', old('additional_info'))) ? ' checked' : '' }}>
-            {{ Form::label('winda', 'Winda') }}
+              <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="balkon" name="additional_info[]" class="custom-control-input" value="balkon" {{ (is_array(old('additional_info')) and in_array('balkon', old('additional_info'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="balkon">Balkon</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="garaz" name="additional_info[]" class="custom-control-input" value="garaż" {{ (is_array(old('additional_info')) and in_array('garaż', old('additional_info'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="garaz">Garaż</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="miejsce_parkingowe" name="additional_info[]" class="custom-control-input" value="miejsce parkingowe" {{ (is_array(old('additional_info')) and in_array('miejsce parkingowe', old('additional_info'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="miejsce_parkingowe">Miejsce parkingowe</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="piwnica" name="additional_info[]" class="custom-control-input" value="piwnica" {{ (is_array(old('additional_info')) and in_array('piwnica', old('additional_info'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="piwnica">Piwnica</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="ogrodek" name="additional_info[]" class="custom-control-input" value="ogródek" {{ (is_array(old('additional_info')) and in_array('ogródek', old('additional_info'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="ogrodek">Ogródek</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="klimatyzacja" name="additional_info[]" class="custom-control-input" value="klimatyzacja" {{ (is_array(old('additional_info')) and in_array('klimatyzacja', old('additional_info'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="klimatyzacja">Klimatyzacja</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" id="winda" name="additional_info[]" class="custom-control-input" value="winda" {{ (is_array(old('additional_info')) and in_array('winda', old('additional_info'))) ? ' checked' : '' }}>
+            <label class="custom-control-label" for="winda">Winda</label>
+          </div>
           </div>
 
           {{--
