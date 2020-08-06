@@ -192,91 +192,86 @@
             </div>
           </div>
 
+
           <div class="form-group noS-Pt">
             <h4>Wyposażenie</h2>
-
-              @if ($ogloszenie->equipment)
+              @if(!empty($ogloszenie->equipment))
                 @php
                   $equipment = json_decode($ogloszenie->equipment);
                 @endphp
               @endif
 
-              {{--
-              @if(is_array(old('equipment')) and in_array('meble', old('equipment'))) checked
-              @elseif(isset($ogloszenie->additional_costs)) value="{{ $ogloszenie->additional_costs }}" @endif
-               --}}
+              <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" id="meble" name="equipment[]" class="custom-control-input" value="meble" @if(isset($equipment)) @if(is_array($equipment) and in_array('meble', $equipment)) checked @endif @endif>
+                <label class="custom-control-label" for="meble">Meble</label>
+              </div>
 
             <div class="custom-control custom-checkbox custom-control-inline">
-              <input type="checkbox" id="meble" name="equipment[]" class="custom-control-input" value="meble" {{ (is_array($equipment) and in_array('meble', $equipment)) ? ' checked' : '' }}>
-              <label class="custom-control-label" for="meble">Meble</label>
-            </div>
-
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input type="checkbox" id="pralka" name="equipment[]" class="custom-control-input" value="pralka" {{ (is_array($equipment) and in_array('pralka', $equipment)) ? ' checked' : '' }}>
+              <input type="checkbox" id="pralka" name="equipment[]" class="custom-control-input" value="pralka" @if(isset($equipment)) @if(is_array($equipment) and in_array('pralka', $equipment)) checked @endif @endif>
               <label class="custom-control-label" for="pralka">Pralka</label>
             </div>
 
             <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="zmywarka" name="equipment[]" class="custom-control-input" value="zmywarka" {{ (is_array($equipment) and in_array('zmywarka', $equipment)) ? ' checked' : '' }}>
+            <input type="checkbox" id="zmywarka" name="equipment[]" class="custom-control-input" value="zmywarka" @if(isset($equipment)) @if(is_array($equipment) and in_array('zmywarka', $equipment)) checked @endif @endif>
             <label class="custom-control-label" for="zmywarka">Zmywarka</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="lodowka" name="equipment[]" class="custom-control-input" value="lodówka" {{ (is_array($equipment) and in_array('lodówka', $equipment)) ? ' checked' : '' }}>
+            <input type="checkbox" id="lodowka" name="equipment[]" class="custom-control-input" value="lodówka" @if(isset($equipment)) @if(is_array($equipment) and in_array('lodówka', $equipment)) checked @endif @endif>
             <label class="custom-control-label" for="lodowka">Lodówka</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="kuchenka" name="equipment[]" class="custom-control-input" value="kuchenka" {{ (is_array($equipment) and in_array('kuchenka', $equipment)) ? ' checked' : '' }}>
+            <input type="checkbox" id="kuchenka" name="equipment[]" class="custom-control-input" value="kuchenka" @if(isset($equipment)) @if(is_array($equipment) and in_array('kuchenka', $equipment)) checked @endif @endif>
             <label class="custom-control-label" for="kuchenka">Kuchenka</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="piekarnik" name="equipment[]" class="custom-control-input" value="piekarnik" {{ (is_array($equipment) and in_array('piekarnik', $equipment)) ? ' checked' : '' }}>
+            <input type="checkbox" id="piekarnik" name="equipment[]" class="custom-control-input" value="piekarnik" @if(isset($equipment)) @if(is_array($equipment) and in_array('piekarnik', $equipment)) checked @endif @endif>
             <label class="custom-control-label" for="piekarnik">Piekarnik</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="telewizor" name="equipment[]" class="custom-control-input" value="telewizor" {{ (is_array($equipment) and in_array('telewizor', $equipment)) ? ' checked' : '' }}>
+            <input type="checkbox" id="telewizor" name="equipment[]" class="custom-control-input" value="telewizor" @if(isset($equipment)) @if(is_array($equipment) and in_array('telewizor', $equipment)) checked @endif @endif>
             <label class="custom-control-label" for="telewizor">Telewizor</label>
           </div>
           </div>
 
+
           <div class="form-group noS-Pt">
             <h4>Dodatkowe informacje</h2>
 
-              @if ($ogloszenie->additional_info)
+              @if(!empty($ogloszenie->additional_info))
                 @php
                   $additional_info = json_decode($ogloszenie->additional_info);
                 @endphp
               @endif
 
               <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="balkon" name="additional_info[]" class="custom-control-input" value="balkon" {{ (is_array($additional_info) and in_array('balkon', $additional_info)) ? ' checked' : '' }}>
+            <input type="checkbox" id="balkon" name="additional_info[]" class="custom-control-input" value="balkon" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('balkon', $additional_info)) checked @endif @endif>
             <label class="custom-control-label" for="balkon">Balkon</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="garaz" name="additional_info[]" class="custom-control-input" value="garaż" {{ (is_array($additional_info) and in_array('garaż', $additional_info)) ? ' checked' : '' }}>
+            <input type="checkbox" id="garaz" name="additional_info[]" class="custom-control-input" value="garaż" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('garaż', $additional_info)) checked @endif @endif>
             <label class="custom-control-label" for="garaz">Garaż</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="miejsce_parkingowe" name="additional_info[]" class="custom-control-input" value="miejsce_parkingowe" {{ (is_array($additional_info) and in_array('miejsce_parkingowe', $additional_info)) ? ' checked' : '' }}>
+            <input type="checkbox" id="miejsce_parkingowe" name="additional_info[]" class="custom-control-input" value="miejsce_parkingowe" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('miejsce_parkingowe', $additional_info)) checked @endif @endif>
             <label class="custom-control-label" for="miejsce_parkingowe">Miejsce parkingowe</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="piwnica" name="additional_info[]" class="custom-control-input" value="piwnica" {{ (is_array($additional_info) and in_array('piwnica', $additional_info)) ? ' checked' : '' }}>
+            <input type="checkbox" id="piwnica" name="additional_info[]" class="custom-control-input" value="piwnica" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('piwnica', $additional_info)) checked @endif @endif>
             <label class="custom-control-label" for="piwnica">Piwnica</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="ogrodek" name="additional_info[]" class="custom-control-input" value="ogródek" {{ (is_array($additional_info) and in_array('ogródek', $additional_info)) ? ' checked' : '' }}>
+            <input type="checkbox" id="ogrodek" name="additional_info[]" class="custom-control-input" value="ogródek" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('ogródek', $additional_info)) checked @endif @endif>
             <label class="custom-control-label" for="ogrodek">Ogródek</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="klimatyzacja" name="additional_info[]" class="custom-control-input" value="klimatyzacja" {{ (is_array($additional_info) and in_array('klimatyzacja', $additional_info)) ? ' checked' : '' }}>
+            <input type="checkbox" id="klimatyzacja" name="additional_info[]" class="custom-control-input" value="klimatyzacja" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('klimatyzacja', $additional_info)) checked @endif @endif>
             <label class="custom-control-label" for="klimatyzacja">Klimatyzacja</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="winda" name="additional_info[]" class="custom-control-input" value="winda" {{ (is_array($additional_info) and in_array('winda', $additional_info)) ? ' checked' : '' }}>
+            <input type="checkbox" id="winda" name="additional_info[]" class="custom-control-input" value="winda" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('winda', $additional_info)) checked @endif @endif>
             <label class="custom-control-label" for="winda">Winda</label>
           </div>
           </div>
-
 
           {{--
            --}}
