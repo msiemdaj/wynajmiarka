@@ -1336,11 +1336,17 @@
 			margin: 0;
 		}
 
-		.zaznaczWszystko label{
+		.zaznaczWszystko label,
+		.form-group.noS-Pt label{
 			-webkit-user-select: none;
 			-moz-user-select: none;
 			-ms-user-select: none;
 			user-select: none;
+		}
+
+		.form-group.noS-Pt label,
+		.form-group.noS-Pt input[type=checkbox]{
+			cursor: pointer;
 		}
 
 		.message-preview-content{

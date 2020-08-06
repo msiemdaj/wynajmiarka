@@ -70,8 +70,8 @@
               @enderror
           </div>
 
-          <div class="form-group">
-            <input type="checkbox" name="to_negotiate" value="to_negotiate" @if(old('to_negotiate')) checked @endif>
+          <div class="form-group noS-Pt">
+            <input type="checkbox" name="to_negotiate" id="to_negotiate" value="to_negotiate" @if(old('to_negotiate')) checked @endif>
             {{ Form::label('to_negotiate', 'Cena do negocjacji') }}
           </div>
 
@@ -140,68 +140,57 @@
               @enderror
           </div>
 
-          <div class="form-group">
+          <div class="form-group noS-Pt">
             <h4>Wyposażenie</h2>
 
-            <input type="checkbox" name="equipment[]" value="meble" {{ (is_array(old('equipment')) and in_array('meble', old('equipment'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="meble" name="equipment[]" value="meble" {{ (is_array(old('equipment')) and in_array('meble', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('meble', 'Meble') }}
 
-            <input type="checkbox" name="equipment[]" value="pralka" {{ (is_array(old('equipment')) and in_array('pralka', old('equipment'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="pralka" name="equipment[]" value="pralka" {{ (is_array(old('equipment')) and in_array('pralka', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('pralka', 'Pralka') }}
 
-            <input type="checkbox" name="equipment[]" value="zmywarka" {{ (is_array(old('equipment')) and in_array('zmywarka', old('equipment'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="zmywarka" name="equipment[]" value="zmywarka" {{ (is_array(old('equipment')) and in_array('zmywarka', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('zmywarka', 'Zmywarka') }}
 
-            <input type="checkbox" name="equipment[]" value="lodówka" {{ (is_array(old('equipment')) and in_array('lodówka', old('equipment'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="lodowka" name="equipment[]" value="lodówka" {{ (is_array(old('equipment')) and in_array('lodówka', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('lodowka', 'Lodówka') }}
 
-            <input type="checkbox" name="equipment[]" value="kuchenka" {{ (is_array(old('equipment')) and in_array('kuchenka', old('equipment'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="kuchenka" name="equipment[]" value="kuchenka" {{ (is_array(old('equipment')) and in_array('kuchenka', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('kuchenka', 'Kuchenka') }}
 
-            <input type="checkbox" name="equipment[]" value="piekarnik" {{ (is_array(old('equipment')) and in_array('piekarnik', old('equipment'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="piekarnik" name="equipment[]" value="piekarnik" {{ (is_array(old('equipment')) and in_array('piekarnik', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('piekarnik', 'Piekarnik') }}
 
-            <input type="checkbox" name="equipment[]" value="telewizor" {{ (is_array(old('equipment')) and in_array('telewizor', old('equipment'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="telewizor" name="equipment[]" value="telewizor" {{ (is_array(old('equipment')) and in_array('telewizor', old('equipment'))) ? ' checked' : '' }}>
             {{ Form::label('telewizor', 'Telewizor') }}
           </div>
 
-          <div class="form-group">
+          <div class="form-group noS-Pt">
             <h4>Dodatkowe informacje</h2>
 
-            <input type="checkbox" name="additional_info[]" value="balkon" {{ (is_array(old('additional_info')) and in_array('balkon', old('additional_info'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="balkon" name="additional_info[]" value="balkon" {{ (is_array(old('additional_info')) and in_array('balkon', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('balkon', 'Balkon') }}
 
-            <input type="checkbox" name="additional_info[]" value="garaż" {{ (is_array(old('additional_info')) and in_array('garaż', old('additional_info'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="garaz" name="additional_info[]" value="garaż" {{ (is_array(old('additional_info')) and in_array('garaż', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('garaz', 'Garaż') }}
 
-            <input type="checkbox" name="additional_info[]" value="miejsce parkingowe" {{ (is_array(old('additional_info')) and in_array('miejsce parkingowe', old('additional_info'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="miejsce_parkingowe" name="additional_info[]" value="miejsce parkingowe" {{ (is_array(old('additional_info')) and in_array('miejsce parkingowe', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('miejsce_parkingowe', 'Miejsce parkingowe') }}
 
-            <input type="checkbox" name="additional_info[]" value="piwnica" {{ (is_array(old('additional_info')) and in_array('piwnica', old('additional_info'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="piwnica" name="additional_info[]" value="piwnica" {{ (is_array(old('additional_info')) and in_array('piwnica', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('piwnica', 'Piwnica') }}
 
-            <input type="checkbox" name="additional_info[]" value="ogródek" {{ (is_array(old('additional_info')) and in_array('ogródek', old('additional_info'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="ogrodek" name="additional_info[]" value="ogródek" {{ (is_array(old('additional_info')) and in_array('ogródek', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('ogrodek', 'Ogródek') }}
 
-            <input type="checkbox" name="additional_info[]" value="klimatyzacja" {{ (is_array(old('additional_info')) and in_array('klimatyzacja', old('additional_info'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="klimatyzacja" name="additional_info[]" value="klimatyzacja" {{ (is_array(old('additional_info')) and in_array('klimatyzacja', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('klimatyzacja', 'Klimatyzacja') }}
 
-            <input type="checkbox" name="additional_info[]" value="winda" {{ (is_array(old('additional_info')) and in_array('winda', old('additional_info'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="winda" name="additional_info[]" value="winda" {{ (is_array(old('additional_info')) and in_array('winda', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('winda', 'Winda') }}
           </div>
 
-
-          @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
           {{--
-
            --}}
 
     <script type="application/javascript">
