@@ -36,7 +36,11 @@ class OgloszeniaController extends Controller
         'images' => 'required',
         'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'dodatkowy_czynsz' => 'numeric|nullable',
-        'rok' => 'numeric|digits:4|nullable'
+        'rok' => 'numeric|digits:4|nullable',
+        'pokoje' => 'in:wybierz,1,2,3,4,5,wiecej_niz_5|nullable',
+        'pietro' => 'in:wybierz,parter,1,2,3,4,5,6,7,8,9,10,wiecej_niz_10|nullable',
+        'stan' => 'in:do_zamieszkania,do_remontu,do_wykonczenia|nullable',
+        'ogrzewanie' => 'in:wybierz,miejskie,gazowe,piec_kaflowy,elektryczne,kotłownia,inne|nullable'
       ]);
 
 // If validation passes, Create new Model and bind values from request.
