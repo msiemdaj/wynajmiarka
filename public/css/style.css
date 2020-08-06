@@ -1606,3 +1606,8 @@
 	.favorite-item:nth-of-type(4) ~ .favorite-item {
     display: none;
 	}
+
+	.required:after {
+		content:"*";
+		color: red;
+	}

@@ -13,8 +13,7 @@
                       'data-toggle' => 'validator']) !!}
           @csrf
           <div class="form-group">
-            {{ Form::label('title', 'Tytuł ogłoszenia') }}
-            {{-- {{ Form::text('title', $ogloszenie->title, ['class' => 'form-control']) }} --}}
+            <label for="title" class="required">Tytuł ogłoszenia</label>
             <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" @if(old('title')) value="{{ old('title') }}"
                                                                                                       @else value="{{ $ogloszenie->title }}" @endif>
               @error('title')
@@ -24,8 +23,7 @@
               @enderror
           </div>
           <div class="form-group">
-            {{ Form::label('city', 'Miasto') }}
-            {{-- {{ Form::text('city', $ogloszenie->city, ['class' => 'form-control']) }} --}}
+            <label for="city" class="required">Miasto</label>
             <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" @if(old('city')) value="{{ old('city') }}"
                                                                                                     @else value="{{ $ogloszenie->city }}" @endif>
             @error('city')
@@ -35,8 +33,7 @@
             @enderror
           </div>
           <div class="form-group">
-            {{ Form::label('district', 'Dzielnica') }}
-            {{-- {{ Form::text('district', $ogloszenie->district, ['class' => 'form-control']) }} --}}
+            <label for="district" class="required">Dzielnica</label>
             <input type="text" name="district" class="form-control @error('district') is-invalid @enderror" @if(old('district')) value="{{ old('district') }}"
                                                                                                             @else value="{{ $ogloszenie->district }}" @endif>
               @error('district')
@@ -46,8 +43,7 @@
               @enderror
           </div>
           <div class="form-group">
-            {{ Form::label('description', 'Opis') }}
-            {{-- {{ Form::textarea('description', $ogloszenie->description, ['class' => 'form-control']) }} --}}
+            <label for="description" class="required">Opis</label>
             <textarea name="description" rows="4" class="form-control @error('description') is-invalid @enderror">@if(old('description')){{old('description')}}@else{{$ogloszenie->description}}@endif</textarea>
               @error('description')
                 <span class="invalid-feedback" role="alert">
@@ -59,7 +55,7 @@
           <div class="form-row">
           <div class="col-md-6">
             <div class="form-group">
-              {{ Form::label('size', 'Metraż') }}
+              <label for="size" class="required">Metraż</label>
               <input type="text" name="size" class="form-control @error('size') is-invalid @enderror" @if(old('size')) value="{{ old('size') }}"
                                                                                                       @else value="{{ $ogloszenie->size }}" @endif>
                 @error('size')
@@ -84,8 +80,7 @@
         </div>
 
           <div class="form-group">
-            {{ Form::label('price', 'Cena') }}
-            {{-- {{ Form::text('price', $ogloszenie->price, ['class' => 'form-control']) }} --}}
+            <label for="price" class="required">Cena</label>
             <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ $ogloszenie->price }}">
               @error('price')
                 <span class="invalid-feedback" role="alert">
@@ -285,6 +280,8 @@
 
           {{--
            --}}
+
+           <h4 class="required">Zdjęcia</h4>
 
           <script type="text/jscript">
           $(function () {

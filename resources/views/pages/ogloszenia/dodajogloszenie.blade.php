@@ -14,7 +14,8 @@
                       'class' => 'dodaj-ogloszenie-form']) !!}
                       @csrf
           <div class="form-group">
-            {{ Form::label('title', 'Tytuł ogłoszenia') }}
+            {{-- {{ Form::label('title', 'Tytuł ogłoszenia') }} --}}
+            <label for="title" class="required">Tytuł ogłoszenia</label>
             <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
               @error('title')
                   <span class="invalid-feedback" role="alert">
@@ -23,7 +24,7 @@
               @enderror
           </div>
           <div class="form-group">
-            {{ Form::label('city', 'Miasto') }}
+            <label for="city" class="required">Miasto</label>
             <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" value="{{ old('city') }}">
               @error('city')
                   <span class="invalid-feedback" role="alert">
@@ -33,7 +34,7 @@
 
           </div>
           <div class="form-group">
-            {{ Form::label('district', 'Dzielnica') }}
+            <label for="district" class="required">Dzielnica</label>
             <input type="text" name="district" class="form-control @error('district') is-invalid @enderror" value="{{ old('district') }}">
               @error('district')
                   <span class="invalid-feedback" role="alert">
@@ -42,7 +43,7 @@
               @enderror
           </div>
           <div class="form-group">
-            {{ Form::label('description', 'Opis') }}
+            <label for="description" class="required">Opis</label>
             <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
               @error('description')
                   <span class="invalid-feedback" role="alert">
@@ -54,7 +55,7 @@
           <div class="form-row">
           <div class="col-md-6">
             <div class="form-group">
-              {{ Form::label('size', 'Metraż') }}
+              <label for="size" class="required">Metraż</label>
               <input type="text" name="size" class="form-control @error('size') is-invalid @enderror" value="{{ old('size') }}">
                 @error('size')
                     <span class="invalid-feedback" role="alert">
@@ -79,7 +80,7 @@
           <div class="form-row">
             <div class="col-md-4">
               <div class="form-group">
-                {{ Form::label('price', 'Cena') }}
+                <label for="price" class="required">Cena</label>
                 <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}">
                   @error('price')
                       <span class="invalid-feedback" role="alert">
@@ -244,16 +245,7 @@
           </div>
           </div>
 
-          @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
+          <h4 class="required">Zdjęcia</h4>
           {{--
            --}}
 
