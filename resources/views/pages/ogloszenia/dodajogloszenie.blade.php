@@ -223,7 +223,7 @@
             <label class="custom-control-label" for="garaz">Garaż</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="miejsce_parkingowe" name="additional_info[]" class="custom-control-input" value="miejsce parkingowe" {{ (is_array(old('additional_info')) and in_array('miejsce parkingowe', old('additional_info'))) ? ' checked' : '' }}>
+            <input type="checkbox" id="miejsce_parkingowe" name="additional_info[]" class="custom-control-input" value="miejsce_parkingowe" {{ (is_array(old('additional_info')) and in_array('miejsce_parkingowe', old('additional_info'))) ? ' checked' : '' }}>
             <label class="custom-control-label" for="miejsce_parkingowe">Miejsce parkingowe</label>
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
@@ -243,6 +243,16 @@
             <label class="custom-control-label" for="winda">Winda</label>
           </div>
           </div>
+
+          @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
           {{--
            --}}

@@ -174,8 +174,7 @@ class OgloszeniaController extends Controller
 
 
 // Update edited data for Ogloszenie Model.
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
 // Validate input data.
       $this->validate($request, [
         'title' => 'required|min:8|unique:ogloszenia|max:191',
