@@ -130,6 +130,15 @@
             </select>
           </div>
 
+          @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
           <div class="form-group">
             {{ Form::label('rok', 'Rok budowy') }}
@@ -190,16 +199,6 @@
             <input type="checkbox" name="additional_info[]" value="winda" {{ (is_array(old('additional_info')) and in_array('winda', old('additional_info'))) ? ' checked' : '' }}>
             {{ Form::label('winda', 'Winda') }}
           </div>
-
-          @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
           {{--
 
