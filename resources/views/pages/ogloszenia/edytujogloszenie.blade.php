@@ -216,7 +216,7 @@
                         @elseif(is_array($equipment) and in_array($equipmentItem, $equipment) and is_array(old('equipment')) and in_array($equipmentItem, old('equipment')) == true) checked
                         @elseif(is_array($equipment) and in_array($equipmentItem, $equipment)) checked @endif @endif
                         @if(is_array(old('equipment')) and in_array($equipmentItem, old('equipment'))) checked @endif>
-                  <label class="custom-control-label" for="{{$equipmentItem}}">{{str_replace("_", " ", $equipmentItem)}}</label>
+                  <label class="custom-control-label" for="{{$equipmentItem}}">{{ucfirst(str_replace("_", " ", $equipmentItem))}}</label>
                 </div>
               @endforeach
           </div>
@@ -238,7 +238,7 @@
                         @elseif(is_array($additional_info) and in_array($additional_infoItem, $additional_info) and is_array(old('additional_info')) and in_array($additional_infoItem, old('additional_info')) == true) checked
                         @elseif(is_array($additional_info) and in_array($additional_infoItem, $additional_info)) checked @endif @endif
                         @if(is_array(old('additional_info')) and in_array($additional_infoItem, old('additional_info'))) checked @endif>
-                  <label class="custom-control-label" for="{{$additional_infoItem}}">{{str_replace("_", " ", $additional_infoItem)}}</label>
+                  <label class="custom-control-label" for="{{$additional_infoItem}}">{{ucfirst(str_replace("_", " ", $additional_infoItem))}}</label>
                 </div>
               @endforeach
           </div>
@@ -292,14 +292,4 @@
       {!! Form::close() !!}
 
     </div>
-
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 @endsection

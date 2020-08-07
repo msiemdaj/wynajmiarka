@@ -519,7 +519,7 @@
 			width: auto;
 		}
 
-		.ogloszenie-info-content h4{
+		/* .ogloszenie-info-content h4{
 			font-weight: lighter;
 			line-height: 0.4;
 			font-size: 1rem;
@@ -533,7 +533,7 @@
 			padding: 0;
 			color: #2a66b5;
 			font-size: 1.15rem;
-		}
+		} */
 
 		.ogloszenie-options-btn{
 			background: #efefef;
@@ -549,17 +549,7 @@
 			margin-bottom: 1em;
 		}
 
-		.ogloszenie-info-container{
-			display: table;
-			width: 100%;
-			height: 100%;
-			box-sizing: border-box;
-		}
-
 		@media (min-width: 320px){
-				.ogloszenie-info-container{
-					border-spacing: 0;
-				}
 
 				.ogloszenie-header-title{
 					width: 100%;
@@ -584,12 +574,12 @@
 					margin-bottom: 1em;
 				}
 
-				.ogloszenie-info-content{
+				/* .ogloszenie-info-content{
 					display: block;
 					width: 100%;
 					height: auto;
 					padding: 0.75em;
-				}
+				} */
 
 				.ogloszenie-options-btn{
 					display: table;
@@ -611,17 +601,6 @@
 				.modal-footer-ms .card-btn{
 					padding: 0.375rem 1rem;
 				}
-
-				.ogloszenie-info-city,
-				.ogloszenie-info-district,
-				.ogloszenie-info-size{
-					border-bottom: 1px solid #ddd;
-					padding: 1em 0.75em;
-				}
-
-				.ogloszenie-info-price{
-					padding: 1em 0.75em;
-				}
 		}
 
 		@media (min-width: 480px){
@@ -641,7 +620,7 @@
 				max-height: 375px;
 			}
 
-			.ogloszenie-info-content{
+			/* .ogloszenie-info-content{
 				display: block;
 				width: 100%;
 				height: auto;
@@ -649,14 +628,10 @@
 
 			.ogloszenie-info-content{
 				padding: 1em;
-			}
+			} */
 		}
 
 		@media (min-width: 768px){
-			.ogloszenie-info-container{
-				border-spacing: 10px;
-			}
-
 			.carousel-item img{
 				height: 456px;
 				max-height: 456px;
@@ -666,22 +641,6 @@
 			.ogloszenie-button-2{
 				display: table-cell;
 			}
-
-			.ogloszenie-info-city,
-			.ogloszenie-info-district,
-			.ogloszenie-info-size,
-			.ogloszenie-info-price{
-				display: table-cell;
-				padding: 0.25em;
-				border: none;
-				vertical-align: middle;
-			}
-
-			.ogloszenie-info-city,
-			.ogloszenie-info-district,
-			.ogloszenie-info-size{
-				border-right: 1px solid #ddd;
-			}
 		}
 
 		@media (min-width: 992px){
@@ -690,11 +649,11 @@
 				max-height: 557px;
 			}
 
-			.ogloszenie-info-content{
+			/* .ogloszenie-info-content{
 				display: inline-block;
 				width: 713.9px;
 				height: 163px;
-			}
+			} */
 
 			.ogloszenie-options-btn{
 				display: inline-block;
@@ -731,10 +690,10 @@
 				max-height: 680px;
 			}
 
-			.ogloszenie-info-content{
+			/* .ogloszenie-info-content{
 				width: 893.9px;
 				height: 163px;
-			}
+			} */
 
 			.ogloszenie-button-1,
 			.ogloszenie-button-2{
@@ -751,13 +710,13 @@
 		border-radius: 0.3rem;
 	}
 
-		.ogloszenie-info-content{
+		/* .ogloszenie-info-content{
 			margin: 0 1em 1em 0;
 			background: #efefef;
 			border-radius: 0.3rem;
 			vertical-align: top;
 			text-align: left;
-		}
+		} */
 
 		.ogloszenie-phone-num{
 			height: 60px;
@@ -1614,3 +1573,23 @@
 		content:"*";
 		color: red;
 	}
+
+
+		.ogloszenie-info-item {
+		  width: 100%
+		}
+
+		.ogloszenie-info-container {
+		  display: flex;
+		  flex-wrap: wrap;
+		}
+
+		.ogloszenie-info-container>div {
+		  flex: 0 50%;
+		  /*demo*/
+		  box-sizing:border-box
+		}
+
+		.check-icon{
+			font-size: 12px !important;
+		}
