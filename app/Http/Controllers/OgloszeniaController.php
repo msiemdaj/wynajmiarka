@@ -34,7 +34,16 @@ class OgloszeniaController extends Controller
         'size' => 'required|numeric',
         'price' => 'required|numeric',
         'images' => 'required',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'dodatkowy_czynsz' => 'numeric|nullable',
+        'rok' => 'numeric|digits:4|nullable',
+        'deposit' => 'numeric|nullable',
+        'pokoje' => 'in:wybierz,1,2,3,4,5,więcej_niż_5|nullable',
+        'pietro' => 'in:wybierz,parter,1,2,3,4,5,6,7,8,9,10,więcej_niż_10|nullable',
+        'stan' => 'in:wybierz,do_zamieszkania,do_remontu,do_wykończenia|nullable',
+        'ogrzewanie' => 'in:wybierz,miejskie,gazowe,piec_kaflowy,elektryczne,kotłownia,inne|nullable',
+        'equipment.*' => 'in:meble,pralka,zmywarka,lodówka,kuchenka,piekarnik,telewizor|nullable',
+        'additional_info.*' => 'in:balkon,garaż,miejsce_parkingowe,piwnica,ogródek,klimatyzacja,winda|nullable'
       ]);
 
 // If validation passes, Create new Model and bind values from request.
@@ -47,6 +56,36 @@ class OgloszeniaController extends Controller
       $ogloszenie->size = $request->input('size');
       $ogloszenie->price = $request->input('price');
       $ogloszenie->to_negotiate = $request->input('to_negotiate');
+      $ogloszenie->additional_costs = $request->input('dodatkowy_czynsz');
+      $ogloszenie->year_of_construction = $request->input('rok');
+      $ogloszenie->deposit = $request->input('kaucja');
+
+// Check for default values and insert NULL into DB if user has not selected any option.
+      if($request->input('pokoje') == 'wybierz'){
+        $ogloszenie->rooms = NULL;
+      }else{
+        $ogloszenie->rooms = $request->input('pokoje');
+      }
+
+      if($request->input('pietro') == 'wybierz'){
+        $ogloszenie->floor = NULL;
+      }else{
+        $ogloszenie->floor = $request->input('pietro');
+      }
+
+      if($request->input('stan') == 'wybierz'){
+        $ogloszenie->condition = NULL;
+      }else{
+        $ogloszenie->condition = $request->input('stan');
+      }
+
+      if($request->input('ogrzewanie') == 'wybierz'){
+        $ogloszenie->heating = NULL;
+      }else{
+        $ogloszenie->heating = $request->input('ogrzewanie');
+      }
+
+
 
 // Check if uses checked to_negotiate chechbox. If not remain it as false.
       if ($request->has('to_negotiate')) {
@@ -71,8 +110,23 @@ class OgloszeniaController extends Controller
         $imageArray[] = $newImage;
       }
 
-// Encode images array to json and save it in DB.
+// Encode images array to json.
       $ogloszenie->image=json_encode($imageArray);
+
+// Encode checkbox values to json if they arent empty.
+    if(empty($request->get('equipment'))){
+      $ogloszenie->equipment = NULL;
+    }else{
+      $ogloszenie->equipment = json_encode($request->get('equipment'));
+    }
+
+    if(empty($request->get('additional_info'))){
+      $ogloszenie->additional_info = NULL;
+    }else{
+      $ogloszenie->additional_info = json_encode($request->get('additional_info'));
+    }
+
+// Save data into DB.
       $saved = $ogloszenie->save();
 
 // If Ogloszenie is successfully saved redirect user to his advertisements tab.
@@ -111,17 +165,30 @@ class OgloszeniaController extends Controller
     public function edit($id){
       $ogloszenie = Ogloszenie::find($id);
 
+// Create an array to fill selectbox options in view
+    $roomsArray = array('wybierz', '1', '2', '3', '4', '5', 'więcej_niż_5');
+    $floorArray = array('wybierz', 'parter', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'więcej_niż_10');
+    $stanArray = array('wybierz', 'do_zamieszkania', 'do_wykończenia', 'do_remontu');
+    $heatingArray = array('wybierz', 'miejskie', 'gazowe', 'piec_kaflowy', 'elektryczne', 'kotłownia', 'inne');
+    $equipmentArray = array('meble', 'pralka', 'zmywarka', 'lodówka', 'kuchenka', 'piekarnik', 'telewizor');
+    $additional_infoArray = array('balkon', 'garaż', 'miejsce_parkingowe', 'piwnica', 'ogródek', 'klimatyzacja', 'winda');
+
 // Checks if user logged is owner of the Model.
       if(auth()->user()->id !== $ogloszenie->user_id){
           return redirect('/ogloszenia');
       }
-      return view('pages/ogloszenia/edytujogloszenie')->with('ogloszenie', $ogloszenie);
+      return view('pages/ogloszenia/edytujogloszenie')->with(['ogloszenie' => $ogloszenie,
+                                                              'roomsArray' => $roomsArray,
+                                                              'floorArray' => $floorArray,
+                                                              'stanArray' => $stanArray,
+                                                              'heatingArray' => $heatingArray,
+                                                              'equipmentArray' => $equipmentArray,
+                                                              'additional_infoArray' => $additional_infoArray]);
     }
 
 
 // Update edited data for Ogloszenie Model.
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
 // Validate input data.
       $this->validate($request, [
         'title' => 'required|min:8|unique:ogloszenia|max:191',
@@ -132,7 +199,16 @@ class OgloszeniaController extends Controller
         'price' => 'required|numeric',
 // Check for old values of image. This allows to submit form without adding new images just validating those added before.
         'images' => 'required_without:old',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'dodatkowy_czynsz' => 'numeric|nullable',
+        'rok' => 'numeric|digits:4|nullable',
+        'deposit' => 'numeric|nullable',
+        'pokoje' => 'in:wybierz,1,2,3,4,5,więcej_niż_5|nullable',
+        'pietro' => 'in:wybierz,parter,1,2,3,4,5,6,7,8,9,10,więcej_niż_10|nullable',
+        'stan' => 'in:wybierz,do_zamieszkania,do_remontu,do_wykończenia|nullable',
+        'ogrzewanie' => 'in:wybierz,miejskie,gazowe,piec_kaflowy,elektryczne,kotłownia,inne|nullable',
+        'equipment.*' => 'in:meble,pralka,zmywarka,lodówka,kuchenka,piekarnik,telewizor|nullable',
+        'additional_info.*' => 'in:balkon,garaż,miejsce_parkingowe,piwnica,ogródek,klimatyzacja,winda|nullable'
       ]);
 
 // Checks if images form is purged. If old images are deleted and user did not put any new into the form he will be redirected back.
@@ -156,6 +232,35 @@ class OgloszeniaController extends Controller
       $ogloszenie->description = $request->input('description');
       $ogloszenie->size = $request->input('size');
       $ogloszenie->price = $request->input('price');
+      $ogloszenie->to_negotiate = $request->input('to_negotiate');
+      $ogloszenie->additional_costs = $request->input('dodatkowy_czynsz');
+      $ogloszenie->year_of_construction = $request->input('rok');
+      $ogloszenie->deposit = $request->input('kaucja');
+
+// Check for default values and insert NULL into DB if user has not selected any option.
+      if($request->input('pokoje') == 'wybierz'){
+        $ogloszenie->rooms = NULL;
+      }else{
+        $ogloszenie->rooms = $request->input('pokoje');
+      }
+
+      if($request->input('pietro') == 'wybierz'){
+        $ogloszenie->floor = NULL;
+      }else{
+        $ogloszenie->floor = $request->input('pietro');
+      }
+
+      if($request->input('stan') == 'wybierz'){
+        $ogloszenie->condition = NULL;
+      }else{
+        $ogloszenie->condition = $request->input('stan');
+      }
+
+      if($request->input('ogrzewanie') == 'wybierz'){
+        $ogloszenie->heating = NULL;
+      }else{
+        $ogloszenie->heating = $request->input('ogrzewanie');
+      }
 
 // Check if uses checked to_negotiate chechbox. If not remain it as false.
       if ($request->has('to_negotiate')) {
@@ -194,6 +299,19 @@ class OgloszeniaController extends Controller
 
 // Encode final array.
       $ogloszenie->image=json_encode($newImages);
+
+// Encode checkbox values to json if they arent empty.
+    if(empty($request->get('equipment'))){
+      $ogloszenie->equipment = NULL;
+    }else{
+      $ogloszenie->equipment = json_encode($request->get('equipment'));
+    }
+
+    if(empty($request->get('additional_info'))){
+      $ogloszenie->additional_info = NULL;
+    }else{
+      $ogloszenie->additional_info = json_encode($request->get('additional_info'));
+    }
 
 // Save Model changes into DB and redirect user back to edited advertisement page.
       $saved = $ogloszenie->save();

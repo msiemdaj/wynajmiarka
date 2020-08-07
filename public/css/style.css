@@ -181,6 +181,7 @@
 
 			.ogloszenie-heading,
 			.dodaj-ogloszenie-form,
+			.edit-ogloszenie-form,
 			.msg-option-container,
 			ul.nav-skrzynka{
 				padding: 1em;
@@ -277,6 +278,7 @@
 		@media (min-width: 576px){
 			.ogloszenie-heading,
 			.dodaj-ogloszenie-form,
+			.edit-ogloszenie-form,
 			.simpl-head,
 			.msg-option-container,
 			ul.nav-skrzynka,
@@ -286,7 +288,8 @@
 				padding: 0;
 			}
 
-			.dodaj-ogloszenie-form{
+			.dodaj-ogloszenie-form,
+			.edit-ogloszenie-form{
 				margin-bottom: 2em;
 			}
 
@@ -516,20 +519,18 @@
 			width: auto;
 		}
 
-		.ogloszenie-info-content h4{
+		.ogloszenie-info-content h5{
 			font-weight: lighter;
-			line-height: 0.4;
 			font-size: 1rem;
 			margin-top: 0.35em;
 		}
 
 
-		.ogloszenie-info-content h5{
+		.ogloszenie-info-content h4,
+		.ogloszenie-description-content h4{
 			font-weight: bold;
-			margin: 0;
-			padding: 0;
 			color: #2a66b5;
-			font-size: 1.15rem;
+			font-size: 1.2rem;
 		}
 
 		.ogloszenie-options-btn{
@@ -546,17 +547,19 @@
 			margin-bottom: 1em;
 		}
 
-		.ogloszenie-info-container{
-			display: table;
-			width: 100%;
-			height: 100%;
-			box-sizing: border-box;
+
+		.ogloszenie-info-container,
+		.additional-info-container {
+			display: flex;
+			flex-wrap: wrap;
 		}
 
 		@media (min-width: 320px){
-				.ogloszenie-info-container{
-					border-spacing: 0;
-				}
+			.ogloszenie-info-item,
+			.ogloszenie-info-additional{
+				 width: 100%;
+				 flex: 0 100%;
+			}
 
 				.ogloszenie-header-title{
 					width: 100%;
@@ -608,20 +611,15 @@
 				.modal-footer-ms .card-btn{
 					padding: 0.375rem 1rem;
 				}
-
-				.ogloszenie-info-city,
-				.ogloszenie-info-district,
-				.ogloszenie-info-size{
-					border-bottom: 1px solid #ddd;
-					padding: 1em 0.75em;
-				}
-
-				.ogloszenie-info-price{
-					padding: 1em 0.75em;
-				}
 		}
 
 		@media (min-width: 480px){
+			.ogloszenie-info-item,
+			.ogloszenie-info-additional{
+				 width: 100%;
+				 flex: 0 50%;
+			}
+
 			.modal-footer-ms .card-btn{
 				padding: 0.375rem 1.8rem;
 			}
@@ -650,10 +648,6 @@
 		}
 
 		@media (min-width: 768px){
-			.ogloszenie-info-container{
-				border-spacing: 10px;
-			}
-
 			.carousel-item img{
 				height: 456px;
 				max-height: 456px;
@@ -663,62 +657,18 @@
 			.ogloszenie-button-2{
 				display: table-cell;
 			}
-
-			.ogloszenie-info-city,
-			.ogloszenie-info-district,
-			.ogloszenie-info-size,
-			.ogloszenie-info-price{
-				display: table-cell;
-				padding: 0.25em;
-				border: none;
-				vertical-align: middle;
-			}
-
-			.ogloszenie-info-city,
-			.ogloszenie-info-district,
-			.ogloszenie-info-size{
-				border-right: 1px solid #ddd;
-			}
 		}
 
 		@media (min-width: 992px){
+			.ogloszenie-info-item,
+			.ogloszenie-info-additional{
+				 width: 100%;
+				 flex: 0 25%;
+			}
+
 			.carousel-item img{
 				height: 557px;
 				max-height: 557px;
-			}
-
-			.ogloszenie-info-content{
-				display: inline-block;
-				width: 713.9px;
-				height: 163px;
-			}
-
-			.ogloszenie-options-btn{
-				display: inline-block;
-				width: 228px;
-				padding: 1em;
-				border-spacing: 0;
-			}
-
-			.ogloszenie-middle-content{
-				margin-bottom: 0;
-			}
-
-			.ogloszenie-button-1,
-			.ogloszenie-button-2{
-				display: table;
-				width: 100%;
-			}
-
-			.ogloszenie-phone-num{
-				margin-bottom: 1em;
-				width: 100%;
-				display: inline-block;
-			}
-
-			.ogloszenie-button-1 span,
-			.ogloszenie-button-2 span{
-				display: table-cell;
 			}
 		}
 
@@ -726,16 +676,6 @@
 			.carousel-item img{
 				height: 680px;
 				max-height: 680px;
-			}
-
-			.ogloszenie-info-content{
-				width: 893.9px;
-				height: 163px;
-			}
-
-			.ogloszenie-button-1,
-			.ogloszenie-button-2{
-				display: table;
 			}
 		}
 
@@ -1336,11 +1276,17 @@
 			margin: 0;
 		}
 
-		.zaznaczWszystko label{
+		.zaznaczWszystko label,
+		.form-group.noS-Pt label{
 			-webkit-user-select: none;
 			-moz-user-select: none;
 			-ms-user-select: none;
 			user-select: none;
+		}
+
+		.form-group.noS-Pt label,
+		.form-group.noS-Pt input[type=checkbox]{
+			cursor: pointer;
 		}
 
 		.message-preview-content{
@@ -1599,4 +1545,20 @@
 	/*  */
 	.favorite-item:nth-of-type(4) ~ .favorite-item {
     display: none;
+	}
+
+	.required:after {
+		content:"*";
+		color: red;
+	}
+
+	.check-icon{
+		font-size: 10px !important;
+		font-weight: 900 !important;
+		color: #2a66b5;
+	}
+
+	.ogloszenie-info-item,
+	.ogloszenie-info-additional{
+		padding: .25em;
 	}

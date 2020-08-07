@@ -64,30 +64,104 @@
           </div>
       </div>
 
+      @if(!empty($ogloszenie->equipment))
+        @php
+          $equipment = json_decode($ogloszenie->equipment);
+        @endphp
+      @endif
+
+      @if(!empty($ogloszenie->additional_info))
+        @php
+          $additional_info = json_decode($ogloszenie->additional_info);
+        @endphp
+      @endif
+
 <div class="ogloszenie-middle-content">
         <div class="ogloszenie-info-content">
           <div class="ogloszenie-info-container">
-            <div class="ogloszenie-info-city">
+            <div class="ogloszenie-info-item">
               <h4>Miejscowość</h4>
               <h5> {{ $ogloszenie->city }} </h5>
             </div>
-            <div class="ogloszenie-info-district">
+            <div class="ogloszenie-info-item">
               <h4>Dzielnica</h4>
               <h5> {{ $ogloszenie->district }} </h5>
             </div>
-            <div class="ogloszenie-info-size">
+            <div class="ogloszenie-info-item">
               <h4>Metraż</h4>
               <h5> {{ $ogloszenie->size }} m<sup>2</sup> </h5>
             </div>
-            <div class="ogloszenie-info-price">
+            <div class="ogloszenie-info-item">
               <h4>Cena</h4>
-              <h5> {{ $ogloszenie->price.' zł' }} </h5>
+              <h5> {{ $ogloszenie->price.' zł' }}
               @if($ogloszenie->to_negotiate == true)
                 <span class="badge badge-secondary">do negocjacji</span>
               @endif
             </div>
+            @if($ogloszenie->additional_costs)
+              <div class="ogloszenie-info-item">
+                <h4>Dodatkowy czynsz</h4>
+                <h5> {{ $ogloszenie->additional_costs.' zł' }} </h5>
+              </div>
+            @endif
+            @if($ogloszenie->deposit)
+              <div class="ogloszenie-info-item">
+                <h4>Kaucja</h4>
+                <h5> {{ $ogloszenie->deposit.' zł' }} </h5>
+              </div>
+            @endif
+            @if($ogloszenie->rooms)
+              <div class="ogloszenie-info-item">
+                <h4>Ilość pokoi</h4>
+                <h5> {{ str_replace("_", " ", $ogloszenie->rooms) }} </h5>
+              </div>
+            @endif
+            @if($ogloszenie->floor)
+              <div class="ogloszenie-info-item">
+                <h4>Piętro</h4>
+                <h5> {{ str_replace("_", " ", $ogloszenie->floor) }} </h5>
+              </div>
+            @endif
+            @if($ogloszenie->condition)
+              <div class="ogloszenie-info-item">
+                <h4>Stan mieszkania</h4>
+                <h5> {{ str_replace("_", " ", $ogloszenie->condition) }} </h5>
+              </div>
+            @endif
+            @if($ogloszenie->heating)
+              <div class="ogloszenie-info-item">
+                <h4>Ogrzewanie</h4>
+                <h5> {{ str_replace("_", " ", $ogloszenie->heating) }} </h5>
+              </div>
+            @endif
+            @if($ogloszenie->year_of_construction)
+              <div class="ogloszenie-info-item">
+                <h4>Rok budowy</h4>
+                <h5> {{ $ogloszenie->year_of_construction }} </h5>
+              </div>
+            @endif
+            </div>
+            @if(!empty($ogloszenie->equipment) or !empty($ogloszenie->additional_info))
+            <div class="additional-info-container">
+            @if(!empty($ogloszenie->equipment))
+              <div class="ogloszenie-info-additional">
+                <h4>Wyposażenie</h4>
+                @foreach ($equipment as $equipmentItem)
+                  <h5><i class="check-icon material-icons">check</i> {{ str_replace("_", " ", $equipmentItem) }}</h5>
+                @endforeach
+              </div>
+            @endif
+            @if(!empty($ogloszenie->additional_info))
+              <div class="ogloszenie-info-additional">
+                <h4>Dodatkowe informacje</h4>
+                @foreach ($additional_info as $additional_infoItem)
+                  <h5><i class="check-icon material-icons">check</i> {{ str_replace("_", " ", $additional_infoItem) }}</h5>
+                @endforeach
+              </div>
+            @endif
           </div>
-        </div>
+          @endif
+          </div>
 
         <div class="ogloszenie-options-btn">
             @if (Auth::check())
@@ -190,6 +264,7 @@
       </div>
 
         <div class="ogloszenie-description-content">
+          <h4>Opis ogłoszenia</h4>
           <span>{{ $ogloszenie->description }}</span>
           <hr>
           <small>Dodano: {{ $ogloszenie->created_at }}</small>
