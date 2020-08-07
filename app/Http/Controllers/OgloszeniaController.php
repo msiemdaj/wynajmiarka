@@ -166,48 +166,10 @@ class OgloszeniaController extends Controller
       $ogloszenie = Ogloszenie::find($id);
 
 // Create an array to fill selectbox options in view
-    $roomsArray = array(
-      array('wybierz', 'wybierz'),
-      array('1', '1'),
-      array('2', '2'),
-      array('3', '3'),
-      array('4', '4'),
-      array('5', '5'),
-      array('więcej_niż_5', 'więcej niż 5')
-    );
-
-    $floorArray = array(
-      array('wybierz', 'wybierz'),
-      array('parter', 'parter'),
-      array('1', '1'),
-      array('2', '2'),
-      array('3', '3'),
-      array('4', '4'),
-      array('5', '5'),
-      array('6', '6'),
-      array('7', '7'),
-      array('8', '8'),
-      array('9', '9'),
-      array('10', '10'),
-      array('więcej_niż_10', 'więcej niż 10')
-    );
-
-    $stanArray = array(
-      array('wybierz', 'wybierz'),
-      array('do_zamieszkania', 'do zamieszkania'),
-      array('do_wykończenia', 'do wykończenia'),
-      array('do_remontu', 'do remontu')
-    );
-
-    $heatingArray = array(
-      array('wybierz', 'wybierz'),
-      array('miejskie', 'miejskie'),
-      array('gazowe', 'gazowe'),
-      array('piec_kaflowy', 'piec kaflowy'),
-      array('elektryczne', 'elektryczne'),
-      array('kotłownia', 'kotłownia'),
-      array('inne', 'inne')
-    );
+    $roomsArray = array('wybierz', '1', '2', '3', '4', '5', 'więcej_niż_5');
+    $floorArray = array('wybierz', 'parter', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'więcej_niż_10');
+    $stanArray = array('wybierz', 'do_zamieszkania', 'do_wykończenia', 'do_remontu');
+    $heatingArray = array('wybierz', 'miejskie', 'gazowe', 'piec_kaflowy', 'elektryczne', 'kotłownia', 'inne');
 
 // Checks if user logged is owner of the Model.
       if(auth()->user()->id !== $ogloszenie->user_id){

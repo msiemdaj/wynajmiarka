@@ -136,10 +136,10 @@
                 {{ Form::label('pokoje', 'Pokoje') }}
                 <select class="form-control" name="pokoje">
                   @foreach ($roomsArray as $room)
-                    <option @if($room[0] != 'wybierz') value="{{$room[0]}}" @endif
+                    <option @if($room != 'wybierz') value="{{$room}}" @endif
                                                      @if($flag==0)
-                                                     @if($ogloszenie->rooms == $room[0]) selected @endif
-                                                     @if(old('pokoje') == $room[0]) selected @php $flag = 1; @endphp @endif @endif>{{$room[1]}}</option>
+                                                     @if($ogloszenie->rooms == $room) selected @endif
+                                                     @if(old('pokoje') == $room) selected @php $flag = 1; @endphp @endif @endif>{{str_replace("_", " ", $room)}}</option>
                   @endforeach
                 </select>
               </div>
@@ -152,10 +152,10 @@
                 {{ Form::label('pietro', 'Piętro') }}
                 <select class="form-control" name="pietro">
                   @foreach ($floorArray as $floor)
-                    <option @if($floor[0] != 'wybierz') value="{{$floor[0]}}" @endif
+                    <option @if($floor != 'wybierz') value="{{$floor}}" @endif
                                                      @if($flag==0)
-                                                     @if($ogloszenie->floor == $floor[0]) selected @endif
-                                                     @if(old('pietro') == $floor[0]) selected @php $flag = 1; @endphp @endif @endif>{{$floor[1]}}</option>
+                                                     @if($ogloszenie->floor == $floor) selected @endif
+                                                     @if(old('pietro') == $floor) selected @php $flag = 1; @endphp @endif @endif>{{str_replace("_", " ", $floor)}}</option>
                   @endforeach
                 </select>
               </div>
@@ -173,10 +173,10 @@
                 {{ Form::label('stan', 'Stan') }}
                 <select class="form-control" name="stan">
                   @foreach ($stanArray as $stanItem)
-                    <option @if($stanItem[0] != 'wybierz') value="{{$stanItem[0]}}" @endif
+                    <option @if($stanItem != 'wybierz') value="{{$stanItem}}" @endif
                                                      @if($flag==0)
-                                                     @if($ogloszenie->condition == $stanItem[0]) selected @endif
-                                                     @if(old('stan') == $stanItem[0]) selected @php $flag = 1; @endphp @endif @endif>{{$stanItem[1]}}</option>
+                                                     @if($ogloszenie->condition == $stanItem) selected @endif
+                                                     @if(old('stan') == $stanItem) selected @php $flag = 1; @endphp @endif @endif>{{str_replace("_", " ", $stanItem)}}</option>
                   @endforeach
                 </select>
               </div>
@@ -189,10 +189,10 @@
                 {{ Form::label('ogrzewanie', 'Ogrzewanie') }}
                 <select class="form-control" name="ogrzewanie">
                   @foreach ($heatingArray as $heating)
-                    <option @if($heating[0] != 'wybierz') value="{{$heating[0]}}" @endif
+                    <option @if($heating != 'wybierz') value="{{$heating}}" @endif
                                                      @if($flag==0)
-                                                     @if($ogloszenie->heating == $heating[0]) selected @endif
-                                                     @if(old('ogrzewanie') == $heating[0]) selected @php $flag = 1; @endphp @endif @endif>{{$heating[1]}}</option>
+                                                     @if($ogloszenie->heating == $heating) selected @endif
+                                                     @if(old('ogrzewanie') == $heating) selected @php $flag = 1; @endphp @endif @endif>{{str_replace("_", " ", $heating)}}</option>
                   @endforeach
                   </select>
               </div>
