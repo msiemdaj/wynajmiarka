@@ -130,26 +130,33 @@
           <div class="form-row">
             <div class="col-md-6">
               <div class="form-group">
+                @php
+                  $flag=0;
+                @endphp
                 {{ Form::label('pokoje', 'Pokoje') }}
                 <select class="form-control" name="pokoje">
-                  <option>wybierz</option>
-                  @for ($i=1; $i <= 5; $i++)
-                    <option value="{{$i}}" {{ $ogloszenie->rooms == $i ? 'selected' : '' }}>{{$i}}</option>
-                  @endfor
-                  <option value="więcej_niż_5" {{ $ogloszenie->rooms == 'więcej_niż_5' ? 'selected' : '' }}>więcej niż 5</option>
+                  @foreach ($roomsArray as $room)
+                    <option @if($room[0] != 'wybierz') value="{{$room[0]}}" @endif
+                                                     @if($flag==0)
+                                                     @if($ogloszenie->rooms == $room[0]) selected @endif
+                                                     @if(old('pokoje') == $room[0]) selected @php $flag = 1; @endphp @endif @endif>{{$room[1]}}</option>
+                  @endforeach
                 </select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
+                @php
+                  $flag=0;
+                @endphp
                 {{ Form::label('pietro', 'Piętro') }}
                 <select class="form-control" name="pietro">
-                  <option>wybierz</option>
-                  <option value="parter" {{ $ogloszenie->floor == 'parter' ? 'selected' : '' }}>parter</option>
-                  @for ($i=1; $i <= 10; $i++)
-                    <option value="{{$i}}" {{ $ogloszenie->floor == $i ? 'selected' : '' }}>{{$i}}</option>
-                  @endfor
-                  <option value="więcej_niż_10" {{ $ogloszenie->floor == 'więcej_niż_10' ? 'selected' : '' }}>więcej niż 10</option>
+                  @foreach ($floorArray as $floor)
+                    <option @if($floor[0] != 'wybierz') value="{{$floor[0]}}" @endif
+                                                     @if($flag==0)
+                                                     @if($ogloszenie->floor == $floor[0]) selected @endif
+                                                     @if(old('pietro') == $floor[0]) selected @php $flag = 1; @endphp @endif @endif>{{$floor[1]}}</option>
+                  @endforeach
                 </select>
               </div>
             </div>
@@ -176,16 +183,18 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
+                @php
+                  $flag=0;
+                @endphp
                 {{ Form::label('ogrzewanie', 'Ogrzewanie') }}
                 <select class="form-control" name="ogrzewanie">
-                  <option>wybierz</option>
-                  <option value="miejskie" {{ $ogloszenie->heating == 'miejskie' ? 'selected' : '' }}>miejskie</option>
-                  <option value="gazowe" {{ $ogloszenie->heating == 'gazowe' ? 'selected' : '' }}>gazowe</option>
-                  <option value="piec_kaflowy" {{ $ogloszenie->heating == 'piec_kaflowy' ? 'selected' : '' }}>piec kaflowy</option>
-                  <option value="elektryczne" {{ $ogloszenie->heating == 'elektryczne' ? 'selected' : '' }}>elektryczne</option>
-                  <option value="kotłownia" {{ $ogloszenie->heating == 'kotłownia' ? 'selected' : '' }}>kotłownia</option>
-                  <option value="inne" {{ $ogloszenie->heating == 'inne' ? 'selected' : '' }}>inne</option>
-                </select>
+                  @foreach ($heatingArray as $heating)
+                    <option @if($heating[0] != 'wybierz') value="{{$heating[0]}}" @endif
+                                                     @if($flag==0)
+                                                     @if($ogloszenie->heating == $heating[0]) selected @endif
+                                                     @if(old('ogrzewanie') == $heating[0]) selected @php $flag = 1; @endphp @endif @endif>{{$heating[1]}}</option>
+                  @endforeach
+                  </select>
               </div>
             </div>
           </div>
@@ -320,4 +329,14 @@
       {!! Form::close() !!}
 
     </div>
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection

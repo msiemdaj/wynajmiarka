@@ -166,6 +166,32 @@ class OgloszeniaController extends Controller
       $ogloszenie = Ogloszenie::find($id);
 
 // Create an array to fill selectbox options in view
+    $roomsArray = array(
+      array('wybierz', 'wybierz'),
+      array('1', '1'),
+      array('2', '2'),
+      array('3', '3'),
+      array('4', '4'),
+      array('5', '5'),
+      array('więcej_niż_5', 'więcej niż 5')
+    );
+
+    $floorArray = array(
+      array('wybierz', 'wybierz'),
+      array('parter', 'parter'),
+      array('1', '1'),
+      array('2', '2'),
+      array('3', '3'),
+      array('4', '4'),
+      array('5', '5'),
+      array('6', '6'),
+      array('7', '7'),
+      array('8', '8'),
+      array('9', '9'),
+      array('10', '10'),
+      array('więcej_niż_10', 'więcej niż 10')
+    );
+
     $stanArray = array(
       array('wybierz', 'wybierz'),
       array('do_zamieszkania', 'do zamieszkania'),
@@ -173,12 +199,25 @@ class OgloszeniaController extends Controller
       array('do_remontu', 'do remontu')
     );
 
+    $heatingArray = array(
+      array('wybierz', 'wybierz'),
+      array('miejskie', 'miejskie'),
+      array('gazowe', 'gazowe'),
+      array('piec_kaflowy', 'piec kaflowy'),
+      array('elektryczne', 'elektryczne'),
+      array('kotłownia', 'kotłownia'),
+      array('inne', 'inne')
+    );
+
 // Checks if user logged is owner of the Model.
       if(auth()->user()->id !== $ogloszenie->user_id){
           return redirect('/ogloszenia');
       }
       return view('pages/ogloszenia/edytujogloszenie')->with(['ogloszenie' => $ogloszenie,
-                                                              'stanArray' => $stanArray]);
+                                                              'roomsArray' => $roomsArray,
+                                                              'floorArray' => $floorArray,
+                                                              'stanArray' => $stanArray,
+                                                              'heatingArray' => $heatingArray]);
     }
 
 
