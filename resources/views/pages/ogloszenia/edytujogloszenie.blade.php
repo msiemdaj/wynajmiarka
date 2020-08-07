@@ -208,54 +208,18 @@
                 @endphp
               @endif
 
-
-
-              <div class="custom-control custom-checkbox custom-control-inline">
-                <input type="checkbox" id="meble" name="equipment[]" class="custom-control-input" value="meble" @if(isset($equipment))  @endif
-                  @if(is_array($equipment) and in_array('meble', $equipment) and is_array(old('equipment')) and in_array('meble', old('equipment')) == false)
-                  @elseif(is_array($equipment) and in_array('meble', $equipment) and is_array(old('equipment')) and in_array('meble', old('equipment')) == true) checked
-                  @elseif(is_array($equipment) and in_array('meble', $equipment)) checked @endif
-  
-                                                                                                                                        @if(is_array(old('equipment')) and in_array('meble', old('equipment'))) checked @endif>
-                <label class="custom-control-label" for="meble">Meble</label>
-              </div>
-
-            <div class="custom-control custom-checkbox custom-control-inline">
-              <input type="checkbox" id="pralka" name="equipment[]" class="custom-control-input" value="pralka" @if(isset($equipment)) @if(is_array($equipment) and in_array('pralka', $equipment)) checked @endif @endif
-                                                                                                                                      @if(is_array(old('equipment')) and in_array('pralka', old('equipment'))) checked @endif>
-              <label class="custom-control-label" for="pralka">Pralka</label>
-            </div>
-
-            <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="zmywarka" name="equipment[]" class="custom-control-input" value="zmywarka" @if(isset($equipment)) @if(is_array($equipment) and in_array('zmywarka', $equipment)) checked @endif @endif
-                                                                                                                                    @if(is_array(old('equipment')) and in_array('zmywarka', old('equipment'))) checked @endif>
-            <label class="custom-control-label" for="zmywarka">Zmywarka</label>
+              @foreach ($equipmentArray as $equipmentItem)
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input type="checkbox" id="{{$equipmentItem}}" name="equipment[]" class="custom-control-input" value="{{$equipmentItem}}"
+                        @if(isset($equipment))
+                        @if(is_array($equipment) and in_array($equipmentItem, $equipment) and is_array(old('equipment')) and in_array($equipmentItem, old('equipment')) == false)
+                        @elseif(is_array($equipment) and in_array($equipmentItem, $equipment) and is_array(old('equipment')) and in_array($equipmentItem, old('equipment')) == true) checked
+                        @elseif(is_array($equipment) and in_array($equipmentItem, $equipment)) checked @endif @endif
+                        @if(is_array(old('equipment')) and in_array($equipmentItem, old('equipment'))) checked @endif>
+                  <label class="custom-control-label" for="{{$equipmentItem}}">{{str_replace("_", " ", $equipmentItem)}}</label>
+                </div>
+              @endforeach
           </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="lodowka" name="equipment[]" class="custom-control-input" value="lodówka" @if(isset($equipment)) @if(is_array($equipment) and in_array('lodówka', $equipment)) checked @endif @endif
-                                                                                                                                    @if(is_array(old('equipment')) and in_array('lodówka', old('equipment'))) checked @endif>
-            <label class="custom-control-label" for="lodowka">Lodówka</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="kuchenka" name="equipment[]" class="custom-control-input" value="kuchenka" @if(isset($equipment)) @if(is_array($equipment) and in_array('kuchenka', $equipment)) checked @endif @endif
-                                                                                                                                    @if(is_array(old('equipment')) and in_array('kuchenka', old('equipment'))) checked @endif>
-            <label class="custom-control-label" for="kuchenka">Kuchenka</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="piekarnik" name="equipment[]" class="custom-control-input" value="piekarnik" @if(isset($equipment)) @if(is_array($equipment) and in_array('piekarnik', $equipment)) checked @endif @endif
-                                                                                                                                    @if(is_array(old('equipment')) and in_array('piekarnik', old('equipment'))) checked @endif>
-            <label class="custom-control-label" for="piekarnik">Piekarnik</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="telewizor" name="equipment[]" class="custom-control-input" value="telewizor" @if(isset($equipment)) @if(is_array($equipment) and in_array('telewizor', $equipment)) checked @endif @endif
-                                                                                                                                           @if(is_array(old('equipment')) and in_array('telewizor', old('equipment'))) checked @endif>
-            <label class="custom-control-label" for="telewizor">Telewizor</label>
-          </div>
-          </div>
-
-{{print_r(old('equipment'))}}
-
-{{ (is_array(old('equipment')) and in_array('lodówka', old('equipment'))) ? ' checked' : '' }}
 
           <div class="form-group noS-Pt">
             <h4>Dodatkowe informacje</h2>

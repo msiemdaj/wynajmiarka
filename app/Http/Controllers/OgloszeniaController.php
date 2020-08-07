@@ -170,6 +170,8 @@ class OgloszeniaController extends Controller
     $floorArray = array('wybierz', 'parter', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'więcej_niż_10');
     $stanArray = array('wybierz', 'do_zamieszkania', 'do_wykończenia', 'do_remontu');
     $heatingArray = array('wybierz', 'miejskie', 'gazowe', 'piec_kaflowy', 'elektryczne', 'kotłownia', 'inne');
+    $equipmentArray = array('meble', 'pralka', 'zmywarka', 'lodówka', 'kuchenka', 'piekarnik', 'telewizor');
+    $additional_infoArray = array('balkon', 'garaż', 'miejsce_parkingowe', 'piwnica', 'ogródek', 'klimatyzacja', 'winda');
 
 // Checks if user logged is owner of the Model.
       if(auth()->user()->id !== $ogloszenie->user_id){
@@ -179,7 +181,9 @@ class OgloszeniaController extends Controller
                                                               'roomsArray' => $roomsArray,
                                                               'floorArray' => $floorArray,
                                                               'stanArray' => $stanArray,
-                                                              'heatingArray' => $heatingArray]);
+                                                              'heatingArray' => $heatingArray,
+                                                              'equipmentArray' => $equipmentArray,
+                                                              'additional_infoArray' => $additional_infoArray]);
     }
 
 
