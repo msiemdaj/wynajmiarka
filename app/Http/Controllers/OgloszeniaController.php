@@ -165,11 +165,20 @@ class OgloszeniaController extends Controller
     public function edit($id){
       $ogloszenie = Ogloszenie::find($id);
 
+// Create an array to fill selectbox options in view
+    $stanArray = array(
+      array('wybierz', 'wybierz'),
+      array('do_zamieszkania', 'do zamieszkania'),
+      array('do_wykończenia', 'do wykończenia'),
+      array('do_remontu', 'do remontu')
+    );
+
 // Checks if user logged is owner of the Model.
       if(auth()->user()->id !== $ogloszenie->user_id){
           return redirect('/ogloszenia');
       }
-      return view('pages/ogloszenia/edytujogloszenie')->with('ogloszenie', $ogloszenie);
+      return view('pages/ogloszenia/edytujogloszenie')->with(['ogloszenie' => $ogloszenie,
+                                                              'stanArray' => $stanArray]);
     }
 
 

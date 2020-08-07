@@ -155,15 +155,22 @@
             </div>
           </div>
 
+
+
           <div class="form-row">
             <div class="col-md-6">
               <div class="form-group">
+                @php
+                  $flag=0;
+                @endphp
                 {{ Form::label('stan', 'Stan') }}
                 <select class="form-control" name="stan">
-                  <option>wybierz</option>
-                  <option value="do_zamieszkania" {{ $ogloszenie->condition == 'do_zamieszkania' ? 'selected' : '' }}>do zamieszkania</option>
-                  <option value="do_wykończenia" {{ $ogloszenie->condition == 'do_wykończenia' ? 'selected' : '' }}>do wykończenia</option>
-                  <option value="do_remontu" {{ $ogloszenie->condition == 'do_remontu' ? 'selected' : '' }}>do remontu</option>
+                  @foreach ($stanArray as $stanItem)
+                    <option @if($stanItem[0] != 'wybierz') value="{{$stanItem[0]}}" @endif
+                                                     @if($flag==0)
+                                                     @if($ogloszenie->condition == $stanItem[0]) selected @endif
+                                                     @if(old('stan') == $stanItem[0]) selected @php $flag = 1; @endphp @endif @endif>{{$stanItem[1]}}</option>
+                  @endforeach
                 </select>
               </div>
             </div>
