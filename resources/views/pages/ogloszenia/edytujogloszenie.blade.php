@@ -230,40 +230,23 @@
                 @endphp
               @endif
 
-              <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="balkon" name="additional_info[]" class="custom-control-input" value="balkon" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('balkon', $additional_info)) checked @endif @endif>
-            <label class="custom-control-label" for="balkon">Balkon</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="garaz" name="additional_info[]" class="custom-control-input" value="garaż" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('garaż', $additional_info)) checked @endif @endif>
-            <label class="custom-control-label" for="garaz">Garaż</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="miejsce_parkingowe" name="additional_info[]" class="custom-control-input" value="miejsce_parkingowe" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('miejsce_parkingowe', $additional_info)) checked @endif @endif>
-            <label class="custom-control-label" for="miejsce_parkingowe">Miejsce parkingowe</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="piwnica" name="additional_info[]" class="custom-control-input" value="piwnica" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('piwnica', $additional_info)) checked @endif @endif>
-            <label class="custom-control-label" for="piwnica">Piwnica</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="ogrodek" name="additional_info[]" class="custom-control-input" value="ogródek" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('ogródek', $additional_info)) checked @endif @endif>
-            <label class="custom-control-label" for="ogrodek">Ogródek</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="klimatyzacja" name="additional_info[]" class="custom-control-input" value="klimatyzacja" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('klimatyzacja', $additional_info)) checked @endif @endif>
-            <label class="custom-control-label" for="klimatyzacja">Klimatyzacja</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" id="winda" name="additional_info[]" class="custom-control-input" value="winda" @if(isset($additional_info)) @if(is_array($additional_info) and in_array('winda', $additional_info)) checked @endif @endif>
-            <label class="custom-control-label" for="winda">Winda</label>
-          </div>
+              @foreach ($additional_infoArray as $additional_infoItem)
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input type="checkbox" id="{{$additional_infoItem}}" name="additional_info[]" class="custom-control-input" value="{{$additional_infoItem}}"
+                        @if(isset($additional_info))
+                        @if(is_array($additional_info) and in_array($additional_infoItem, $additional_info) and is_array(old('additional_info')) and in_array($additional_infoItem, old('additional_info')) == false)
+                        @elseif(is_array($additional_info) and in_array($additional_infoItem, $additional_info) and is_array(old('additional_info')) and in_array($additional_infoItem, old('additional_info')) == true) checked
+                        @elseif(is_array($additional_info) and in_array($additional_infoItem, $additional_info)) checked @endif @endif
+                        @if(is_array(old('additional_info')) and in_array($additional_infoItem, old('additional_info'))) checked @endif>
+                  <label class="custom-control-label" for="{{$additional_infoItem}}">{{str_replace("_", " ", $additional_infoItem)}}</label>
+                </div>
+              @endforeach
           </div>
 
           {{--
            --}}
 
-           <h4 class="required">Zdjęcia</h4>
+          <h4 class="required">Zdjęcia</h4>
 
           <script type="text/jscript">
           $(function () {
