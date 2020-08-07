@@ -107,7 +107,7 @@
             @if($ogloszenie->deposit)
               <div class="ogloszenie-info-item">
                 <h4>Kaucja</h4>
-                <h5> {{ $ogloszenie->deposit }} </h5>
+                <h5> {{ $ogloszenie->deposit.' zł' }} </h5>
               </div>
             @endif
             @if($ogloszenie->rooms)
@@ -140,8 +140,11 @@
                 <h5> {{ $ogloszenie->year_of_construction }} </h5>
               </div>
             @endif
+            </div>
+            @if(!empty($ogloszenie->equipment) or !empty($ogloszenie->additional_info))
+            <div class="additional-info-container">
             @if(!empty($ogloszenie->equipment))
-              <div class="ogloszenie-info-item">
+              <div class="ogloszenie-info-additional">
                 <h4>Wyposażenie</h4>
                 @foreach ($equipment as $equipmentItem)
                   <h5><i class="check-icon material-icons">check</i> {{ str_replace("_", " ", $equipmentItem) }}</h5>
@@ -149,7 +152,7 @@
               </div>
             @endif
             @if(!empty($ogloszenie->additional_info))
-              <div class="ogloszenie-info-item">
+              <div class="ogloszenie-info-additional">
                 <h4>Dodatkowe informacje</h4>
                 @foreach ($additional_info as $additional_infoItem)
                   <h5><i class="check-icon material-icons">check</i> {{ str_replace("_", " ", $additional_infoItem) }}</h5>
@@ -157,7 +160,8 @@
               </div>
             @endif
           </div>
-        </div>
+          @endif
+          </div>
 
         <div class="ogloszenie-options-btn">
             @if (Auth::check())
@@ -260,6 +264,7 @@
       </div>
 
         <div class="ogloszenie-description-content">
+          <h4>Opis ogłoszenia</h4>
           <span>{{ $ogloszenie->description }}</span>
           <hr>
           <small>Dodano: {{ $ogloszenie->created_at }}</small>
