@@ -277,10 +277,15 @@
             <div class="input-images-2">
               <script type="application/javascript">
                 $(function (){
-                  $('.image-uploader').addClass("@error('images') error-img @enderror");
+                  $('.image-uploader').addClass("@error('images.*') error-img @enderror @error('images') error-img @enderror");
                 });
               </script>
             </div>
+            @error('images.*')
+              <span class="image-error-span" role="alert">
+                {{ $message }}
+              </span>
+            @enderror
             @error('images')
               <span class="image-error-span" role="alert">
                 {{ $message }}

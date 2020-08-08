@@ -200,6 +200,14 @@ class OgloszeniaController extends Controller
 
 // Update edited data for Ogloszenie Model.
     public function update(Request $request, $id){
+
+      $customMessages = [
+        'image' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
+        'mimes' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
+        'images.max' => 'Możesz wysłać maksymalnie :max zdjęć.',
+        'images.*.max' => 'Wysyłane zdjęcia nie mogą być większe niż 5MB.'
+      ];
+
 // Validate input data.
       $this->validate($request, [
         'title' => 'required|min:8|unique:ogloszenia,title,'.$id.'|max:191',
@@ -209,8 +217,8 @@ class OgloszeniaController extends Controller
         'size' => 'required|numeric',
         'price' => 'required|numeric',
 // Check for old values of image. This allows to submit form without adding new images just validating those added before.
-        'images' => 'required_without:old',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'images' => 'required_without:old|max:16',
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         'dodatkowy_czynsz' => 'numeric|nullable',
         'rok' => 'numeric|digits:4|nullable',
         'deposit' => 'numeric|nullable',
@@ -220,7 +228,7 @@ class OgloszeniaController extends Controller
         'ogrzewanie' => 'in:wybierz,miejskie,gazowe,piec_kaflowy,elektryczne,kotłownia,inne|nullable',
         'equipment.*' => 'in:meble,pralka,zmywarka,lodówka,kuchenka,piekarnik,telewizor|nullable',
         'additional_info.*' => 'in:balkon,garaż,miejsce_parkingowe,piwnica,ogródek,klimatyzacja,winda|nullable'
-      ]);
+      ], $customMessages);
 
 // Checks if images form is purged. If old images are deleted and user did not put any new into the form he will be redirected back.
       if(empty($request->old) && empty($request->file('images'))){
