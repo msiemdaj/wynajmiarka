@@ -26,8 +26,9 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'http://wynajmiarka.build/';
-
+     // protected $redirectTo = 'http://wynajmiarka.build/';
+     protected $redirectTo = RouteServiceProvider::HOME;
+     
     protected function rules()
    {
        return [
