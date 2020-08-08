@@ -191,7 +191,7 @@ class OgloszeniaController extends Controller
     public function update(Request $request, $id){
 // Validate input data.
       $this->validate($request, [
-        'title' => 'required|min:8|unique:ogloszenia|max:191',
+        'title' => 'required|min:8|unique:ogloszenia,title,'.$id.'|max:191',
         'city' => 'required',
         'district' => 'required',
         'description' => 'required|min:8',
