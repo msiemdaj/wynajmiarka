@@ -25,6 +25,14 @@ class OgloszeniaController extends Controller
 
 // Create new Ogloszenie.
     public function store(Request $request){
+
+      $customMessages = [
+        'image' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
+        'mimes' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
+        'images.max' => 'Możesz wysłać maksymalnie :max zdjęć.',
+        'images.*.max' => 'Wysyłane zdjęcia nie mogą być większe niż 5MB.'
+      ];
+
 // Validate inputs
       $this->validate($request, [
         'title' => 'required|min:8|unique:ogloszenia|max:191',
@@ -33,8 +41,8 @@ class OgloszeniaController extends Controller
         'description' => 'required|min:8',
         'size' => 'required|numeric',
         'price' => 'required|numeric',
-        'images' => 'required',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'images' => 'required|max:16',
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         'dodatkowy_czynsz' => 'numeric|nullable',
         'rok' => 'numeric|digits:4|nullable',
         'deposit' => 'numeric|nullable',
@@ -44,7 +52,10 @@ class OgloszeniaController extends Controller
         'ogrzewanie' => 'in:wybierz,miejskie,gazowe,piec_kaflowy,elektryczne,kotłownia,inne|nullable',
         'equipment.*' => 'in:meble,pralka,zmywarka,lodówka,kuchenka,piekarnik,telewizor|nullable',
         'additional_info.*' => 'in:balkon,garaż,miejsce_parkingowe,piwnica,ogródek,klimatyzacja,winda|nullable'
-      ]);
+      ], $customMessages);
+
+
+
 
 // If validation passes, Create new Model and bind values from request.
       $ogloszenie = new Ogloszenie;

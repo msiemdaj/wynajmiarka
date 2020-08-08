@@ -245,14 +245,14 @@
           </div>
           </div>
 
-          <h4 class="required">Zdjęcia</h4>
+          <h4 class="required">Zdjęcia</h4> maksymalny upoad 5mb/obrazek max 16 obrazków.
           {{--
            --}}
 
     <script type="application/javascript">
       $(function () {
         $('.input-images-2').imageUploader();
-        $('input[name="images[]"]').addClass("@error('images') is-invalid @enderror");
+        $('input[name="images[]"]').addClass("@error('images.*') is-invalid @enderror @error('images') error-img @enderror");
       });
     </script>
 
@@ -260,10 +260,15 @@
       <div class="input-images-2">
           <script type="application/javascript">
             $(function (){
-              $('.image-uploader').addClass("@error('images') error-img @enderror");
+              $('.image-uploader').addClass("@error('images.*') error-img @enderror @error('images') error-img @enderror");
             });
           </script>
       </div>
+      @error('images.*')
+        <span class="image-error-span" role="alert">
+          {{ $message }}
+        </span>
+      @enderror
       @error('images')
         <span class="image-error-span" role="alert">
           {{ $message }}
@@ -282,4 +287,15 @@
       });
       </script>
     </div>
+
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection
