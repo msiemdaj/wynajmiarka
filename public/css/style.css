@@ -1584,3 +1584,20 @@
 	.zdjecia-header{
 		margin-bottom: 0.5em;
 	}
+
+	.datepicker{
+		background: #ddd;
+	}
+
+	.datepicker table tr td span.active{
+		background-image: none !important;
+	}
+
+	.datepicker table tr td span.active.active,
+	.datepicker table tr td span.active:active,
+	.datepicker table tr td span.active:hover,
+	.datepicker table tr td span.active:hover.active,
+	.datepicker table tr td span.active:hover:active,
+	.datepicker table tr td span.active:hover:hover{
+		background: #2a66b5 !important;
+	}

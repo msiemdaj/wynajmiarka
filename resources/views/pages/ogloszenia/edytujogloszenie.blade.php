@@ -68,9 +68,9 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              {{ Form::label('rok', 'Rok budowy') }}
-              <input type="text" name="rok" class="form-control @error('rok') is-invalid @enderror" @if(old('rok')) value="{{ old('rok') }}"
-                                                                                                    @elseif(isset($ogloszenie->year_of_construction)) value="{{ $ogloszenie->year_of_construction }}" @endif>
+              {{ Form::label('datepicker', 'Rok budowy') }}
+              <input type="text" name="rok" id="datepicker" autocomplete="off" class="form-control @error('rok') is-invalid @enderror" @if(old('rok')) value="{{ old('rok') }}"
+                                                                                                         @elseif(isset($ogloszenie->year_of_construction)) value="{{ $ogloszenie->year_of_construction }}" @endif>
                 @error('rok')
                     <span class="invalid-feedback" role="alert">
                       {{ $message }}
@@ -251,6 +251,7 @@
             <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Prześlij do 16 zdjęć o maksymalnej wielkości 5MB">help</i>
           </div>
 
+
           <script type="text/jscript">
           $(function () {
           @if($ogloszenie->image)
@@ -295,6 +296,14 @@
               </span>
             @enderror
           </div>
+
+          <script type="text/javascript">
+          $("#datepicker").datepicker( {
+            format: " yyyy",
+            viewMode: "years",
+            minViewMode: "years"
+          });
+          </script>
 
           {{ Form::submit('Edytuj ogłoszenie', ['class' => 'ogloszenie-confirm-button']) }}
       {!! Form::close() !!}

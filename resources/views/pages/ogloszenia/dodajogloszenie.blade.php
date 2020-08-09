@@ -67,8 +67,8 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              {{ Form::label('rok', 'Rok budowy') }}
-              <input type="text" name="rok" class="form-control @error('rok') is-invalid @enderror" value="{{ old('rok') }}">
+              {{ Form::label('datepicker', 'Rok budowy') }}
+              <input type="text" name="rok" id="datepicker" autocomplete="off" class="form-control @error('rok') is-invalid @enderror" value="{{ old('rok') }}">
                 @error('rok')
                     <span class="invalid-feedback" role="alert">
                       {{ $message }}
@@ -252,6 +252,14 @@
         </div>
           {{--
            --}}
+
+           <script type="text/javascript">
+           $("#datepicker").datepicker( {
+             format: " yyyy",
+             viewMode: "years",
+             minViewMode: "years"
+           });
+           </script>
 
            <script type="text/javascript">
            $(function () {

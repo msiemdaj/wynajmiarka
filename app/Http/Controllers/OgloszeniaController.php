@@ -38,7 +38,9 @@ class OgloszeniaController extends Controller
         'district.max' => 'Nazwa dzielnicy jest zbyt długa.',
         'description.min' => 'Opis jest zbyt krótki.',
         'description.max' => 'Opis jest zbyt długi',
-        'gt' => 'Podana wartość jest nieprawidłowa.'
+        'gt' => 'Podana wartość jest nieprawidłowa.',
+        'rok.before' => 'Podaj poprawną datę.',
+        'rok.gt' => 'Podaj poprawną datę'
       ];
 
 // Validate inputs
@@ -52,7 +54,7 @@ class OgloszeniaController extends Controller
         'images' => 'required|max:16',
         'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         'dodatkowy_czynsz' => 'numeric|nullable|gt:0',
-        'rok' => 'numeric|digits:4|nullable',
+        'rok' => 'numeric|nullable|date_format:Y|before:tommorow|gt:1800',
         'kaucja' => 'numeric|nullable|gt:0',
         'pokoje' => 'in:wybierz,1,2,3,4,5,więcej_niż_5|nullable',
         'pietro' => 'in:wybierz,parter,1,2,3,4,5,6,7,8,9,10,więcej_niż_10|nullable',
@@ -221,7 +223,9 @@ class OgloszeniaController extends Controller
         'district.max' => 'Nazwa dzielnicy jest zbyt długa.',
         'description.min' => 'Opis jest zbyt krótki.',
         'description.max' => 'Opis jest zbyt długi',
-        'gt' => 'Podana wartość jest nieprawidłowa.'
+        'gt' => 'Podana wartość jest nieprawidłowa.',
+        'rok.before' => 'Podaj poprawną datę.',
+        'rok.gt' => 'Podaj poprawną datę'
       ];
 
 // Validate input data.
@@ -236,7 +240,7 @@ class OgloszeniaController extends Controller
         'images' => 'required_without:old|max:16',
         'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         'dodatkowy_czynsz' => 'numeric|nullable|gt:0',
-        'rok' => 'numeric|digits:4|nullable',
+        'rok' => 'numeric|nullable|date_format:Y|before:tommorow|gt:1800',
         'kaucja' => 'numeric|nullable|gt:0',
         'pokoje' => 'in:wybierz,1,2,3,4,5,więcej_niż_5|nullable',
         'pietro' => 'in:wybierz,parter,1,2,3,4,5,6,7,8,9,10,więcej_niż_10|nullable',
