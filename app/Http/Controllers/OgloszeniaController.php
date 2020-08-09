@@ -29,18 +29,26 @@ class OgloszeniaController extends Controller
       $customMessages = [
         'image' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
         'mimes' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
+        'title.unique' => "Ogłoszenie o podanej nazwie już istnieje.",
         'images.max' => 'Możesz wysłać maksymalnie :max zdjęć.',
-        'images.*.max' => 'Wysyłane zdjęcia nie mogą być większe niż 5MB.'
+        'images.*.max' => 'Wysyłane zdjęcia nie mogą być większe niż 5MB.',
+        'title.min' => 'Tytuł jest zbyt krótki.',
+        'title.max' => 'Tytuł jest zbyt długi',
+        'city.max' => 'Nazwa miasta jest zbyt długa.',
+        'district.max' => 'Nazwa dzielnicy jest zbyt długa.',
+        'description.min' => 'Opis jest zbyt krótki.',
+        'description.max' => 'Opis jest zbyt długi',
+        'gt' => 'Podana wartość jest nieprawidłowa.'
       ];
 
 // Validate inputs
       $this->validate($request, [
         'title' => 'required|min:8|unique:ogloszenia|max:191',
-        'city' => 'required',
-        'district' => 'required',
-        'description' => 'required|min:8',
-        'size' => 'required|numeric',
-        'price' => 'required|numeric',
+        'city' => 'required|max:191',
+        'district' => 'required|max:191',
+        'description' => 'required|min:8|max:5000',
+        'size' => 'required|numeric|gt:0',
+        'price' => 'required|numeric|gt:0',
         'images' => 'required|max:16',
         'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         'dodatkowy_czynsz' => 'numeric|nullable',
@@ -204,18 +212,26 @@ class OgloszeniaController extends Controller
       $customMessages = [
         'image' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
         'mimes' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
+        'title.unique' => "Ogłoszenie o podanej nazwie już istnieje.",
         'images.max' => 'Możesz wysłać maksymalnie :max zdjęć.',
-        'images.*.max' => 'Wysyłane zdjęcia nie mogą być większe niż 5MB.'
+        'images.*.max' => 'Wysyłane zdjęcia nie mogą być większe niż 5MB.',
+        'title.min' => 'Tytuł jest zbyt krótki.',
+        'title.max' => 'Tytuł jest zbyt długi',
+        'city.max' => 'Nazwa miasta jest zbyt długa.',
+        'district.max' => 'Nazwa dzielnicy jest zbyt długa.',
+        'description.min' => 'Opis jest zbyt krótki.',
+        'description.max' => 'Opis jest zbyt długi',
+        'gt' => 'Podana wartość jest nieprawidłowa.'
       ];
 
 // Validate input data.
       $this->validate($request, [
         'title' => 'required|min:8|unique:ogloszenia,title,'.$id.'|max:191',
-        'city' => 'required',
-        'district' => 'required',
-        'description' => 'required|min:8',
-        'size' => 'required|numeric',
-        'price' => 'required|numeric',
+        'city' => 'required|max:191',
+        'district' => 'required|max:191',
+        'description' => 'required|min:8|max:5000',
+        'size' => 'required|numeric|gt:0',
+        'price' => 'required|numeric|gt:0',
 // Check for old values of image. This allows to submit form without adding new images just validating those added before.
         'images' => 'required_without:old|max:16',
         'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
