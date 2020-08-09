@@ -43,7 +43,7 @@
               @enderror
           </div>
           <div class="form-group">
-            <label for="description" class="required">Opis</label>
+            <label for="description" class="required">Opis</label> <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Dodaj szczegółowy opis swojego ogłoszenia. Dobrze opisane oferty dostają więcej odpowiedzi. Wykorzystaj limit 5000 znaków. ">help</i>
             <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
               @error('description')
                   <span class="invalid-feedback" role="alert">
@@ -245,8 +245,10 @@
           </div>
           </div>
 
+        <div class="zdjecia-header">
           <h4 class="required h4in">Zdjęcia</h4>
           <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Prześlij do 16 zdjęć o maksymalnej wielkości 5MB">help</i>
+        </div>
           {{--
            --}}
 
