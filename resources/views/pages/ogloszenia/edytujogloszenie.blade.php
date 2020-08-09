@@ -34,9 +34,9 @@
             @enderror
           </div>
           <div class="form-group">
-            <label for="district" class="required">Dzielnica</label>
+            <label for="district">Dzielnica</label>
             <input type="text" name="district" class="form-control @error('district') is-invalid @enderror" @if(old('district')) value="{{ old('district') }}"
-                                                                                                            @else value="{{ $ogloszenie->district }}" @endif>
+                                                                                                            @elseif(isset($ogloszenie->district)) value="{{ $ogloszenie->district }}" @endif>
               @error('district')
                 <span class="invalid-feedback" role="alert">
                       {{ $message }}

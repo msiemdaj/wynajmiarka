@@ -45,7 +45,7 @@ class OgloszeniaController extends Controller
       $this->validate($request, [
         'title' => 'required|min:8|unique:ogloszenia|max:191',
         'city' => 'required|max:191',
-        'district' => 'required|max:191',
+        'district' => 'max:191|nullable',
         'description' => 'required|min:8|max:5000',
         'size' => 'required|numeric|gt:0',
         'price' => 'required|numeric|gt:0',
@@ -228,7 +228,7 @@ class OgloszeniaController extends Controller
       $this->validate($request, [
         'title' => 'required|min:8|unique:ogloszenia,title,'.$id.'|max:191',
         'city' => 'required|max:191',
-        'district' => 'required|max:191',
+        'district' => 'max:191|nullable',
         'description' => 'required|min:8|max:5000',
         'size' => 'required|numeric|gt:0',
         'price' => 'required|numeric|gt:0',
