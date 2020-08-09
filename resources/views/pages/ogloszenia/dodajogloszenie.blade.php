@@ -245,9 +245,18 @@
           </div>
           </div>
 
-          <h4 class="required">Zdjęcia</h4> maksymalny upoad 5mb/obrazek max 16 obrazków.
+          <h4 class="required h4in">Zdjęcia</h4>
+          <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Prześlij do 16 zdjęć o maksymalnej wielkości 5MB">help</i>
           {{--
            --}}
+
+           <script type="text/javascript">
+           $(function () {
+             $('[data-toggle="tooltip"]').tooltip({
+               trigger : 'hover'
+               });
+             });
+           </script>
 
     <script type="application/javascript">
       $(function () {

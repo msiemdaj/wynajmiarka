@@ -246,7 +246,8 @@
           {{--
            --}}
 
-          <h4 class="required">Zdjęcia</h4>
+          <h4 class="required h4in">Zdjęcia</h4>
+          <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Prześlij do 16 zdjęć o maksymalnej wielkości 5MB">help</i>
 
           <script type="text/jscript">
           $(function () {
