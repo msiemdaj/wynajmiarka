@@ -42,6 +42,7 @@
                   </span>
               @enderror
           </div>
+
           <div class="form-group">
             <label for="description" class="required">Opis</label> <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Dodaj szczegółowy opis swojego ogłoszenia. Dobrze opisane oferty dostają więcej odpowiedzi. Wykorzystaj limit 5000 znaków. ">help</i>
             <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
