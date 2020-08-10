@@ -102,8 +102,19 @@ class MessagesController extends Controller
       $sender = User::find($wiadomosc->sender_id);
       $wiadomosc->sender_name = $sender->name;
 
+// Validate logged user
+    if(auth()->user() == $sender || auth()->user() == $receiver){
+      if(auth()->user() == $sender && $wiadomosc->deleted_by_sender){
+        return redirect()->back();
+      }
+      if(auth()->user() == $receiver && $wiadomosc->deleted_by_receiver){
+        return redirect()->back();
+      }
 // Return showmessage view with data.
     return view('pages/wiadomosci/showmessage')->with('wiadomosc', $wiadomosc);
+  }else{
+    return redirect()->back();
+  }
     }else{
       return redirect()->back();
     }
@@ -160,6 +171,11 @@ class MessagesController extends Controller
     $user_id = auth()->user()->id;
     $user = User::find($user_id);
 
+// Check if message exist
+  if($wiadomosc){
+// Validate user
+  if($wiadomosc->sender_id == $user_id || $wiadomosc->receiver_id == $user_id){
+
 // Mark specified message as deleted by specified user(sender/receiver).
     if($wiadomosc->sender_id == $user_id){
       $wiadomosc->deleted_by_sender = 1;
@@ -172,20 +188,38 @@ class MessagesController extends Controller
 // Return back to mailbox.
     $message = 'Wiadomość została usunięta.';
     return redirect()->route('skrzynka')->with('message', $message);
+    }else{
+      return redirect()->back();
+    }
+  }else{
+    return redirect()->back();
   }
-
+}
 // Mark message as not viewed.
   public function markAsNotViewed($id){
 // Find Message Model.
     $wiadomosc = Message::find($id);
+
+// Check if message exist
+    if($wiadomosc){
+// Validate user
+    if($wiadomosc->receiver_id == auth()->user()->id){
+
 // Check if message was viewed before. If yes change its value to false and save data.
     if($wiadomosc->viewed = true){
       $wiadomosc->viewed = false;
       $wiadomosc->save();
       $message = 'Wiadomość została oznaczona jako nieprzeczytana.';
       return redirect('/wiadomosci')->with('message', $message);
+    }
+
+// Redirect back if validation fails
     }else{
-      return redirect('/wiadomosci');
+      return redirect()->back();
+    }
+// Redirect back if message does not exists
+    }else{
+      return redirect()->back();
     }
   }
 
@@ -194,6 +228,12 @@ class MessagesController extends Controller
   public function changeViewedStatus($id){
 // Find Message Model.
     $wiadomosc = Message::find($id);
+
+// Check if message exist
+    if($wiadomosc){
+// Validate user
+    if($wiadomosc->receiver_id == auth()->user()->id){
+
 // If message was viewed by user mark it as not viewed before and save data.
     if($wiadomosc->viewed == true){
       $wiadomosc->viewed = false;
@@ -205,38 +245,45 @@ class MessagesController extends Controller
       $wiadomosc->save();
     }
     return redirect('/wiadomosci');
-  }
-
-
-// One-side elete all checked Messages.
-  public function deleteChecked(Request $request){
-// Create array that contains all checked message ids.
-      $checked = $request->input('checkedMessage');
-// Checks if $checked array contain any elements.
-      if($checked){
-// Find logged user.
-      $user_id = auth()->user()->id;
-      $user = User::find($user_id);
-
-// Move through all ids contained in $checked array.
-      foreach ($checked as $id){
-// Find Message Model.
-        $wiadomosc = Message::find($id);
-
-// Mark sended Message as deleted_by_sender only in his view - not affecting receiver view.
-        if($wiadomosc->sender_id == $user_id){
-          $wiadomosc->deleted_by_sender = 1;
-          $wiadomosc->save();
-
-// Mark received Message as deleted_by_receiver only in his view - not affecting sender view.
-        }elseif($wiadomosc->receiver_id == $user_id){
-          $wiadomosc->deleted_by_receiver = 1;
-          $wiadomosc->save();
-        }
-      }
+// Redirect back if validation fails
+    }else{
+      return redirect()->back();
     }
-      return redirect()->route('skrzynka');
-  }
+// Redirect back if message does not exists
+    }else{
+      return redirect()->back();
+    }
+}
+
+// // One-side elete all checked Messages.
+//   public function deleteChecked(Request $request){
+// // Create array that contains all checked message ids.
+//       $checked = $request->input('checkedMessage');
+// // Checks if $checked array contain any elements.
+//       if($checked){
+// // Find logged user.
+//       $user_id = auth()->user()->id;
+//       $user = User::find($user_id);
+//
+// // Move through all ids contained in $checked array.
+//       foreach ($checked as $id){
+// // Find Message Model.
+//         $wiadomosc = Message::find($id);
+//
+// // Mark sended Message as deleted_by_sender only in his view - not affecting receiver view.
+//         if($wiadomosc->sender_id == $user_id){
+//           $wiadomosc->deleted_by_sender = 1;
+//           $wiadomosc->save();
+//
+// // Mark received Message as deleted_by_receiver only in his view - not affecting sender view.
+//         }elseif($wiadomosc->receiver_id == $user_id){
+//           $wiadomosc->deleted_by_receiver = 1;
+//           $wiadomosc->save();
+//         }
+//       }
+//     }
+//       return redirect()->route('skrzynka');
+//   }
 
 
 // Multiple options for checkbox messages form.
@@ -256,6 +303,7 @@ class MessagesController extends Controller
 // Find all checked Messages and mark them as deleted by one-side user.
         foreach ($checked as $id){
           $wiadomosc = Message::find($id);
+          if($wiadomosc){
           if($wiadomosc->sender_id == $user_id){
             $wiadomosc->deleted_by_sender = 1;
             $wiadomosc->save();
@@ -263,24 +311,29 @@ class MessagesController extends Controller
             $wiadomosc->deleted_by_receiver = 1;
             $wiadomosc->save();
           }
+          }
         }
       }elseif($request->setReaded_x){
 // Find all checked Messages and change their viewed status to true.
         foreach ($checked as $id){
           $wiadomosc = Message::find($id);
+          if($wiadomosc){
           if($wiadomosc->deleted_by_receiver == false){
             $wiadomosc->viewed = true;
             $wiadomosc->save();
           }
         }
+        }
       }elseif($request->setUnreaded_x){
 // Find all checked Messages and change their viewed status to false.
         foreach ($checked as $id){
           $wiadomosc = Message::find($id);
+          if($wiadomosc){
           if($wiadomosc->deleted_by_receiver == false){
             $wiadomosc->viewed = false;
             $wiadomosc->save();
           }
+        }
         }
       }
     }
