@@ -25,26 +25,47 @@ class OgloszeniaController extends Controller
 
 // Create new Ogloszenie.
     public function store(Request $request){
+
+      $customMessages = [
+        'image' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
+        'mimes' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
+        'title.unique' => "Ogłoszenie o podanej nazwie już istnieje.",
+        'images.max' => 'Możesz wysłać maksymalnie :max zdjęć.',
+        'images.*.max' => 'Wysyłane zdjęcia nie mogą być większe niż 5MB.',
+        'title.min' => 'Tytuł jest zbyt krótki.',
+        'title.max' => 'Tytuł jest zbyt długi',
+        'city.max' => 'Nazwa miasta jest zbyt długa.',
+        'district.max' => 'Nazwa dzielnicy jest zbyt długa.',
+        'description.min' => 'Opis jest zbyt krótki.',
+        'description.max' => 'Opis jest zbyt długi',
+        'gt' => 'Podana wartość jest nieprawidłowa.',
+        'rok.before' => 'Podaj poprawną datę.',
+        'rok.gt' => 'Podaj poprawną datę'
+      ];
+
 // Validate inputs
       $this->validate($request, [
         'title' => 'required|min:8|unique:ogloszenia|max:191',
-        'city' => 'required',
-        'district' => 'required',
-        'description' => 'required|min:8',
-        'size' => 'required|numeric',
-        'price' => 'required|numeric',
-        'images' => 'required',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'dodatkowy_czynsz' => 'numeric|nullable',
-        'rok' => 'numeric|digits:4|nullable',
-        'deposit' => 'numeric|nullable',
+        'city' => 'required|max:191',
+        'district' => 'max:191|nullable',
+        'description' => 'required|min:8|max:5000',
+        'size' => 'required|numeric|gt:0',
+        'price' => 'required|numeric|gt:0',
+        'images' => 'required|max:16',
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        'dodatkowy_czynsz' => 'numeric|nullable|gt:0',
+        'rok' => 'numeric|nullable|date_format:Y|before:tommorow|gt:1800',
+        'kaucja' => 'numeric|nullable|gt:0',
         'pokoje' => 'in:wybierz,1,2,3,4,5,więcej_niż_5|nullable',
         'pietro' => 'in:wybierz,parter,1,2,3,4,5,6,7,8,9,10,więcej_niż_10|nullable',
         'stan' => 'in:wybierz,do_zamieszkania,do_remontu,do_wykończenia|nullable',
         'ogrzewanie' => 'in:wybierz,miejskie,gazowe,piec_kaflowy,elektryczne,kotłownia,inne|nullable',
         'equipment.*' => 'in:meble,pralka,zmywarka,lodówka,kuchenka,piekarnik,telewizor|nullable',
         'additional_info.*' => 'in:balkon,garaż,miejsce_parkingowe,piwnica,ogródek,klimatyzacja,winda|nullable'
-      ]);
+      ], $customMessages);
+
+
+
 
 // If validation passes, Create new Model and bind values from request.
       $ogloszenie = new Ogloszenie;
@@ -189,27 +210,45 @@ class OgloszeniaController extends Controller
 
 // Update edited data for Ogloszenie Model.
     public function update(Request $request, $id){
+
+      $customMessages = [
+        'image' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
+        'mimes' => 'Wysłane zdjęcia muszą być w następujących formatach: jpeg, png, jpg, gif, svg.',
+        'title.unique' => "Ogłoszenie o podanej nazwie już istnieje.",
+        'images.max' => 'Możesz wysłać maksymalnie :max zdjęć.',
+        'images.*.max' => 'Wysyłane zdjęcia nie mogą być większe niż 5MB.',
+        'title.min' => 'Tytuł jest zbyt krótki.',
+        'title.max' => 'Tytuł jest zbyt długi',
+        'city.max' => 'Nazwa miasta jest zbyt długa.',
+        'district.max' => 'Nazwa dzielnicy jest zbyt długa.',
+        'description.min' => 'Opis jest zbyt krótki.',
+        'description.max' => 'Opis jest zbyt długi',
+        'gt' => 'Podana wartość jest nieprawidłowa.',
+        'rok.before' => 'Podaj poprawną datę.',
+        'rok.gt' => 'Podaj poprawną datę'
+      ];
+
 // Validate input data.
       $this->validate($request, [
         'title' => 'required|min:8|unique:ogloszenia,title,'.$id.'|max:191',
-        'city' => 'required',
-        'district' => 'required',
-        'description' => 'required|min:8',
-        'size' => 'required|numeric',
-        'price' => 'required|numeric',
+        'city' => 'required|max:191',
+        'district' => 'max:191|nullable',
+        'description' => 'required|min:8|max:5000',
+        'size' => 'required|numeric|gt:0',
+        'price' => 'required|numeric|gt:0',
 // Check for old values of image. This allows to submit form without adding new images just validating those added before.
-        'images' => 'required_without:old',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'dodatkowy_czynsz' => 'numeric|nullable',
-        'rok' => 'numeric|digits:4|nullable',
-        'deposit' => 'numeric|nullable',
+        'images' => 'required_without:old|max:16',
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        'dodatkowy_czynsz' => 'numeric|nullable|gt:0',
+        'rok' => 'numeric|nullable|date_format:Y|before:tommorow|gt:1800',
+        'kaucja' => 'numeric|nullable|gt:0',
         'pokoje' => 'in:wybierz,1,2,3,4,5,więcej_niż_5|nullable',
         'pietro' => 'in:wybierz,parter,1,2,3,4,5,6,7,8,9,10,więcej_niż_10|nullable',
         'stan' => 'in:wybierz,do_zamieszkania,do_remontu,do_wykończenia|nullable',
         'ogrzewanie' => 'in:wybierz,miejskie,gazowe,piec_kaflowy,elektryczne,kotłownia,inne|nullable',
         'equipment.*' => 'in:meble,pralka,zmywarka,lodówka,kuchenka,piekarnik,telewizor|nullable',
         'additional_info.*' => 'in:balkon,garaż,miejsce_parkingowe,piwnica,ogródek,klimatyzacja,winda|nullable'
-      ]);
+      ], $customMessages);
 
 // Checks if images form is purged. If old images are deleted and user did not put any new into the form he will be redirected back.
       if(empty($request->old) && empty($request->file('images'))){

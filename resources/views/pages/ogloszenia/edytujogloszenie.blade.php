@@ -34,9 +34,9 @@
             @enderror
           </div>
           <div class="form-group">
-            <label for="district" class="required">Dzielnica</label>
+            <label for="district">Dzielnica</label>
             <input type="text" name="district" class="form-control @error('district') is-invalid @enderror" @if(old('district')) value="{{ old('district') }}"
-                                                                                                            @else value="{{ $ogloszenie->district }}" @endif>
+                                                                                                            @elseif(isset($ogloszenie->district)) value="{{ $ogloszenie->district }}" @endif>
               @error('district')
                 <span class="invalid-feedback" role="alert">
                       {{ $message }}
@@ -44,7 +44,7 @@
               @enderror
           </div>
           <div class="form-group">
-            <label for="description" class="required">Opis</label>
+            <label for="description" class="required">Opis</label> <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Dodaj szczegółowy opis swojego ogłoszenia. Dobrze opisane oferty dostają więcej odpowiedzi. Wykorzystaj limit 5000 znaków. ">help</i>
             <textarea name="description" rows="4" class="form-control @error('description') is-invalid @enderror">@if(old('description')){{old('description')}}@else{{$ogloszenie->description}}@endif</textarea>
               @error('description')
                 <span class="invalid-feedback" role="alert">
@@ -68,9 +68,9 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              {{ Form::label('rok', 'Rok budowy') }}
-              <input type="text" name="rok" class="form-control @error('rok') is-invalid @enderror" @if(old('rok')) value="{{ old('rok') }}"
-                                                                                                    @elseif(isset($ogloszenie->year_of_construction)) value="{{ $ogloszenie->year_of_construction }}" @endif>
+              {{ Form::label('datepicker', 'Rok budowy') }}
+              <input type="text" name="rok" id="datepicker" autocomplete="off" class="form-control @error('rok') is-invalid @enderror" @if(old('rok')) value="{{ old('rok') }}"
+                                                                                                         @elseif(isset($ogloszenie->year_of_construction)) value="{{ $ogloszenie->year_of_construction }}" @endif>
                 @error('rok')
                     <span class="invalid-feedback" role="alert">
                       {{ $message }}
@@ -246,7 +246,11 @@
           {{--
            --}}
 
-          <h4 class="required">Zdjęcia</h4>
+          <div class="zdjecia-header">
+            <h4 class="required h4in">Zdjęcia</h4>
+            <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Prześlij do 16 zdjęć o maksymalnej wielkości 5MB">help</i>
+          </div>
+
 
           <script type="text/jscript">
           $(function () {
@@ -277,16 +281,29 @@
             <div class="input-images-2">
               <script type="application/javascript">
                 $(function (){
-                  $('.image-uploader').addClass("@error('images') error-img @enderror");
+                  $('.image-uploader').addClass("@error('images.*') error-img @enderror @error('images') error-img @enderror");
                 });
               </script>
             </div>
+            @error('images.*')
+              <span class="image-error-span" role="alert">
+                {{ $message }}
+              </span>
+            @enderror
             @error('images')
               <span class="image-error-span" role="alert">
                 {{ $message }}
               </span>
             @enderror
           </div>
+
+          <script type="text/javascript">
+          $("#datepicker").datepicker( {
+            format: " yyyy",
+            viewMode: "years",
+            minViewMode: "years"
+          });
+          </script>
 
           {{ Form::submit('Edytuj ogłoszenie', ['class' => 'ogloszenie-confirm-button']) }}
       {!! Form::close() !!}
