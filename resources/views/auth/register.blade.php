@@ -77,8 +77,13 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="offset-md-4 col-md-6">
+                            Klikając stwórz konto, akceptujesz <a href="/regulamin" target="_blank">Regulamin</a>
+                          </div>
                         </div>
 
                         <div class="form-group row mb-0">

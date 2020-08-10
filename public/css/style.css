@@ -1601,3 +1601,21 @@
 	.datepicker table tr td span.active:hover:hover{
 		background: #2a66b5 !important;
 	}
+
+
+	.right-ft a{
+		color: #fff;
+	}
+	
+	@media (max-width: 575px){
+		.right-ft{
+			display: block;
+		}
+	}
+
+	@media (min-width: 576px){
+		.right-ft{
+			display: inline-block;
+			float: right;
+		}
+	}
