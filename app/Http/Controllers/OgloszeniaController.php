@@ -186,6 +186,11 @@ class OgloszeniaController extends Controller
     public function edit($id){
       $ogloszenie = Ogloszenie::find($id);
 
+// Checks if user logged is owner of the Model.
+      if(auth()->user()->id !== $ogloszenie->user_id){
+          return redirect()->back();
+      }else{
+
 // Create an array to fill selectbox options in view
     $roomsArray = array('wybierz', '1', '2', '3', '4', '5', 'więcej_niż_5');
     $floorArray = array('wybierz', 'parter', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'więcej_niż_10');
@@ -194,10 +199,6 @@ class OgloszeniaController extends Controller
     $equipmentArray = array('meble', 'pralka', 'zmywarka', 'lodówka', 'kuchenka', 'piekarnik', 'telewizor');
     $additional_infoArray = array('balkon', 'garaż', 'miejsce_parkingowe', 'piwnica', 'ogródek', 'klimatyzacja', 'winda');
 
-// Checks if user logged is owner of the Model.
-      if(auth()->user()->id !== $ogloszenie->user_id){
-          return redirect('/ogloszenia');
-      }
       return view('pages/ogloszenia/edytujogloszenie')->with(['ogloszenie' => $ogloszenie,
                                                               'roomsArray' => $roomsArray,
                                                               'floorArray' => $floorArray,
@@ -206,6 +207,7 @@ class OgloszeniaController extends Controller
                                                               'equipmentArray' => $equipmentArray,
                                                               'additional_infoArray' => $additional_infoArray]);
     }
+  }
 
 
 // Update edited data for Ogloszenie Model.
@@ -369,8 +371,7 @@ class OgloszeniaController extends Controller
 
       if ($ogloszenie) {
       if(auth()->user()->id !== $ogloszenie->user_id){
-          return redirect('/ogloszenia');
-          // error handler
+          return redirect()->back();
       }
 
 // Decode json data from DB into an array.
@@ -383,9 +384,11 @@ class OgloszeniaController extends Controller
       rmdir(public_path('images/'.$ogloszenie->id));
 // Delete Model and redirect to user advertisements tab.
       $ogloszenie->delete();
-      }
       $message = 'Ogłoszenie zostało usunięte.';
       return redirect('/twojeogloszenia')->with('message', $message);
+    }else{
+      return redirect()->back();
+    }
     }
 
 // Show user advertisements tab.
