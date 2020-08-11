@@ -37,4 +37,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated(){
+      $user = auth()->user();
+      if($user->deleted == true){
+       $user->deleted = false;
+       $user->save();
+      }
+    }
+
 }
