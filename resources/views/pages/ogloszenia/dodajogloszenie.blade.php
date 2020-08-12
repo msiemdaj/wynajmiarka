@@ -88,7 +88,9 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="size" class="required">Metraż</label>
-              <input type="text" name="size" class="form-control @error('size') is-invalid @enderror" value="{{ old('size') }}">
+              <div class="suffix">m<sup>2</sup></div>
+              <input type="text" name="size" class="form-control with-suffix @error('size') is-invalid @enderror" value="{{ old('size') }}">
+
                 @error('size')
                     <span class="invalid-feedback" role="alert">
                       {{ $message }}
@@ -113,7 +115,8 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="price" class="required">Cena</label>
-                <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}">
+                <div class="suffix">zł</div>
+                <input id="price" type="text" name="price" class="form-control with-suffix @error('price') is-invalid @enderror" value="{{ old('price') }}">
                   @error('price')
                       <span class="invalid-feedback" role="alert">
                         {{ $message }}
@@ -124,7 +127,8 @@
             <div class="col-md-4">
               <div class="form-group">
                 {{ Form::label('dodatkowy_czynsz', 'Dodatkowy czynsz') }}
-                <input type="text" name="dodatkowy_czynsz" class="form-control @error('dodatkowy_czynsz') is-invalid @enderror" value="{{ old('dodatkowy_czynsz') }}">
+                <div class="suffix">zł</div>
+                <input type="text" name="dodatkowy_czynsz" class="form-control with-suffix @error('dodatkowy_czynsz') is-invalid @enderror" value="{{ old('dodatkowy_czynsz') }}">
                   @error('dodatkowy_czynsz')
                       <span class="invalid-feedback" role="alert">
                         {{ $message }}
@@ -135,7 +139,8 @@
             <div class="col-md-4">
               <div class="form-group">
                 {{ Form::label('kaucja', 'Kaucja') }}
-                <input type="text" name="kaucja" class="form-control @error('kaucja') is-invalid @enderror" value="{{ old('kaucja') }}">
+                <div class="suffix">zł</div>
+                <input type="text" name="kaucja" class="form-control with-suffix @error('kaucja') is-invalid @enderror" value="{{ old('kaucja') }}">
                   @error('kaucja')
                     <span class="invalid-feedback" role="alert">
                       {{ $message }}
@@ -338,15 +343,4 @@
       });
       </script>
     </div>
-
-
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 @endsection

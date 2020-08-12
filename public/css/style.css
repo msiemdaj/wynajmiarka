@@ -1624,3 +1624,14 @@
 		width: 100%;
 		text-align: right;
 	}
+
+		.with-suffix{
+			padding-right: 32px;
+		}
+
+	.form-group .suffix {
+	    position: absolute;
+	    right: 0;
+			padding: 8px 14px;
+	    pointer-events: none;
+	}
