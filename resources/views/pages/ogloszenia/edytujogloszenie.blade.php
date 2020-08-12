@@ -66,13 +66,15 @@
           <div class="form-group">
             <label for="description" class="required">Opis</label> <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Dodaj szczegółowy opis swojego ogłoszenia. Dobrze opisane oferty dostają więcej odpowiedzi. Wykorzystaj limit 5000 znaków. ">help</i>
             <textarea name="description" id="description" rows="5" maxlength="5000" class="form-control @error('description') is-invalid @enderror">@if(old('description')){{old('description')}}@else{{$ogloszenie->description}}@endif</textarea>
-            <div id="textarea_feedback"></div>
-              @error('description')
-                <span class="invalid-feedback" role="alert">
+              <div class="description-feedback">
+                @error('description')
+                    <span class="invalid-feedback" role="alert">
                       {{ $message }}
-                  </span>
-              @enderror
-          </div>
+                    </span>
+                @enderror
+                <div id="textarea_feedback"></div>
+              </div>
+            </div>
 
           <script type="text/javascript">
           $(document).ready(function() {

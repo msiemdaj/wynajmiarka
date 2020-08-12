@@ -1620,8 +1620,18 @@
 		}
 	}
 
+	.description-feedback .invalid-feedback{
+		display: inline;
+	}
+
 	#textarea_feedback{
-		text-align: right;
+		display:inline;
+		float: right;
+	}
+
+	.description-feedback{
+		width: 100%;
+		display: inline-block;
 	}
 
 		.with-suffix{
