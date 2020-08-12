@@ -1606,7 +1606,7 @@
 	.right-ft a{
 		color: #fff;
 	}
-	
+
 	@media (max-width: 575px){
 		.right-ft{
 			display: block;
@@ -1618,4 +1618,9 @@
 			display: inline-block;
 			float: right;
 		}
+	}
+
+	#textarea_feedback{
+		width: 100%;
+		text-align: right;
 	}
