@@ -64,20 +64,22 @@
           <div class="form-group">
             <label for="description" class="required">Opis</label> <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Dodaj szczegółowy opis swojego ogłoszenia. Dobrze opisane oferty dostają więcej odpowiedzi. Wykorzystaj limit 5000 znaków. ">help</i>
             <textarea name="description" id="description" rows="5" maxlength="5000" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+            @error('description')
+                <span class="invalid-feedback" role="alert">
+                  {{ $message }}
+                </span>
+            @enderror
             <div id="textarea_feedback"></div>
-              @error('description')
-                  <span class="invalid-feedback" role="alert">
-                    {{ $message }}
-                  </span>
-              @enderror
           </div>
+
 
         <script type="text/javascript">
         $(document).ready(function() {
+        var length = $('#description').val().length;
 
-          $('#textarea_feedback').html('0/5000');
+          $('#textarea_feedback').html(length+'/5000');
           $('#description').keyup(function() {
-              var length = $('#description').val().length;
+              length = $('#description').val().length;
 
               $('#textarea_feedback').html(length + '/5000');
           });
@@ -288,6 +290,12 @@
         </div>
           {{--
            --}}
+
+           <script type="text/javascript">
+             $(document).ready(function() {
+                // alert($('.with-suffix').hasClass('is-invalid'));
+             });
+           </script>
 
            <script type="text/javascript">
            $("#datepicker").datepicker( {

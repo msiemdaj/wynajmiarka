@@ -91,7 +91,8 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="size" class="required">Metraż</label>
-              <input type="text" name="size" class="form-control @error('size') is-invalid @enderror" @if(old('size')) value="{{ old('size') }}"
+              <div class="suffix">m<sup>2</sup></div>
+              <input type="text" name="size" class="form-control with-suffix @error('size') is-invalid @enderror" @if(old('size')) value="{{ old('size') }}"
                                                                                                       @else value="{{ $ogloszenie->size }}" @endif>
                 @error('size')
                     <span class="invalid-feedback" role="alert">
@@ -118,7 +119,8 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="price" class="required">Cena</label>
-                <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" @if(old('price')) value="{{ old('price') }}"
+                <div class="suffix">zł</div>
+                <input type="text" name="price" class="form-control with-suffix @error('price') is-invalid @enderror" @if(old('price')) value="{{ old('price') }}"
                                                                                                           @else value="{{ $ogloszenie->price }}" @endif>
                   @error('price')
                       <span class="invalid-feedback" role="alert">
@@ -130,7 +132,8 @@
             <div class="col-md-4">
               <div class="form-group">
                 {{ Form::label('dodatkowy_czynsz', 'Dodatkowy czynsz') }}
-                <input type="text" name="dodatkowy_czynsz" class="form-control @error('dodatkowy_czynsz') is-invalid @enderror" @if(old('dodatkowy_czynsz')) value="{{ old('dodatkowy_czynsz') }}"
+                <div class="suffix">zł</div>
+                <input type="text" name="dodatkowy_czynsz" class="form-control with-suffix @error('dodatkowy_czynsz') is-invalid @enderror" @if(old('dodatkowy_czynsz')) value="{{ old('dodatkowy_czynsz') }}"
                                                                                                                                 @elseif(isset($ogloszenie->additional_costs)) value="{{ $ogloszenie->additional_costs }}" @endif>
                   @error('dodatkowy_czynsz')
                       <span class="invalid-feedback" role="alert">
@@ -142,7 +145,8 @@
             <div class="col-md-4">
               <div class="form-group">
                 {{ Form::label('kaucja', 'Kaucja') }}
-                <input type="text" name="kaucja" class="form-control @error('kaucja') is-invalid @enderror" @if(old('kaucja')) value="{{ old('kaucja') }}"
+                <div class="suffix">zł</div>
+                <input type="text" name="kaucja" class="form-control with-suffix @error('kaucja') is-invalid @enderror" @if(old('kaucja')) value="{{ old('kaucja') }}"
                                                                                                             @elseif(isset($ogloszenie->deposit)) value="{{ $ogloszenie->deposit }}" @endif>
                   @error('kaucja')
                     <span class="invalid-feedback" role="alert">
