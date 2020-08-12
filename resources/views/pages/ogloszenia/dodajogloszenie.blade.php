@@ -296,7 +296,13 @@
 
            <script type="text/javascript">
              $(document).ready(function() {
-                // alert($('.with-suffix').hasClass('is-invalid'));
+                  $('.with-suffix').each(function() {
+                    if($(this).hasClass('is-invalid')){
+                      var parent = $(this).parent();
+                      var suffix = parent.find('.suffix');
+                      suffix.hide();
+                    }
+                });
              });
            </script>
 
