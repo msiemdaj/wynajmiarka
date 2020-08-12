@@ -23,26 +23,46 @@
                   </span>
               @enderror
           </div>
-          <div class="form-group">
-            <label for="city" class="required">Miasto</label>
-            <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" @if(old('city')) value="{{ old('city') }}"
-                                                                                                    @else value="{{ $ogloszenie->city }}" @endif>
-            @error('city')
-              <span class="invalid-feedback" role="alert">
-                    {{ $message }}
-                </span>
-            @enderror
-          </div>
-          <div class="form-group">
-            <label for="district">Dzielnica</label>
-            <input type="text" name="district" class="form-control @error('district') is-invalid @enderror" @if(old('district')) value="{{ old('district') }}"
-                                                                                                            @elseif(isset($ogloszenie->district)) value="{{ $ogloszenie->district }}" @endif>
-              @error('district')
+          <div class="form-row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="city" class="required">Miasto</label>
+              <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" @if(old('city')) value="{{ old('city') }}"
+                                                                                                      @else value="{{ $ogloszenie->city }}" @endif>
+              @error('city')
                 <span class="invalid-feedback" role="alert">
                       {{ $message }}
                   </span>
               @enderror
+            </div>
           </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="district">Dzielnica</label>
+              <input type="text" name="district" class="form-control @error('district') is-invalid @enderror" @if(old('district')) value="{{ old('district') }}"
+                                                                                                              @elseif(isset($ogloszenie->district)) value="{{ $ogloszenie->district }}" @endif>
+                @error('district')
+                  <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="street">Ulica / osiedle</label>
+              <input type="text" name="street" class="form-control @error('district') is-invalid @enderror" @if(old('street')) value="{{ old('street') }}"
+                                                                                                            @elseif(isset($ogloszenie->street)) value="{{ $ogloszenie->street }}" @endif>
+                @error('street')
+                    <span class="invalid-feedback" role="alert">
+                      {{ $message }}
+                    </span>
+                @enderror
+            </div>
+          </div>
+          </div>
+
+
           <div class="form-group">
             <label for="description" class="required">Opis</label> <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Dodaj szczegółowy opis swojego ogłoszenia. Dobrze opisane oferty dostają więcej odpowiedzi. Wykorzystaj limit 5000 znaków. ">help</i>
             <textarea name="description" rows="4" class="form-control @error('description') is-invalid @enderror">@if(old('description')){{old('description')}}@else{{$ogloszenie->description}}@endif</textarea>

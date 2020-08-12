@@ -83,10 +83,18 @@
               <h4>Miejscowość</h4>
               <h5> {{ $ogloszenie->city }} </h5>
             </div>
-            <div class="ogloszenie-info-item">
-              <h4>Dzielnica</h4>
-              <h5> {{ $ogloszenie->district }} </h5>
-            </div>
+            @if($ogloszenie->deposit)
+              <div class="ogloszenie-info-item">
+                <h4>Dzielnica</h4>
+                <h5> {{ $ogloszenie->district }} </h5>
+              </div>
+            @endif
+            @if($ogloszenie->street)
+              <div class="ogloszenie-info-item">
+                <h4>Ulica / osiedle</h4>
+                <h5> {{ $ogloszenie->street }} </h5>
+              </div>
+            @endif
             <div class="ogloszenie-info-item">
               <h4>Metraż</h4>
               <h5> {{ $ogloszenie->size }} m<sup>2</sup> </h5>

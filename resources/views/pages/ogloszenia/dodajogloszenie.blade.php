@@ -23,25 +23,43 @@
                   </span>
               @enderror
           </div>
-          <div class="form-group">
-            <label for="city" class="required">Miasto</label>
-            <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" value="{{ old('city') }}">
-              @error('city')
-                  <span class="invalid-feedback" role="alert">
-                    {{ $message }}
-                  </span>
-              @enderror
 
-          </div>
-          <div class="form-group">
-            <label for="district">Dzielnica</label>
-            <input type="text" name="district" class="form-control @error('district') is-invalid @enderror" value="{{ old('district') }}">
-              @error('district')
-                  <span class="invalid-feedback" role="alert">
-                    {{ $message }}
-                  </span>
-              @enderror
-          </div>
+
+    <div class="form-row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="city" class="required">Miasto</label>
+        <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" value="{{ old('city') }}">
+          @error('city')
+              <span class="invalid-feedback" role="alert">
+                {{ $message }}
+              </span>
+          @enderror
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="district">Dzielnica</label>
+        <input type="text" name="district" class="form-control @error('district') is-invalid @enderror" value="{{ old('district') }}">
+          @error('district')
+              <span class="invalid-feedback" role="alert">
+                {{ $message }}
+              </span>
+          @enderror
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="street">Ulica / osiedle</label>
+        <input type="text" name="street" class="form-control @error('street') is-invalid @enderror" value="{{ old('street') }}">
+          @error('street')
+              <span class="invalid-feedback" role="alert">
+                {{ $message }}
+              </span>
+          @enderror
+      </div>
+    </div>
+    </div>
 
           <div class="form-group">
             <label for="description" class="required">Opis</label> <i class="info material-icons" data-toggle="tooltip" data-placement="top" title="Dodaj szczegółowy opis swojego ogłoszenia. Dobrze opisane oferty dostają więcej odpowiedzi. Wykorzystaj limit 5000 znaków. ">help</i>

@@ -36,6 +36,7 @@ class OgloszeniaController extends Controller
         'title.max' => 'Tytuł jest zbyt długi',
         'city.max' => 'Nazwa miasta jest zbyt długa.',
         'district.max' => 'Nazwa dzielnicy jest zbyt długa.',
+        'street.max' => 'Podana nazwa jest zbyt długa.',
         'description.min' => 'Opis jest zbyt krótki.',
         'description.max' => 'Opis jest zbyt długi',
         'gt' => 'Podana wartość jest nieprawidłowa.',
@@ -48,6 +49,7 @@ class OgloszeniaController extends Controller
         'title' => 'required|min:8|unique:ogloszenia|max:191',
         'city' => 'required|max:191',
         'district' => 'max:191|nullable',
+        'street' => 'max:191|nullable',
         'description' => 'required|min:8|max:5000',
         'size' => 'required|numeric|gt:0',
         'price' => 'required|numeric|gt:0',
@@ -73,6 +75,7 @@ class OgloszeniaController extends Controller
       $ogloszenie->title = $request->input('title');
       $ogloszenie->city = $request->input('city');
       $ogloszenie->district = $request->input('district');
+      $ogloszenie->street = $request->input('street');
       $ogloszenie->description = $request->input('description');
       $ogloszenie->size = $request->input('size');
       $ogloszenie->price = $request->input('price');
@@ -223,6 +226,7 @@ class OgloszeniaController extends Controller
         'title.max' => 'Tytuł jest zbyt długi',
         'city.max' => 'Nazwa miasta jest zbyt długa.',
         'district.max' => 'Nazwa dzielnicy jest zbyt długa.',
+        'street.max' => 'Podana nazwa jest zbyt długa.',
         'description.min' => 'Opis jest zbyt krótki.',
         'description.max' => 'Opis jest zbyt długi',
         'gt' => 'Podana wartość jest nieprawidłowa.',
@@ -235,6 +239,7 @@ class OgloszeniaController extends Controller
         'title' => 'required|min:8|unique:ogloszenia,title,'.$id.'|max:191',
         'city' => 'required|max:191',
         'district' => 'max:191|nullable',
+        'street' => 'max:191|nullable',
         'description' => 'required|min:8|max:5000',
         'size' => 'required|numeric|gt:0',
         'price' => 'required|numeric|gt:0',
@@ -270,6 +275,7 @@ class OgloszeniaController extends Controller
       $ogloszenie->title = $request->input('title');
       $ogloszenie->city = $request->input('city');
       $ogloszenie->district = $request->input('district');
+      $ogloszenie->street = $request->input('street');
       $ogloszenie->description = $request->input('description');
       $ogloszenie->size = $request->input('size');
       $ogloszenie->price = $request->input('price');

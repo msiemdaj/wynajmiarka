@@ -35,10 +35,11 @@
           <a href="/ogloszenia/{{$ogloszenie->id}}">{{ $ogloszenie->title }}</a>
         </div>
         <div class="ogl-place">
-          {{ $ogloszenie->city.', '.$ogloszenie->district }}
+          {{$ogloszenie->city}}@if($ogloszenie->district){{', '.$ogloszenie->district}}@endif
+@if($ogloszenie->street){{', '.$ogloszenie->street}}@endif
         </div>
         <div class="ogl-description">
-          {{ $ogloszenie->description }}
+          {{$ogloszenie->description}}
         </div>
 
         @if (Auth::check())

@@ -31,7 +31,7 @@
             {{$ulubione->title}}
           </div>
           <div class="favorite-place">
-            {{ $ulubione->city.', '.$ulubione->district }}
+            {{ $ulubione->city }}
           </div>
           <div class="favorite-description">
             {{ $ulubione->description }}
