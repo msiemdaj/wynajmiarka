@@ -406,7 +406,7 @@ class OgloszeniaController extends Controller
       $favoriteOgloszenia = $user->getFavoriteItems(Ogloszenie::class)->get();
 
 // Return view with all advertisements added by user and those which he like.
-      return view('pages/ogloszenia/twojeogloszenia')->with(['ogloszenia' => $user->ogloszenia,
+      return view('pages/ogloszenia/twojeogloszenia')->with(['ogloszenia' => $user->ogloszenia->sortByDesc('created_at'),
                                                              'favoriteOgloszenia' => $favoriteOgloszenia]);
     }
 
