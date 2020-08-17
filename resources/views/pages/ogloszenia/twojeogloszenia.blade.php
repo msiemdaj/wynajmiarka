@@ -16,9 +16,6 @@
     <div class="favorite-ogloszenia-header">
       <h2>Ulubione ogłoszenia</h2>
       <h4>Lista twoich ogłoszeń, które dodałeśdo ulubionych. Możesz bezpośrednio przejśćna stronę ogłoszenia klikając na zdjęcie lub jego tytuł. Jeśli chcesz usunąc je z ulubionych klliknij w ikonę serca.</h4>
-      <div class="show-more">
-        Pokaż więcj
-      </div>
     </div>
 
     <div class="favorite-list">
@@ -67,11 +64,21 @@
         </div>
       @endforeach
     </div>
+    <div class="showhide">
+      <span>Pokaż więcej</span>
+    </div>
   </div>
 
   <script type="text/javascript">
-    $('.show-more').click(function(){
-      $(".favorite-item:nth-of-type(1) ~ .favorite-item").css("display", "block");
+    $('.showhide').click(function(){
+      $(this).toggleClass('showless');
+      if($(this).hasClass('showless')){
+        $(".favorite-item:nth-of-type(1) ~ .favorite-item").css("display", "block");
+        $(this).html('Pokaż mniej');
+      }else{
+        $(".favorite-item:nth-of-type(1) ~ .favorite-item").css("display", "");
+        $(this).html('Pokaż więcej');
+      }
     });
   </script>
 
