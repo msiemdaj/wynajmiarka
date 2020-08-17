@@ -13,37 +13,56 @@
   @endif
 
   <div class="favorite-ogloszenia">
-    <h2>Ulubione ogłoszenia</h2>
-    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h4>
+    <div class="favorite-ogloszenia-header">
+      <h2>Ulubione ogłoszenia</h2>
+      <h4>Lista twoich ogłoszeń, które dodałeśdo ulubionych. Możesz bezpośrednio przejśćna stronę ogłoszenia klikając na zdjęcie lub jego tytuł. Jeśli chcesz usunąc je z ulubionych klliknij w ikonę serca.</h4>
+      <div class="show-more">
+        Pokaż więcj
+      </div>
+    </div>
 
     <div class="favorite-list">
       @foreach ($favoriteOgloszenia as $ulubione)
         <div class="favorite-item">
-          <div class="favorite-image">
-            @php
-              $coverImage = json_decode($ulubione->image);
-            @endphp
-            <a href="/ogloszenia/{{$ulubione->id}}">
-              <img src="{{ asset('images/'.$ulubione->id.'/'.$coverImage[0]) }}">
-            </a>
-          </div>
-          <div class="favorite-title">
-            {{$ulubione->title}}
-          </div>
-          <div class="favorite-place">
-            {{ $ulubione->city }}
-          </div>
-          <div class="favorite-description">
-            {{ $ulubione->description }}
-          </div>
-          <div class="favorite-size">
-            <b>Metraż:</b> {{ $ulubione->size }} m<sup>2</sup>
-          </div>
-          <div class="favorite-price">
-            <b>Cena:</b> {{ $ulubione->price.' zł' }}
-          </div>
-          <div class="favorite-date">
-            <small>Dodano: {{ $ulubione->created_at }}</small>
+          <div class="fav-item">
+            <div class="favorite-image">
+              @php
+                $coverImage = json_decode($ulubione->image);
+              @endphp
+              <a href="/ogloszenia/{{$ulubione->id}}">
+                <img src="{{ asset('images/'.$ulubione->id.'/'.$coverImage[0]) }}">
+              </a>
+            </div>
+            <div class="fav-item-detail">
+                  <a href="/ogloszenia/{{$ulubione->id}}">{{ $ulubione->title }}</a>
+            </div>
+            <div class="fav-item-detail">
+              <span class="fav-item-span">{{$ulubione->city}}</span>
+            </div>
+            <div class="fav-item-detail">
+              <b>Metraż:</b> {{ $ulubione->size }} m<sup>2</sup>
+            </div>
+            <div class="fav-item-detail">
+              <b>Cena:</b> {{ $ulubione->price.' zł' }}
+              @if($ulubione->to_negotiate == true)
+                <span class="badge badge-secondary">do negocjacji</span>
+              @endif
+            </div>
+
+            @if($ulubione->isFavoritedBy(auth()->user()))
+            <div id="favorite" data-id="{{ $ulubione->id }}">
+                <a href="/ogloszenie/{{$ulubione->id}}/unfavorite"><i class="favorite large material-icons" id="favo{{$ulubione->id}}" data-toggle="tooltip" data-placement="top" title="Usuń z ulubionych">favorite</i></a>
+            </div>
+            @endif
+
+            <script type="text/javascript">
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip({
+                trigger : 'hover'
+                });
+              });
+            </script>
+
           </div>
         </div>
       @endforeach
@@ -52,7 +71,7 @@
 
   <script type="text/javascript">
     $('.show-more').click(function(){
-      $('.favorite-item').eq(4).nextAll('.favorite-item').addClass('hidden');
+      $(".favorite-item:nth-of-type(1) ~ .favorite-item").css("display", "block");
     });
   </script>
 

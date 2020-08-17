@@ -50,6 +50,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('ogloszenia/{id}/addtofav', 'OgloszeniaController@addToFavourite');
 
 Route::post('favRequest', 'OgloszeniaController@favRequest')->name('favRequest');
+Route::get('/ogloszenie/{id}/unfavorite', 'OgloszeniaController@unfavorite');
 
 Route::get('/regulamin', function(){
     return view('pages/regulamin');

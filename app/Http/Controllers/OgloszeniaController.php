@@ -471,4 +471,14 @@ class OgloszeniaController extends Controller
     return response()->json(['success' => true]);
   }
 
+// Unfavorite advertisement from users advertivements panel.
+  public function unfavorite(Request $request){
+    $user = User::find(auth()->user()->id);
+    $ogloszenie = Ogloszenie::find($request->id);
+
+    $user->unfavorite($ogloszenie);
+
+    return redirect()->back();
+  }
+
 }
