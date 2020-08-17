@@ -15,9 +15,10 @@
   <div class="favorite-ogloszenia">
     <div class="favorite-ogloszenia-header">
       <h2>Ulubione ogłoszenia</h2>
-      <h4>Lista twoich ogłoszeń, które dodałeśdo ulubionych. Możesz bezpośrednio przejśćna stronę ogłoszenia klikając na zdjęcie lub jego tytuł. Jeśli chcesz usunąc je z ulubionych klliknij w ikonę serca.</h4>
+      <h4>Lista twoich ogłoszeń, które dodałeś do ulubionych. Możesz bezpośrednio przejść na stronę ogłoszenia klikając na zdjęcie lub jego tytuł. Jeśli chcesz usunąc je z ulubionych klliknij w ikonę serca.</h4>
     </div>
 
+@if(!$favoriteOgloszenia->isEmpty())
     <div class="favorite-list">
       @foreach ($favoriteOgloszenia as $ulubione)
         <div class="favorite-item">
@@ -67,6 +68,10 @@
     <div class="showhide">
       <span>Pokaż więcej</span>
     </div>
+  @else
+    Nie posiadasz ulubionych ogłoszeń, w celu dodania do swojej listy kliknij ikonę serca na wyszukanym przez Ciebie ogłoszeniu.
+    <hr>
+  @endif
   </div>
 
   <script type="text/javascript">
