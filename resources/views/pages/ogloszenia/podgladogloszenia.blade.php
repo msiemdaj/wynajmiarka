@@ -83,7 +83,7 @@
               <h4>Miejscowość</h4>
               <h5> {{ $ogloszenie->city }} </h5>
             </div>
-            @if($ogloszenie->deposit)
+            @if($ogloszenie->district)
               <div class="ogloszenie-info-item">
                 <h4>Dzielnica</h4>
                 <h5> {{ $ogloszenie->district }} </h5>
