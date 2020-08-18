@@ -162,6 +162,12 @@
 
 			.ogl-place{
 				font-weight: bold;
+				visibility: visible;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 1;
 			}
 
 			.ogl-description{
@@ -237,6 +243,10 @@
 				min-width: 22em;
 			}
 
+			.ogl-place{
+				max-width: 266.406px;
+			}
+
 			.ogl-result{
 				display: table;
 				height: 150px;
@@ -298,6 +308,10 @@
 				width: 482px;
 			}
 
+			.ogl-place{
+				max-width: 302.406px;
+			}
+
 			.search-result-message{
 				margin-top: 2em;
 			}
@@ -319,6 +333,10 @@
 			.ogl-result{
 				display: table;
 				height: auto;
+			}
+
+			.ogl-place{
+				max-width: 425.406px;
 			}
 
 			.ogl-image{
@@ -377,6 +395,10 @@
 				font-size: 19px;
 			}
 
+			.ogl-place{
+				max-width: 624.219px;
+			}
+
 			.ogl-image img{
 				min-height: 236px;
 			}
@@ -402,6 +424,10 @@
 
 			.ogl-image img{
 				min-height: 236px;
+			}
+
+			.ogl-place{
+				max-width: 769.219px;
 			}
 
 			.ogl-title a{
