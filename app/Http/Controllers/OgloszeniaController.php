@@ -433,6 +433,7 @@ class OgloszeniaController extends Controller
 // Pagination. Show 15 items per page.
         $data = Ogloszenie::Where('city', 'like', '%'.$query.'%')
                               ->orWhere('district', 'like', '%'.$query.'%')
+                              ->orWhere('street', 'like', '%'.$query.'%')
                               ->orderBy($sort_by, $sort_order)->paginate(15);
 
 

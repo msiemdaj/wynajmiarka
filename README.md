@@ -5,7 +5,7 @@ Głównym celem stworzenia tej aplikacji jest samodoskonalenie umiejętności i 
 
 ## Funkcje:
 
-- Wyszukiwanie ogłoszeń po nazwie miasta, dzielnicy, ulicy lub osiedla listowane za pomocą ajaxu.
+- Wyszukiwanie ogłoszeń po nazwie miasta, dzielnicy, ulicy lub osiedla listowane za pomocą ajaxu wraz z paginacją.
 - Przegląd wybranych ogłoszeń mając wgląd w szczegółowe informacje.
 - Po zalogowaniu możliwość dodania ogłoszenia do ulubionych.
 - Rejestracja, możliwość zresetowania hasła oraz ponownego wysłania linku aktywacyjnego na adres email.
