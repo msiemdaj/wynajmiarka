@@ -155,7 +155,7 @@ class MessagesController extends Controller
 // Send email to the user with notification about new message in mailbox if his notifications are turned on. Then redirect back.
     $toUser = User::find($wiadomosc->sender_id);
     if($toUser->notifications == true){
-      Mail::raw('Witaj, w twojej skrzynce na http://www.wynajmiarka.pl znajduje się nowa wiadomość. Zaloguj się i odczytaj ją!',
+      Mail::raw('Witaj, w twojej skrzynce na http://wynajmiarka.pl znajduje się nowa wiadomość. Zaloguj się i odczytaj ją!',
       function ($message) use($toUser){
     $message->to($toUser->email)
       ->subject('Wynajmiarka - masz nową wiadomość!');
