@@ -16,4 +16,4 @@ Głównym celem stworzenia tej aplikacji jest samodoskonalenie umiejętności i 
 - Skrzynka wiadomości, pozwalająca na zarządzanie wiadomościami(ich usuwanie, opsiwyanie na otrzymane wiadomości, podgląd, oznaczniae wiadomości jako przeczytane). Checkboxy do masowego zarządzania wiadomościami.
 - Ustawienia konta pozwalające na zmianę danych kontaktowych oraz właściwości konta. Funkcja dezktywacji konta, pozwalająca na jego ponowną aktywację przy kolejnym logowaniu.
 
-# Demo dostępne pod adresem: [wynajmiarka.pl](wynajmiarka.pl)
+<a href="wynajmiarka.pl">wynajmiarka.pl</a>
