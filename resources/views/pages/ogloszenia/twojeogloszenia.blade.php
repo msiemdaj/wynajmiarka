@@ -65,27 +65,29 @@
         </div>
       @endforeach
     </div>
+    @if(count($favoriteOgloszenia) > 4)
     <div class="showhide">
       <span>Pokaż więcej</span>
     </div>
+
+    <script type="text/javascript">
+      $('.showhide').click(function(){
+        $(this).toggleClass('showless');
+        if($(this).hasClass('showless')){
+          $(".favorite-item:nth-of-type(1) ~ .favorite-item").css("display", "block");
+          $(this).html('Pokaż mniej');
+        }else{
+          $(".favorite-item:nth-of-type(1) ~ .favorite-item").css("display", "");
+          $(this).html('Pokaż więcej');
+        }
+      });
+    </script>
+  @endif
   @else
     Nie posiadasz ulubionych ogłoszeń, w celu dodania do swojej listy kliknij ikonę serca na wyszukanym przez Ciebie ogłoszeniu.
     <hr>
   @endif
   </div>
-
-  <script type="text/javascript">
-    $('.showhide').click(function(){
-      $(this).toggleClass('showless');
-      if($(this).hasClass('showless')){
-        $(".favorite-item:nth-of-type(1) ~ .favorite-item").css("display", "block");
-        $(this).html('Pokaż mniej');
-      }else{
-        $(".favorite-item:nth-of-type(1) ~ .favorite-item").css("display", "");
-        $(this).html('Pokaż więcej');
-      }
-    });
-  </script>
 
   <div class="simpl-head">
     <h2>Twoje Ogłoszenia</h2>
