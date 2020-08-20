@@ -451,10 +451,10 @@ class OgloszeniaController extends Controller
 
 // Check if array is empty. If not then post data into view.
       if($data->isEmpty()){
-        $message = 'Brak wyników dla frazy "'.$query.'"';
+        $message = 'Brak wyników dla frazy "'.$request->get('query').'"';
         return view('pages/ogloszenia/ajax_search')->with('message', $message);
         }else{
-          $message = 'Wyniki wyszukiwania frazy "'.$query.'"';
+          $message = 'Wyniki wyszukiwania frazy "'.$request->get('query').'"';
           return view('pages/ogloszenia/ajax_search', ['data' => $data,
                                                        'message' => $message])->render();
         }
@@ -480,6 +480,11 @@ class OgloszeniaController extends Controller
     $user->unfavorite($ogloszenie);
 
     return redirect()->back();
+  }
+
+  public function autocomplete(Request $request){
+    $data = Ogloszenie::where("city","LIKE","%{$request->input('query')}%")->pluck("City")->unique("city")->toArray();
+    return response()->json($data);
   }
 
 }

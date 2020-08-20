@@ -118,6 +118,27 @@
 					width: auto;
 			}
 
+			ul.typeahead.dropdown-menu{
+				width: auto !important;
+				max-width: 183px !important;
+				background-color: #f8fafc !important;
+ 				padding:0
+			}
+
+			a.dropdown-item{
+				padding: 0.375rem 0.75rem !important;
+				max-width: 183px !important;
+				white-space: nowrap;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+				color: #000 !important;
+			}
+
+			a.dropdown-item:hover{
+				background-color: #2a66b5 !important;
+				color: #fff !important;
+			}
+
 			.search-group{
 				min-width: 16.5em;
 			}
@@ -241,6 +262,15 @@
 
 			.form-inline input[type=text]{
 				min-width: 22em;
+			}
+
+			ul.typeahead.dropdown-menu{
+				min-width: 22em !important;
+				max-width: 316.8px !important;
+			}
+
+			a.dropdown-item{
+				max-width: 316.8px !important;
 			}
 
 			.ogl-place{

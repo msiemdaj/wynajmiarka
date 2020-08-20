@@ -20,11 +20,26 @@
       <form id="action" class="form-inline">
       @csrf
       <div class="input-group-prepend">
-        <input type="text" name="search" id="search" class="form-control"/>
+        <input type="text" name="search" id="search" class="typeahead form-control" autocomplete="off"/>
         <input type="image" src="{{asset('img/lupa.png')}}" class="form-control"/>
       </div>
-
       </form>
+      <script type="text/javascript">
+          var path = "{{ route('autocomplete') }}";
+
+          $('input.typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 2,
+                source:  function (query, process) {
+                return $.get(path, { query: query }, function (data) {
+                        return process(data);
+                    });
+                }
+            }).on('typeahead:selected', function(e){
+               e.target.form.submit();
+             });
+      </script>
     </div>
   </div>
 

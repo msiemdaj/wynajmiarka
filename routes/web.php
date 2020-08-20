@@ -55,3 +55,5 @@ Route::get('/ogloszenie/{id}/unfavorite', 'OgloszeniaController@unfavorite');
 Route::get('/regulamin', function(){
     return view('pages/regulamin');
 });
+
+Route::get('autocomplete', 'OgloszeniaController@autocomplete')->name('autocomplete');
