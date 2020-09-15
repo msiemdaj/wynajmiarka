@@ -173,7 +173,6 @@
 
         <div class="ogloszenie-options-btn">
             @if (Auth::check())
-              @if (Auth::user()->email_verified_at)
                   @if(Auth::id() == $ogloszenie->user_id)
 
                       <a class="ogloszenie-button-1" href="/ogloszenia/{{ $ogloszenie->id }}/edit"><span>Edytuj ogłoszenie</span></a>
@@ -260,10 +259,6 @@
                     </div>
                     {{-- modal end --}}
                   @endif
-              @else
-                <a class="ogloszenie-button-1" href="/email/verify"><span>Zweryfikuj konto, aby zobaczyć numer telefonu</span></a>
-                <a class="ogloszenie-button-2" href="/email/verify"><span>Zweryfikuj konto, aby wysłać wiadomość</span></a>
-              @endif
             @else
               <a class="ogloszenie-button-1" href="/ogloszenia/{{$ogloszenie->id}}/showcontact"><span>Zaloguj się, aby zobaczyć numer telefonu</span></a>
               <a class="ogloszenie-button-2" href="/ogloszenia/{{$ogloszenie->id}}/showcontact"><span>Zaloguj się, zby wysłać wiadomość</span></a>
