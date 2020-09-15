@@ -11,7 +11,7 @@ use Mail;
 class MessagesController extends Controller
 {
   public function __construct(){
-      $this->middleware(['auth','verified']);
+      $this->middleware(['auth']);
   }
 
 // Show view with All messages.

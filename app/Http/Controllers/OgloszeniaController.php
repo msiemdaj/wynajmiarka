@@ -14,7 +14,7 @@ class OgloszeniaController extends Controller
 
 // Check for user Auth and verify on all pages except index, show, search resources.
   public function __construct(){
-      $this->middleware(['auth','verified'], ['except' => ['index', 'show', 'search']]);
+      $this->middleware(['auth'], ['except' => ['index', 'show', 'search']]);
   }
 
 // Return view to add new Ogloszenie.

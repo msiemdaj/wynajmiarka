@@ -12,7 +12,7 @@ class UstawieniaController extends Controller
 {
 
   public function __construct(){
-      $this->middleware(['auth','verified']);
+      $this->middleware(['auth']);
   }
 
 // Return view for Ustawienia page.
